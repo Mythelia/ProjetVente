@@ -8,7 +8,7 @@
 <title>Bonjour</title>
 </head>
 <body>
-	<jsp:include page="/Pages/Header.html"></jsp:include>
+	<jsp:include page="/Pages/HeaderB.html"></jsp:include>
 	<h2>Hello World! Test de la mort 23</h2>
 </body>
 

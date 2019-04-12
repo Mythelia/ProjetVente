@@ -19,7 +19,7 @@ img.head {
 #head {
 	width: 100%;
 	height: 60px;
-	background-image: url("https://i.stack.imgur.com/1Tzky.png");
+	/* 	background-image: url("https://i.stack.imgur.com/1Tzky.png"); */
 	background-size: cover;
 }
 
@@ -35,45 +35,58 @@ img.head {
 	margin-top: 10px;
 }
 
-#recherch {
-	text-align: right;
+nav {
+	width: 100%;
 }
 </style>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div id="head" class="container">
 
-	<div id="head" class="container">
+			<ul class="nav navbar-nav">
+				<li class="active"><a
+					href="http://localhost:8080/projetVenteLigne/index.jsp"><img
+						class="head" alt="home"
+						src="https://image.flaticon.com/icons/png/512/25/25694.png"></a></li>
 
-		<div class="col-sm-1"
-			onclick="location.href='http://localhost:8080/projetVenteLigne/index.jsp'">
-			<img class="head" alt="home"
-				src="https://image.flaticon.com/icons/png/512/25/25694.png">
+			</ul>
+
+			<ul class="nav navbar-nav" id="recherch">
+				<li class="active"><a href="#"> <img class="head"
+						alt="recherche"
+						src="https://image.flaticon.com/icons/svg/109/109164.svg">
+						Rechercher
+				</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#"> <img
+						src="https://image.flaticon.com/icons/svg/3/3911.svg" class="head">
+						Ajouter une annonce
+				</a></li>
+			</ul>
+
+
+			<ul class="nav navbar-nav">
+				<li class="active"><a
+					href='http://localhost:8080/projetVenteLigne/Pages/Connection.jsp'>
+						<img class="head" alt="compte"
+						src="https://www.flaticon.com/premium-icon/icons/svg/1144/1144760.svg"
+						id="Icompte"> Mon compte
+				</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#"> <img class="head"
+						alt="compte"
+						src="https://image.flaticon.com/icons/svg/131/131155.svg"
+						id="Message"><span class="badge">5</span>
+				</a></li>
+			</ul>
+
 		</div>
-
-		<div class="col-sm-1" id="recherch" onclick="">
-			<img class="head" alt="recherche"
-				src="https://image.flaticon.com/icons/svg/109/109164.svg">
-		</div>
-		<div class="col-sm-2" onclick="">
-			<h4>Rechercher</h4>
-		</div>
-
-
-		<div class="col-sm-2"></div>
-		<div class="col-sm-3" onclick="">
-			<h4>Ajouter une annonce</h4>
-		</div>
-
-		<div class="col-sm-2"></div>
-
-		<div class="col-sm-1"
-			onclick="location.href='http://localhost:8080/projetVenteLigne/Pages/Connection.jsp'">
-			<img class="head" alt="compte"
-				src="https://www.flaticon.com/premium-icon/icons/svg/1144/1144760.svg">
-		</div>
-
-
-	</div>
+	</nav>
 
 </body>
 </html>

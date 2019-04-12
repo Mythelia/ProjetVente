@@ -16,72 +16,72 @@ img.head {
 	height: 35px;
 }
 
-#head {
-	width: 100%;
-	height: 60px;
-	/* 	background-image: url("https://i.stack.imgur.com/1Tzky.png"); */
-	background-size: cover;
+a:hover {
+	background-color: #B5E7EE !important;
 }
 
-.col-sm-2 {
-	margin-top: 10px;
+.navbar-form {
+	margin-top: 3%;
 }
-
-.col-sm-1 {
-	margin-top: 10px;
-}
-
-.col-sm-3 {
-	margin-top: 10px;
-}
-
-
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div id="head" class="container">
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<div id="head" class="container-inner">
 
-			<ul class="nav navbar-nav">
-				<li class="active"><a
-					href="http://localhost:8080/projetVenteLigne/index.jsp"><img
-						class="head" alt="home"
-						src="https://image.flaticon.com/icons/png/512/25/25694.png"></a></li>
+			<div class="col-sm-1">
 
-			</ul>
+				<ul class="nav navbar-nav">
+					<li class="active"><a
+						href="http://localhost:8080/projetVenteLigne/index.jsp"><img
+							class="head" alt="home"
+							src="https://image.flaticon.com/icons/png/512/25/25694.png"></a></li>
+				</ul>
+			</div>
 
-			<ul class="nav navbar-nav" id="recherch">
-				<li class="active"><a href="#"> <img class="head"
-						alt="recherche"
-						src="https://image.flaticon.com/icons/svg/109/109164.svg">
-						Rechercher
-				</a></li>
-			</ul>
+			<div class="col-sm-3">
+				<form class="navbar-form " action="#">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
 
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#"> <img
-						src="https://image.flaticon.com/icons/svg/3/3911.svg" class="head">
-						Ajouter une annonce
-				</a></li>
-			</ul>
+			<div class="col-sm-3">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#"> <img
+							src="https://image.flaticon.com/icons/svg/3/3911.svg"
+							class="head"> Ajouter une annonce
+					</a></li>
+				</ul>
+			</div>
 
+			<div class="col-sm-3">
+				<ul class="nav navbar-nav">
+					<li class="active"><a
+						href='http://localhost:8080/projetVenteLigne/Pages/Connection.jsp'>
+							<img class="head" alt="compte"
+							src="https://www.flaticon.com/premium-icon/icons/svg/1144/1144760.svg"
+							id="Icompte"> Mon compte
+					</a></li>
+				</ul>
+			</div>
 
-			<ul class="nav navbar-nav">
-				<li class="active"><a
-					href='http://localhost:8080/projetVenteLigne/Pages/Connection.jsp'>
-						<img class="head" alt="compte"
-						src="https://www.flaticon.com/premium-icon/icons/svg/1144/1144760.svg"
-						id="Icompte"> Mon compte
-				</a></li>
-			</ul>
+			<div class="col-sm-2">
 
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#"> <img class="head"
-						alt="compte"
-						src="https://image.flaticon.com/icons/svg/131/131155.svg"
-						id="Message"><span class="badge">5</span>
-				</a></li>
-			</ul>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#"> <img class="head"
+							alt="compte"
+							src="https://image.flaticon.com/icons/svg/131/131155.svg"
+							id="Message"><span class="badge">5</span>
+					</a></li>
+				</ul>
+			</div>
 
 		</div>
 	</nav>

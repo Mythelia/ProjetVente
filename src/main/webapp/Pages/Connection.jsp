@@ -20,9 +20,10 @@ table {
 </style>
 <body>
 	<jsp:include page="HeaderB.html" />
-	<div class="col-sm-3">
+	<br>
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4" id="conn">
 		<form action="" method="post">
-
 			<table class=table>
 				<tbody>
 					<tr>
@@ -37,8 +38,17 @@ table {
 				</tbody>
 			</table>
 
-			<input type="submit" value="Login">
+			<input type="submit" value="Login"> <br>
+			<hr>
+			<br>
+
+
 		</form>
+
+		<a href="Inscription.jsp" class="btn btn-primary">Vous inscrire </a> <a
+			class="btn btn-primary" href='index.jsp'> Mot de passe oublié ?</a>
+
+
 
 	</div>
 </body>

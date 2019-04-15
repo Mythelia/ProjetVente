@@ -18,21 +18,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "alerte", catalog = "projet")
-public class Alerte implements java.io.Serializable {
+public class Alertes implements java.io.Serializable {
 
 	private int idAlerte;
 	private Utilisateurs utilisateurs;
 	private Set<MotsClefs> motsClefses = new HashSet<MotsClefs>(0);
 
-	public Alerte() {
+	public Alertes() {
 	}
 
-	public Alerte(int idAlerte, Utilisateurs utilisateurs) {
+	public Alertes(int idAlerte, Utilisateurs utilisateurs) {
 		this.idAlerte = idAlerte;
 		this.utilisateurs = utilisateurs;
 	}
 
-	public Alerte(int idAlerte, Utilisateurs utilisateurs, Set<MotsClefs> motsClefses) {
+	public Alertes(int idAlerte, Utilisateurs utilisateurs, Set<MotsClefs> motsClefses) {
 		this.idAlerte = idAlerte;
 		this.utilisateurs = utilisateurs;
 		this.motsClefses = motsClefses;

@@ -22,7 +22,7 @@ public class MotsClefs implements java.io.Serializable {
 	private int idMotClef;
 	private String motClef;
 	private Set<Annonces> annonceses = new HashSet<Annonces>(0);
-	private Set<Alerte> alertes = new HashSet<Alerte>(0);
+	private Set<Alertes> alertes = new HashSet<Alertes>(0);
 
 	public MotsClefs() {
 	}
@@ -32,7 +32,7 @@ public class MotsClefs implements java.io.Serializable {
 		this.motClef = motClef;
 	}
 
-	public MotsClefs(int idMotClef, String motClef, Set<Annonces> annonceses, Set<Alerte> alertes) {
+	public MotsClefs(int idMotClef, String motClef, Set<Annonces> annonceses, Set<Alertes> alertes) {
 		this.idMotClef = idMotClef;
 		this.motClef = motClef;
 		this.annonceses = annonceses;
@@ -75,11 +75,11 @@ public class MotsClefs implements java.io.Serializable {
 	@JoinTable(name = "mots-clefs_has_alerte", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "Mots-clefs_idMotClef", updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Alerte_idAlerte", nullable = false, updatable = false) })
-	public Set<Alerte> getAlertes() {
+	public Set<Alertes> getAlertes() {
 		return this.alertes;
 	}
 
-	public void setAlertes(Set<Alerte> alertes) {
+	public void setAlertes(Set<Alertes> alertes) {
 		this.alertes = alertes;
 	}
 

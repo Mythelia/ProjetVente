@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 @Entity
 public class spellCheck<E> {
-
+ 
 	private static HashMap<int[], ArrayList<String>> motsEntres = new HashMap<int[], ArrayList<String>>();
 	private final static int MAX_ERRORS = 2;
 

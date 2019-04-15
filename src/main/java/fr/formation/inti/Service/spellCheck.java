@@ -1,4 +1,4 @@
-package Utils;
+package fr.formation.inti.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;

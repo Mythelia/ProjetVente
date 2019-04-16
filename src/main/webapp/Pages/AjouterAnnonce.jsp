@@ -25,7 +25,7 @@
 			<form action="#" method="post">
 				<div class="form-group ">
 					<label for="titre">Titre:</label> <input type="text"
-						class="form-control" id="titre" placeholder="Entrer votre titre">
+						class="form-control" id="titre" placeholder="Entrer le titre de votre annonce">
 				</div>
 				<div class="form-group ">
 					<label for="adresse">Adresse:</label> <input type="text"

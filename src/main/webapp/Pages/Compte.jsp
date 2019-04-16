@@ -17,6 +17,25 @@
 <body>
 	<jsp:include page="HeaderB.html" />
 
+	<div class="container">
+
+		<div class="col-sm-2"></div>
+		<div class="col-sm-10">
+			<h2>Bienvenue sur votre profil</h2>
+
+			<a href="#" class="btn btn-primary">Modifier le profil</a> <a
+				href="Messagerie.jsp" class="btn btn-primary">Voir la messagerie</a> <a href="AjouterAnnonce.jsp"
+				class="btn btn-primary">Publier une annonce</a> <a href="#"
+				class="btn btn-primary">Se déconnecter</a> <a href="#"
+				class="btn btn-primary">Se désinscire</a>
+
+		</div>
+
+	</div>
+
+
+
+
 
 
 </body>

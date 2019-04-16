@@ -17,13 +17,19 @@
 #plus {
 	padding-top: 70px;
 }
+
+#img-compte {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
 </style>
 <body>
 	<jsp:include page="HeaderB.html" />
 	<h2 id="plus"></h2>
 	<div class="col-sm-4"></div>
 	<div class="col-sm-3" id="conn">
-		<form action="" method="post">
+		<form action="Compte.jsp" >
 			<table class=table>
 				<tbody>
 					<tr>
@@ -39,7 +45,11 @@
 			</table>
 
 			<button class="btn btn-primary" type="submit">Login</button>
-			<br>
+			<img alt="facebook"
+				src="https://cdn.icon-icons.com/icons2/1099/PNG/512/1485482214-facebook_78681.png"
+				id="img-compte" class="pull-right"> <img alt="google"
+				src="https://ressources.blogdumoderateur.com/2012/02/google-logo-carre.jpg"
+				id="img-compte" class="pull-right"> <br>
 			<hr>
 			<br>
 

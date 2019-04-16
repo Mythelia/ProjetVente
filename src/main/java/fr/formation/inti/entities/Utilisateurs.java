@@ -30,7 +30,7 @@ public class Utilisateurs implements java.io.Serializable {
 	private String login;
 	private int password;
 	private String mail;
-	private Set<Alerte> alertes = new HashSet<Alerte>(0);
+	private Set<Alertes> alertes = new HashSet<Alertes>(0);
 	private Set<Transactions> transactionses = new HashSet<Transactions>(0);
 	private Set<Annonces> annonceses = new HashSet<Annonces>(0);
 	private Set<Messageries> messagerieses = new HashSet<Messageries>(0);
@@ -50,7 +50,7 @@ public class Utilisateurs implements java.io.Serializable {
 	}
 
 	public Utilisateurs(String nom, String prénom, Date dateNaissance, int codePostal, String login, int password,
-			String mail, Set<Alerte> alertes, Set<Transactions> transactionses, Set<Annonces> annonceses,
+			String mail, Set<Alertes> alertes, Set<Transactions> transactionses, Set<Annonces> annonceses,
 			Set<Messageries> messagerieses) {
 		this.nom = nom;
 		this.prénom = prénom;
@@ -142,11 +142,11 @@ public class Utilisateurs implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateurs")
-	public Set<Alerte> getAlertes() {
+	public Set<Alertes> getAlertes() {
 		return this.alertes;
 	}
 
-	public void setAlertes(Set<Alerte> alertes) {
+	public void setAlertes(Set<Alertes> alertes) {
 		this.alertes = alertes;
 	}
 

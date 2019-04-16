@@ -25,6 +25,7 @@
 					<th>Expéditeur</th>
 					<th>Titre</th>
 					<th>Date</th>
+					<th>Supprimer mail</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,6 +34,10 @@
 						<td>${u.expediteur}</td>
 						<td>${u.titre}</td>
 						<td>${u.date}</td>
+						<td><form action="DeleteMess" method="post">
+								<input type='hidden' name="id" value="${u.id}"> <input
+									type="submit" value="Supprimer"></input>
+							</form></td>
 					</tr>
 				</c:forEach>
 			</tbody>

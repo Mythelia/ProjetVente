@@ -31,8 +31,8 @@ h2 {
 						mot de passe</label> <input class="form-control" id="mailOubli"
 						type="text" placeholder="Entrez votre email">
 				</div>
-				<button type="submit" class="btn btn-primary">Récupérer
-					votre mot de passe</button>
+				<button type="submit" class="btn btn-primary">Réinitialiser
+					le mot de passe</button>
 			</div>
 		</form>
 	</div>

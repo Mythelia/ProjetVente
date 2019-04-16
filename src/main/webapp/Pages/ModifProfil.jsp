@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
 <head>
-<title>Inscription</title>
+<title>Connexion</title>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -16,6 +19,7 @@
 }
 </style>
 </head>
+
 <body>
 	<jsp:include page="HeaderB.html" />
 
@@ -25,16 +29,15 @@
 			<form action="#" method="post">
 				<div class="form-group ">
 					<label for="nom">Nom:</label> <input type="text"
-						class="form-control" id="nom" placeholder="Entrer votre nom">
+						class="form-control" id="nom" placeholder="${Nom}">
 				</div>
 				<div class="form-group ">
 					<label for="prenom">Prénom:</label> <input type="text"
-						class="form-control" id="prenom" placeholder="Entrer votre prénom">
+						class="form-control" id="prenom" placeholder="${Prenom}">
 				</div>
 				<div class="form-group ">
-					<label for="mail">Adresse mail:</label> <input type="email"
-						class="form-control" id="mail"
-						placeholder="Entrer votre adresse mail">
+					<label for="mail">Adresse mail:</label> <input type="${Mail}"
+						class="form-control" id="mail" placeholder="${DateNaissance}">
 				</div>
 				<div class="form-group " id="dateNaissance">
 					<label for="date">Date de naissance:</label> <input type="date"
@@ -44,28 +47,28 @@
 				<div class="form-group ">
 					<label for="postal">Code postal de votre ville :</label> <input
 						type="text" class="form-control" id="postal"
-						placeholder="Entrer votre code postal">
+						placeholder="${CodePostal}">
 				</div>
 
 				<div class="form-group ">
 					<label for="pseudo">Pseudo:</label> <input type="text"
-						class="form-control" id="pseudo" placeholder="Entrer votre pseudo">
+						class="form-control" id="pseudo" placeholder="${Pseudo}">
 				</div>
 
 				<div class="form-group ">
 					<label for="password">Mot de passe:</label> <input type="password"
-						class="form-control" id="password"
-						placeholder="Entrez votre mot de passe">
+						class="form-control" id="password" placeholder="${Password}">
 				</div>
 				<div class="form-group">
 					<label for="password">Confirmer le mot de passe</label> <input
 						type="password" class="form-control" id="password"
-						placeholder="Confirmer le mot de passe">
+						placeholder="${Password}">
 				</div>
 				<button type="submit" class="btn btn-primary">S'inscrire</button>
 			</form>
 		</div>
 	</div>
+
 
 </body>
 </html>

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>Messagerie</title>
+<title>Connexion</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -17,22 +16,35 @@
 </head>
 <body>
 	<jsp:include page="HeaderB.html" />
+
 	<div class="container">
-		<h2>Messagerie</h2>
+		<h2>Vos annonces</h2>
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Expéditeur</th>
 					<th>Titre</th>
 					<th>Date</th>
+					<th>Prix</th>
+					<th>Modifier annonce</th>
+					<th>Supprimer annonce</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${mails}" var="u">
+				<c:forEach items="${annonce}" var="a">
 					<tr>
-						<td>${u.expediteur}</td>
-						<td>${u.titre}</td>
-						<td>${u.date}</td>
+						<td>${a.titre}</td>
+						<td>${a.date}</td>
+						<td>${a.prix}</td>
+						<td>
+							<form action="Jue.jsp" method="post">
+								<input type='hidden' name="id" value="${a.anId}"> <input
+									type="submit" value="Update"></input>
+							</form>
+						</td>
+						<td><form action="DeleteAn" method="post">
+								<input type='hidden' name="id" value="${a.anId}"> <input
+									type="submit" value="Supprimer"></input>
+							</form></td>
 					</tr>
 				</c:forEach>
 			</tbody>

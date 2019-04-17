@@ -16,10 +16,29 @@ public class IndexController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
-@RequestMapping(value = "/index.htm")
+	@RequestMapping(value = "/index.htm")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        logger.info("Returning index view");
-        return new ModelAndView("index");
+		logger.info("Returning index view");
+		return new ModelAndView("index");
 	}
+
+	@RequestMapping(value = "/AjouterAnnonce.htm")
+	public ModelAndView AjouterAnnonce(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("Returning AjouterAnnonce view");
+		return new ModelAndView("AjouterAnnonce");
+	}
+
+	@RequestMapping(value = "/Connection.htm")
+	public ModelAndView Connection(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("Returning AjouterAnnonce view");
+		return new ModelAndView("Connection");
+	}
+	
+	@RequestMapping(value = "/Messagerie.htm")
+	public ModelAndView Messagerie(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("Returning AjouterAnnonce view");
+		return new ModelAndView("Messagerie");
+	}
+
 
 }

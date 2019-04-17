@@ -36,7 +36,6 @@ public class SpringStart implements WebApplicationInitializer {
         servlet.setLoadOnStartup(1);
         servlet.addMapping("*.htm");
 //        servlet.addMapping("/Pages/*"); // Ici on peut mettre autre chose, ce n'est pas ésotérique
-
 	}
 	
 	@Bean

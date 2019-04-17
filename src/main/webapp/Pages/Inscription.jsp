@@ -22,7 +22,7 @@
 	<div class="container">
 		<h2>Inscription</h2>
 		<div class="col-sm-5" id="inscription">
-			<form action="#" method="post">
+			<form action="forminscrip" method="post">
 				<div class="form-group ">
 					<label for="nom">Nom:</label> <input type="text"
 						class="form-control" id="nom" placeholder="Entrer votre nom">

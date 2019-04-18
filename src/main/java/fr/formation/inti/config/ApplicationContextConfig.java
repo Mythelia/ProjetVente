@@ -18,6 +18,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import fr.formation.inti.Dao.UtilisateursDao;
+
 @Configuration
 @ComponentScan("fr.formation.inti.*")
 @EnableTransactionManagement
@@ -38,13 +40,7 @@ public class ApplicationContextConfig {
 		return rb;
 	}
 
-	@Bean(name = "viewResolver")
-	public InternalResourceViewResolver getViewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/pages/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-	}
+
 
 	@Bean(name = "dataSource")
 	public DataSource getDataSource() {
@@ -66,7 +62,7 @@ public class ApplicationContextConfig {
 		// See: ds-hibernate-cfg.properties
 		properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-		properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
+//		properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
 
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 		factoryBean.setPackagesToScan(new String[] { "fr.formation.inti.entities" });
@@ -85,6 +81,15 @@ public class ApplicationContextConfig {
 
 		return transactionManager;
 	}
+	
+	@Bean(name = "viewResolver")
+	 public InternalResourceViewResolver getViewResolver() {
+	     InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+	     viewResolver.setPrefix("/Pages/");
+	     viewResolver.setSuffix(".jsp");
+	     return viewResolver;
+	 }
+
 	
 	
 

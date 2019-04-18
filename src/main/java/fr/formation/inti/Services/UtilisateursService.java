@@ -4,14 +4,16 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.Dao.UtilisateursDao;
+import fr.formation.inti.Dao.IUtilisateursDao;
 import fr.formation.inti.entities.Utilisateurs;
-import fr.formation.inti.interfaces.dao.IUtilisateursDao;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
-//@Service("service")
-
+@Service("service")
+@Transactional
 public class UtilisateursService implements IUtilisateursService {
 
 	private static final Log log = LogFactory.getLog(UtilisateursService.class);
@@ -19,6 +21,7 @@ public class UtilisateursService implements IUtilisateursService {
 	public UtilisateursService() {
 	}
 
+	@Autowired
 	private IUtilisateursDao dao;
 
 	public void setDao(IUtilisateursDao dao) {

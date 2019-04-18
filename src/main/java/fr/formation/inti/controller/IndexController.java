@@ -1,7 +1,5 @@
 package fr.formation.inti.controller;
 
-import java.util.Collection;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,28 +11,31 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
+//	@Autowired
+//	IUtilisateursService service;
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	@RequestMapping(value = "/index.htm")
+	@RequestMapping(value = "/index")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
 		logger.info("Returning index view");
 		return new ModelAndView("index");
 	}
 
-	@RequestMapping(value = "/AjouterAnnonce.htm")
+	@RequestMapping(value = "/AjouterAnnonce")
 	public ModelAndView AjouterAnnonce(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("Returning AjouterAnnonce view");
 		return new ModelAndView("AjouterAnnonce");
 	}
 
-	@RequestMapping(value = "/Connection.htm")
+	@RequestMapping(value = "/Connection")
 	public ModelAndView Connection(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("Returning AjouterAnnonce view");
 		return new ModelAndView("Connection");
 	}
 	
-	@RequestMapping(value = "/Messagerie.htm")
+	@RequestMapping(value = "/Messagerie")
 	public ModelAndView Messagerie(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("Returning AjouterAnnonce view");
 		return new ModelAndView("Messagerie");

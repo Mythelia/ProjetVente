@@ -4,175 +4,131 @@ package fr.formation.inti.Dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transaction;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-import fr.formation.inti.entities.Alerte;
 import fr.formation.inti.entities.Alertes;
+import fr.formation.inti.interfaces.dao.IAlertesDao;
 
 /**
  * Home object for domain model class Alerte.
+ * 
  * @see fr.formation.inti.Dao.Alerte
  * @author Hibernate Tools
  */
 @Stateless
-public class AlertesDao {
+public class AlertesDao implements IAlertesDao {
+
+	// @Autowired
+	private SessionFactory sessionFactory;
 
 	private static final Log log = LogFactory.getLog(AlertesDao.class);
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(Alertes transientInstance) {
-		log.debug("persisting Alerte instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
-
-	public void remove(Alertes persistentInstance) {
-		log.debug("removing Alerte instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
-	}
-
-	public Alertes merge(Alertes detachedInstance) {
-		log.debug("merging Alerte instance");
-		try {
-			Alertes result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
-	}
-
 	public Alertes findById(int id) {
-		log.debug("getting Alerte instance with id: " + id);
+		Session session = sessionFactory.getCurrentSession();
+		Alertes instance;
 		try {
-			Alertes instance = entityManager.find(Alerte.class, id);
-			log.debug("get successful");
+			session.getTransaction().begin();
+			instance = (Alertes) session.get(Alertes.class, id);
+			session.getTransaction().commit();
 			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-	
-	public void create (Alertes alrt) {
-		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-		Transaction tx = session.getTransaction();
-		try {
-			tx.begin();
-			session.persist(object);
-			tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx !=null)
-					try {
-						tx.rollback();
-					} catch (Exception e1) {
-						log.error("Rollback :" + e.getLocalizedMessage());
-					}
-			}
-		e.printStackTrace();
-	} finally {
-		if (session != null) {
-			session.close();
-		}
-	}
-
-
-	public void update(Alertes alrt) {
-		
-		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-		Transaction tx = session.getTransaction();
-		try {
-			tx.begin();
-			session.update(alrt);
-			tx.commit();
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (tx != null) {
-				try {
-					tx.rollback();
-				} catch (Exception e1) {
-					log.error("RollBack :" + e.getLocalizedMessage());
-				}
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
 			}
-			e.printStackTrace();
+			return null;
 		} finally {
-			if (session != null) {
+			if (session.isConnected() != false) {
 				session.close();
-			
+			}
+		}
 	}
-	public void delete(Alerte alrt) {
-	Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-	Transaction tx = session.getTransaction();
-	try {
-		tx.begin();
-		session.delete(alrt);
-		tx.commit();
-	} catch (HibernateException e) {
-		log.error(e.getLocalizedMessage());
-		if(tx != null) {
-			try {
-				tx.rollback();
-			}catch (Exception e1) {
-				log.error("RollBack :" + e.getLocalizedMessage());
-			}
-				e.printStackTrace();
-				
-			}finally {
-				if(session != null) {
-					session.close();
-				}
+
+	public void create(Alertes alertes) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.persist(alertes);
+			session.getTransaction().commit();
+			
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
 			}
 			
-			public List<Alertes> getAll() {
-				Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-				Transaction tx = session.getTransaction();
-						List<Employee> employees = null;
-				
-				try {
-					tx.begin();
-					employees = session.createQuery("from Alertes).list()"
-						tx.commit();
-				}catch(HibernateException e) {
-					log.error(e.getLocalizedMessage());
-					if(tx != null) {
-						try {
-							tx.rollback();
-						} catch(Exception e1) {
-							log.error("Rollback :" + e.getLocalizedMessage());
-									
-						}
-					}
-					
-				e.printStackTrace();
-				}finally {
-					if(session != null) {
-						session.close();
-					}
-				}
-					return alrt;	
-				}
-				
-				
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
 			}
+		}
+	}
+
+	public void update(Alertes alertes) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.update(alertes);
+			session.getTransaction().commit();
+
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
+	}
+
+	public void delete(Alertes alertes) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.delete(alertes);
+			session.getTransaction().commit();
+
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
+	}
+
+	public List<Alertes> getAll() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			List<Alertes> list = session.createQuery("from Alertes").list();
+			session.getTransaction().commit();
+			return list;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+			return null;
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
+
+	}
+
+}

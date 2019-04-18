@@ -1,6 +1,8 @@
 package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,9 +12,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Moderateurs;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.dao.IUtilisateursDao;
 
 /**
  * Home object for domain model class Utilisateurs.
@@ -21,155 +26,112 @@ import fr.formation.inti.entities.Utilisateurs;
  * @author Hibernate Tools
  */
 @Stateless
-public class UtilisateursDao {
+public class UtilisateursDao implements IUtilisateursDao{
 
+	//@Autowired
+    private SessionFactory sessionFactory;
+	
 	private static final Log log = LogFactory.getLog(UtilisateursDao.class);
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(Utilisateurs transientInstance) {
-		log.debug("persisting Utilisateurs instance");
+	
+	public Utilisateurs findById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Utilisateurs instance;
 		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
-
-	public void remove(Utilisateurs persistentInstance) {
-		log.debug("removing Utilisateurs instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
-	}
-
-	public Utilisateurs merge(Utilisateurs detachedInstance) {
-		log.debug("merging Utilisateurs instance");
-		try {
-			Utilisateurs result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
-	}
-
-	public Utilisateurs findById(Integer id) {
-		log.debug("getting Utilisateurs instance with id: " + id);
-		try {
-			Utilisateurs instance = entityManager.find(Utilisateurs.class, id);
-			log.debug("get successful");
+			session.getTransaction().begin();
+			instance = (Utilisateurs) session.get(Utilisateurs.class, id);
+			session.getTransaction().commit();
 			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+			return null;
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
 	}
 
-	public void create (Utilisateurs utilisateurs) {
-		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-		Transaction tx = session.getTransaction();
-		try {
-			tx.begin();
-			session.create(utilisateurs);
-			tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx !=null)
-					try {
-						tx.rollback();
-					} catch (Exception e1) {
-						log.error("Rollback :" + e.getLocalizedMessage());
-					}
-			}
-		e.printStackTrace();
-	}finally
 
-	{
-		if (session != null) {
-			session.close();
+	public void create(Utilisateurs utilisateurs) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.persist(utilisateurs);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
+	}
 
 	public void update(Utilisateurs utilisateurs) {
-			
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			try {
-				tx.begin();
-				session.update(utilisateurs);
-				tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if (tx != null) {
-					try {
-						tx.rollback();
-					} catch (Exception e1) {
-						log.error("RollBack :" + e.getLocalizedMessage());
-					}
-				}
-				e.printStackTrace();
-			} finally {
-				if (session != null) {
-					session.close();
+
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.update(utilisateurs);
+			session.getTransaction().commit();
+
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
 	}
 
 	public void delete(Utilisateurs utilisateurs) {
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			try {
-				tx.begin();
-				session.delete(utilisateurs);
-				tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx != null) {
-					try {
-						tx.rollback();
-					}catch (Exception e1) {
-						log.error("Rollback :"+ e.getLocalizedMessage());
-					}
-					e.printStackTrace();
-					}finally {
-						if(session != null) {
-							session.close();
-						}
-					}
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.delete(utilisateurs);
+			session.getTransaction().commit();
+
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
+	}
 
 	public List<Utilisateurs> getAll() {
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			List<Utilisateurs> annonces = null;
-			
-			try {
-				tx.begin();
-				utilisateurs = session.createQuery("from Utilisateurs).list()"
-				tx.commit();
-				
-			}catch(HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx != null) {
-					try {
-						tx.rollback();
-					}catch(Exception e1) {
-						log.error("Rollback:"+e.getLocalizedMessage());
-					}
-					}
-				e.printStackTrace();
-			}finally {
-				if(session != null) {
-					session.close();
-				}
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			List<Utilisateurs> list = session.createQuery("from Utilisateurs").list();
+			session.getTransaction().commit();
+			return list;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
 			}
-			return utilisateurs;
-			
-		
-}
+			return null;
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
+
+	}
+
 }

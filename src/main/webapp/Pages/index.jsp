@@ -83,7 +83,7 @@ a.head:hover {
 </style>
 </head>
 <body>
-	<jsp:include page="/Pages/HeaderB.html"></jsp:include>
+	<jsp:include page="/Pages/HeaderB.html" ></jsp:include>
 	<div class="container">
 		<h2>Bienvenu sur notre projet</h2>
 		<br>

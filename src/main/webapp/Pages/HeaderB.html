@@ -6,7 +6,7 @@
 
 				<ul class="nav navbar-nav">
 					<li class="active"><a class="head"
-						href="index"
+						href=""
 						class="head"><img class="head" alt="home"
 							src="https://image.flaticon.com/icons/png/512/25/25694.png"></a></li>
 				</ul>

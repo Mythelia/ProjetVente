@@ -48,7 +48,7 @@
 }
 </style>
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 	<h2 id="plus"></h2>
 	<div class="col-sm-4"></div>
 	<div class="col-sm-3" id="conn">

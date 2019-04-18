@@ -21,7 +21,7 @@
 </head>
 
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 
 	<div class="container">
 		<h2>Inscription</h2>

@@ -1,6 +1,8 @@
 package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,10 +12,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Moderateurs;
 import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Transactions;
+import fr.formation.inti.interfaces.dao.ITransactionsDao;
 
 /**
  * Home object for domain model class Transactions.
@@ -21,155 +26,108 @@ import fr.formation.inti.entities.Transactions;
  * @author Hibernate Tools
  */
 @Stateless
-public class TransactionsDao {
+public class TransactionsDao implements ITransactionsDao{
 
+	//@Autowired
+    private SessionFactory sessionFactory;
+	
 	private static final Log log = LogFactory.getLog(TransactionsDao.class);
-
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(Transactions transientInstance) {
-		log.debug("persisting Transactions instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
-
-	public void remove(Transactions persistentInstance) {
-		log.debug("removing Transactions instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
-	}
-
-	public Transactions merge(Transactions detachedInstance) {
-		log.debug("merging Transactions instance");
-		try {
-			Transactions result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
-	}
-
+	
 	public Transactions findById(int id) {
-		log.debug("getting Transactions instance with id: " + id);
+		Session session = sessionFactory.getCurrentSession();
+		Transactions instance;
 		try {
-			Transactions instance = entityManager.find(Transactions.class, id);
-			log.debug("get successful");
+			session.getTransaction().begin();
+			instance = (Transactions) session.get(Transactions.class, id);
+			session.getTransaction().commit();
 			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+			return null;
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
 	}
-	public void create (Transactions transactions) {
-		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-		Transaction tx = session.getTransaction();
+	public void create(Transactions transactions) {
+		Session session = sessionFactory.getCurrentSession();
 		try {
-			tx.begin();
-			session.create(transactions);
-			tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx !=null)
-					try {
-						tx.rollback();
-					} catch (Exception e1) {
-						log.error("Rollback :" + e.getLocalizedMessage());
-					}
+			session.getTransaction().begin();
+			session.persist(transactions);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
 			}
-		e.printStackTrace();
-	}finally
-
-	{
-		if (session != null) {
-			session.close();
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
-
+	}
 	public void update(Transactions transactions) {
-			
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			try {
-				tx.begin();
-				session.update(transactions);
-				tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if (tx != null) {
-					try {
-						tx.rollback();
-					} catch (Exception e1) {
-						log.error("RollBack :" + e.getLocalizedMessage());
-					}
-				}
-				e.printStackTrace();
-			} finally {
-				if (session != null) {
-					session.close();
+
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.update(transactions);
+			session.getTransaction().commit();
+
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
 	}
 
 	public void delete(Transactions transactions) {
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			try {
-				tx.begin();
-				session.delete(transactions);
-				tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx != null) {
-					try {
-						tx.rollback();
-					}catch (Exception e1) {
-						log.error("Rollback :"+ e.getLocalizedMessage());
-					}
-					e.printStackTrace();
-					}finally {
-						if(session != null) {
-							session.close();
-						}
-					}
-		public List<Transactions> getAll() {
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			List<Transactions> transactions = null;
-			
-			try {
-				tx.begin();
-				transactions = session.createQuery("from Transactions).list()"
-				tx.commit();
-				
-			}catch(HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx != null) {
-					try {
-						tx.rollback();
-					}catch(Exception e1) {
-						log.error("Rollback:"+e.getLocalizedMessage());
-					}
-					}
-				e.printStackTrace();
-			}finally {
-				if(session != null) {
-					session.close();
-				}
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			session.delete(transactions);
+			session.getTransaction().commit();
+
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
 			}
-			return transactions;
-					
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
-			
+	}
+
+	public List<Transactions> getAll() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			List<Transactions> list = session.createQuery("from Transactions").list();
+			session.getTransaction().commit();
+			return list;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+			return null;
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
+
+	}
 
 }

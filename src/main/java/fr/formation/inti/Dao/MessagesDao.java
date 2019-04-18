@@ -12,8 +12,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
+import fr.formation.inti.entities.Messageries;
 import fr.formation.inti.entities.Messages;
+import fr.formation.inti.interfaces.dao.IMessagesDao;
 
 /**
  * Home object for domain model class Messages.
@@ -21,155 +24,106 @@ import fr.formation.inti.entities.Messages;
  * @author Hibernate Tools
  */
 @Stateless
-public class MessagesDao {
+public class MessagesDao implements IMessagesDao{
 
+	//@Autowired
+    private SessionFactory sessionFactory;
+	
 	private static final Log log = LogFactory.getLog(MessagesDao.class);
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(Messages transientInstance) {
-		log.debug("persisting Messages instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
-
-	public void remove(Messages persistentInstance) {
-		log.debug("removing Messages instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
-	}
-
-	public Messages merge(Messages detachedInstance) {
-		log.debug("merging Messages instance");
-		try {
-			Messages result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
-	}
-
+	
 	public Messages findById(int id) {
-		log.debug("getting Messages instance with id: " + id);
+		Session session = sessionFactory.getCurrentSession();
+		Messages instance;
 		try {
-			Messages instance = entityManager.find(Messages.class, id);
-			log.debug("get successful");
+			session.getTransaction().begin();
+			instance = (Messages) session.get(Messages.class, id);
+			session.getTransaction().commit();
 			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+			return null;
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
 	}
-	public void create (Messages messages) {
-		Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-		Transaction tx = session.getTransaction();
+	public void create(Messages messages) {
+		Session session = sessionFactory.getCurrentSession();
 		try {
-			tx.begin();
-			session.create(object);
-			tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx !=null)
-					try {
-						tx.rollback();
-					} catch (Exception e1) {
-						log.error("Rollback :" + e.getLocalizedMessage());
-					}
+			session.getTransaction().begin();
+session.persist(messages);
+session.getTransaction().commit();
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
 			}
-		e.printStackTrace();
-	}finally
-
-	{
-		if (session != null) {
-			session.close();
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
-
-	public void update(Messages messages) {
-			
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			try {
-				tx.begin();
-				session.update(messages);
-				tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if (tx != null) {
-					try {
-						tx.rollback();
-					} catch (Exception e1) {
-						log.error("RollBack :" + e.getLocalizedMessage());
-					}
-				}
-				e.printStackTrace();
-			} finally {
-				if (session != null) {
-					session.close();
 	}
+	public void update(Messages messages) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+session.update(messages);
+session.getTransaction().commit();
 
-	public void delete(Messages messages) {
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			try {
-				tx.begin();
-				session.delete(messages);
-				tx.commit();
-			} catch (HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx != null) {
-					try {
-						tx.rollback();
-					}catch (Exception e1) {
-						log.error("Rollback :"+ e.getLocalizedMessage());
-					}
-					e.printStackTrace();
-					}finally {
-						if(session != null) {
-							session.close();
-						}
-					}
-		public List<Messages> getAll() {
-			Session session = HibernateUtils.getSessionFactory().getCurrentSession();
-			Transaction tx = session.getTransaction();
-			List<Messages> messages = null;
-			
-			try {
-				tx.begin();
-				messages = session.createQuery("from Annonces).list()"
-				tx.commit();
-				
-			}catch(HibernateException e) {
-				log.error(e.getLocalizedMessage());
-				if(tx != null) {
-					try {
-						tx.rollback();
-					}catch(Exception e1) {
-						log.error("Rollback:"+e.getLocalizedMessage());
-					}
-					}
-				e.printStackTrace();
-			}finally {
-				if(session != null) {
-					session.close();
-				}
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
 			}
-			return messages;
-					
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
-			
+	}
+	public void delete(Messages messages) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+session.delete(messages);
+session.getTransaction().commit();
+
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
 		}
+	}
+	public List<Messages> getAll() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			List<Messages> list = session.createQuery("from Messages").list();
+			session.getTransaction().commit();
+			return list;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+			return null;
+		} finally {
+			if (session.isConnected() != false) {
+				session.close();
+			}
+		}
+
+	}
 
 }

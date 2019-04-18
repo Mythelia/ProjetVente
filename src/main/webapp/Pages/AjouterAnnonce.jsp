@@ -22,7 +22,7 @@
 	<div class="container">
 		<h2>Ajouter une Annonce</h2>
 		<div class="col-sm-5" id="AAnnonce">
-			<form action="#" method="post">
+			<form action="formannonce" method="post">
 				<div class="form-group ">
 					<label for="titre">Titre:</label> <input type="text"
 						class="form-control" id="titre" placeholder="Entrer le titre de votre annonce">

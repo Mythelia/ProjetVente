@@ -16,7 +16,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 	<div class="container">
 		<h2>Messagerie</h2>
 		<table class="table table-hover table-bordered">

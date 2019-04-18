@@ -20,7 +20,7 @@ h2 {
 </head>
 <body>
 
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 
 	<div class="container">
 		<h2>Mot de passe oublié ?</h2>

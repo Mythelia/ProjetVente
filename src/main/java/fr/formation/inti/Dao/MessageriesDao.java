@@ -13,11 +13,12 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Messageries;
 import fr.formation.inti.interfaces.dao.IMessageriesDao;
-import fr.formation.inti.interfaces.dao.IMessagesDao;
 
 /**
  * Home object for domain model class Messageries.
@@ -25,10 +26,10 @@ import fr.formation.inti.interfaces.dao.IMessagesDao;
  * @see fr.formation.inti.Dao.Messageries
  * @author Hibernate Tools
  */
-@Stateless
+@Repository("MessagerieDao")
 public class MessageriesDao implements IMessageriesDao {
 
-	// @Autowired
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	private static final Log log = LogFactory.getLog(MessageriesDao.class);
@@ -37,96 +38,57 @@ public class MessageriesDao implements IMessageriesDao {
 		Session session = sessionFactory.getCurrentSession();
 		Messageries instance;
 		try {
-			session.getTransaction().begin();
 			instance = (Messageries) session.get(Messageries.class, id);
-			session.getTransaction().commit();
 			return instance;
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
+
 			return null;
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
 		}
+
 	}
 
 	public void update(Messageries messageries) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
-session.update(messageries);			
-session.getTransaction().commit();
+			session.update(messageries);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
 
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
 		}
 	}
 
 	public void delete(Messageries messageries) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
-session.delete(messageries);
-session.getTransaction().commit();
+			session.delete(messageries);
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
+
 		}
 	}
 
 	public void create(Messageries messageries) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
-session.persist(messageries);
-session.getTransaction().commit();
+			session.persist(messageries);
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
+
 		}
 	}
 
 	public List<Messageries> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
 			List<Messageries> list = session.createQuery("from Messageries").list();
-			session.getTransaction().commit();
 			return list;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
+
 			return null;
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
+
 		}
 
 	}

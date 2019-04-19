@@ -4,13 +4,16 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.Dao.MessagesDao;
+import fr.formation.inti.Dao.IMessagesDao;
 import fr.formation.inti.entities.Messages;
-import fr.formation.inti.interfaces.dao.IMessagesDao;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
-//@Service("service")
+@Service("serviceMess")
+@Transactional
 public class MessagesService implements IMessagesService {
 
 	private static final Log log = LogFactory.getLog(MessagesService.class);
@@ -18,7 +21,7 @@ public class MessagesService implements IMessagesService {
 	public MessagesService() {
 	}
 
-	
+	@Autowired
 	private IMessagesDao dao;
 
 	public void setDao(IMessagesDao dao) {

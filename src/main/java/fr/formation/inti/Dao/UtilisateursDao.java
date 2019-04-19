@@ -32,13 +32,13 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 		Utilisateurs instance;
 		try {
-//			session.getTransaction().begin();
+
 			instance = (Utilisateurs) session.load(Utilisateurs.class, id);
-//			session.getTransaction().commit();
+
 			return instance;
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			
+
 			return null;
 		}
 	}
@@ -46,18 +46,12 @@ public class UtilisateursDao implements IUtilisateursDao {
 	public void create(Utilisateurs utilisateurs) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
+
 			session.persist(utilisateurs);
-			session.getTransaction().commit();
+
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
+
 		}
 	}
 
@@ -65,58 +59,36 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
+
 			session.update(utilisateurs);
-			session.getTransaction().commit();
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
 		}
 	}
 
 	public void delete(Utilisateurs utilisateurs) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
+
 			session.delete(utilisateurs);
-			session.getTransaction().commit();
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
 		}
 	}
 
 	public List<Utilisateurs> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.getTransaction().begin();
+
 			List<Utilisateurs> list = session.createQuery("from Utilisateurs").list();
-			session.getTransaction().commit();
+
 			return list;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
 			return null;
-		} finally {
-			if (session.isConnected() != false) {
-				session.close();
-			}
+
 		}
 
 	}

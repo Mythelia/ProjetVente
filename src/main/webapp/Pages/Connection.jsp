@@ -52,7 +52,7 @@
 	<h2 id="plus"></h2>
 	<div class="col-sm-4"></div>
 	<div class="col-sm-3" id="conn">
-		<form action="Compte.jsp">
+		<form action="Login">
 			<table class=table>
 				<tbody>
 					<tr>
@@ -81,8 +81,8 @@
 
 		</form>
 
-		<a href="Inscription.jsp" class="btn btn-primary">Vous inscrire </a> <a
-			class="btn btn-primary" href='MdpOubli.jsp'> Mot de passe oublié
+		<a href="Inscription" class="btn btn-primary">Vous inscrire </a> <a
+			class="btn btn-primary" href='MDPOubli'> Mot de passe oublié
 			?</a>
 
 

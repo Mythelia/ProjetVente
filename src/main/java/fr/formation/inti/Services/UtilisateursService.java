@@ -12,7 +12,7 @@ import fr.formation.inti.Dao.IUtilisateursDao;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
-@Service("service")
+@Service("serviceUtil")
 @Transactional
 public class UtilisateursService implements IUtilisateursService {
 

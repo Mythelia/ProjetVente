@@ -22,26 +22,26 @@
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Expéditeur</th>
+<!-- 					<th>Expéditeur</th> -->
 					<th>Titre</th>
 					<th>Date</th>
 					<th>Supprimer mail</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${mails}" var="u">
+				<c:forEach items="${list}" var="u">
 					<tr>
-						<td>${u.expediteur}</td>
+<%-- 						<td>${u.expediteur}</td> --%>
 						<td>${u.titre}</td>
 						<td>${u.date}</td>
 						<td><form action="DeleteMess" method="post">
-								<input type='hidden' name="id" value="${u.id}"> <input
+								<input type='hidden' name="id" value="${u.idMessages}"> <input
 									type="submit" value="Supprimer"></input>
 							</form></td>
 					</tr>
 				</c:forEach>
 			</tbody>
-		</table>
+		</table>	
 	</div>
 
 </body>

@@ -53,29 +53,7 @@
 	z-index: 3;
 }
 
-img.head {
-	width: 35px;
-	height: 35px;
-	margin-right: 10px;
-}
 
-a.head:hover {
-	background-color: #B5E7EE !important;
-}
-
-.navbar-form {
-	margin-top: 3%;
-}
-
-#glyp-s {
-	width: 15px;
-	height: 20px;
-	background-color: #e3f2fd;
-}
-
-#but-glyp-s {
-	background-color: #e3f2fd;
-}
 
 /* #SButton { */
 /* margin-left: 0px; */

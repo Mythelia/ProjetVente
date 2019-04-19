@@ -16,7 +16,7 @@ public class IndexController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	@RequestMapping(value = "/index")
+	@RequestMapping({ "/", "/index" })
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
 		logger.info("Returning index view");

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
 public class AjoutController {
@@ -30,6 +31,9 @@ public class AjoutController {
 	@Autowired
 	@Qualifier("utilisateurValidator")
 	private Validator validator;
+
+	@Autowired
+	IUtilisateursService serviUtili;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
@@ -64,8 +68,13 @@ public class AjoutController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("Inscription", "utilisateur", utilisateur);
 		}
+		
+		utilisateur.setIdUtilisateurs(1);
+		
+		serviUtili.createUtilisateurs(utilisateur);
 
-		return new ModelAndView("Inscription");
+		ModelAndView mav = new ModelAndView("ValidationInscription");
+		return mav;
 	}
 
 }

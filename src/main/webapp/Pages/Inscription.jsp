@@ -59,8 +59,7 @@
 
 				<div class="form-group ">
 					<label for="postal">Code postal de votre ville :</label>
-					<form:input path="codePostal"
-						placeholder="Entrer votre code postal" class="form-control"></form:input>
+					<form:input path="codePostal" placeholder="Entrer votre code postal" class="form-control" value=""></form:input>
 					<form:errors path="codePostal" cssClass="error" />
 				</div>
 

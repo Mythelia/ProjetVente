@@ -46,8 +46,10 @@ public class UtilisateursDao implements IUtilisateursDao {
 	public void create(Utilisateurs utilisateurs) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-
+			
+			
 			session.persist(utilisateurs);
+			
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());

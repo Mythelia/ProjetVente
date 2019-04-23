@@ -11,7 +11,6 @@ import fr.formation.inti.entities.Utilisateurs;
 
 @Component("utilisateurValidator")
 public class UtilisateurValidator implements Validator {
-
 	// common-validator library.
 	private EmailValidator emailValidator = EmailValidator.getInstance();
 

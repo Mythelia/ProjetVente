@@ -42,6 +42,13 @@ public class ApplicationContextConfig {
 	}
 
 
+	@Bean(name = "viewResolver")
+	public InternalResourceViewResolver getViewResolver() {
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/Pages/");
+		viewResolver.setSuffix(".jsp");
+		return viewResolver;
+	}
 
 	@Bean(name = "dataSource")
 	public DataSource getDataSource() {
@@ -83,14 +90,6 @@ public class ApplicationContextConfig {
 		return transactionManager;
 	}
 	
-	@Bean(name = "viewResolver")
-	 public InternalResourceViewResolver getViewResolver() {
-	     InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	     viewResolver.setPrefix("/Pages/");
-	     viewResolver.setSuffix(".jsp");
-	     return viewResolver;
-	 }
-
 	
 
 }

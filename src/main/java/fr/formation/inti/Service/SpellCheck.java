@@ -2,6 +2,7 @@ package fr.formation.inti.Service;
 
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,17 +33,23 @@ public class SpellCheck {
 	public void init() {
 		System.out.println("Blah");
 		List<MotsClefs> mots_clefs = motClefsService.getAllMotsClefs();
-		if (mots_clefs.isEmpty()) {
-			System.out.println("vide");
+		for (MotsClefs m : mots_clefs) {
+			this.addMot(m.getMotClef());
 		}
-		else {System.out.println("Pas vide !");}
-
 	}
-
 
 	public SpellCheck() {
 		this.motsEntres = new HashMap<String, Set<String>>();
 
+	}
+
+	class BddMotsClesComparator implements Comparator<String> {
+		@Override
+		public int compare(String a, String b) {
+			int inta = Integer.parseInt(a.split(" ")[1]);
+			int intb = Integer.parseInt(b.split(" ")[1]);
+			return inta - intb;
+		}
 	}
 
 	public static String removeAccents(String text) {
@@ -122,12 +129,20 @@ public class SpellCheck {
 		for (int i : motVarieList) {
 			motVarie += String.valueOf(i);
 		}
+		Set<String> tempList = new HashSet<String>();
 		if (!this.motsEntres.containsKey(motVarie)) {
 			this.motsEntres.put(motVarie, new HashSet<String>());
+			tempList.add(mot + " 1");
+		} else {
+			for (String motCompte : motsEntres.get(motVarie)) {
+				String[] motTemp = motCompte.split(" ");
+				if (!motTemp[0].equals(mot)) {
+					tempList.add(motCompte);
+				} else {
+					tempList.add(mot + " " + String.valueOf(Integer.parseInt(motTemp[1]) + 1));
+				}
+			}
 		}
-		Set<String> tempList = new HashSet<String>();
-		tempList.addAll(motsEntres.get(motVarie));
-		tempList.add(mot);
 		this.motsEntres.put(motVarie, tempList);
 	}
 
@@ -157,7 +172,8 @@ public class SpellCheck {
 			}
 		}
 		for (String match : tempResults) {
-			if (SpellCheck.calcEnchainement(motDemande, match)) {
+			String[] matchCompte = match.split(" ");
+			if (SpellCheck.calcEnchainement(motDemande, matchCompte[0])) {
 				results.add(match);
 			}
 		}

@@ -40,7 +40,7 @@ a.head:hover {
 			
 
 			<div class="col-sm-3">
-				<form class="navbar-form " action="#">
+				<form class="navbar-form " action="Search">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search"
 							name="searchC">

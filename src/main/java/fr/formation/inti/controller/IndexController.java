@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.entities.Messages;
+import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
 @Controller
@@ -40,8 +41,9 @@ public class IndexController {
 
 	@RequestMapping(value = "/Connection")
 	public ModelAndView Connection(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("Returning AjouterAnnonce view");
-		return new ModelAndView("Connection");
+		
+		ModelAndView mav = new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		return mav;
 	}
 
 	@RequestMapping(value = "/Messagerie")

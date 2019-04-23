@@ -10,8 +10,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Messages;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
@@ -20,6 +22,8 @@ public class IndexController {
 	@Autowired
 	IMessagesService serviMess;
 //	IUtilisateursService serviceUtili;
+	@Autowired
+	SpellCheck spellCheck;
 
 	// Possède aussi les controller du Header
 
@@ -47,11 +51,28 @@ public class IndexController {
 	@RequestMapping(value = "/Messagerie")
 	public ModelAndView Messagerie(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-//		List<Utilisateurs> liste = serviceUtili.getAllUtilisateurs();
 		List<Messages> list = serviMess.getAllMessages();
 		logger.info("Returning AjouterAnnonce view");
 		ModelAndView modelAndView = new ModelAndView("Messagerie", "list", list);
 		return modelAndView;
 	}
-
+	
+//	@RequestMapping(value="/Search")
+//	public ModelAndView Recherche(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		
+//		String mDemande = (String) request.getAttribute("searchC");
+//		System.out.println(mDemande);
+//		System.out.println(spellCheck.search(mDemande));
+//		ModelAndView modelAndView = new ModelAndView("index");
+//		return modelAndView;
+//		
+//		
+//	}
+	@RequestMapping(value="/Search")
+	public String someMethod(@RequestParam("searchC") String mDemande) {
+		System.out.println(mDemande);
+		System.out.println(spellCheck.search(mDemande));
+		return "index";
+		}
+	
 }

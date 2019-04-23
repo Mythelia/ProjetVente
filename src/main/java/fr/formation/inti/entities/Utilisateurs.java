@@ -104,12 +104,12 @@ public class Utilisateurs implements java.io.Serializable {
 		this.nom = nom;
 	}
 
-	@Column(name = "Prénom", nullable = false, length = 45)
-	public String getPrénom() {
+	@Column(name = "prénom", nullable = false, length = 45)
+	public String getprénom() {
 		return this.prénom;
 	}
 
-	public void setPrénom(String prénom) {
+	public void setprénom(String prénom) {
 		this.prénom = prénom;
 	}
 

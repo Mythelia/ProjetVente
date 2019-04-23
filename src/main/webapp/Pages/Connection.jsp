@@ -60,7 +60,7 @@
 	<h2 id="plus"></h2>
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4" id="conn">
-		<form:form action="Login" commandName="utilisateurs"  method="POST">
+		<form:form action="Login" commandName="utilisateurs" method="POST">
 			<table class=table>
 				<tbody>
 					<tr>

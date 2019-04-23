@@ -33,12 +33,6 @@ public class LoginController {
 		binder.setValidator(validator);
 	}
 
-	@ModelAttribute("utilisateur")
-	public Utilisateurs createUtilisateurModel() {
-		// ModelAttribute value should be same as used in the empSave.jsp
-		return new Utilisateurs();
-	}
-
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@RequestMapping(value = "/Login", method = RequestMethod.GET)
@@ -66,9 +60,9 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/Inscription")
-	public ModelAndView Inscription(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("Returning AjouterAnnonce view");
-		return new ModelAndView("Inscription");
+	public ModelAndView Inscription() throws Exception {
+		ModelAndView mav = new ModelAndView("Inscription", "utilisateur", new Utilisateurs());
+		return mav;
 	}
 
 }

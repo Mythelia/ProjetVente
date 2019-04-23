@@ -168,9 +168,9 @@ public class Annonces implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "annonces_has_mots-clefs", catalog = "projet", joinColumns = {
+	@JoinTable(name = "annonces_has_motsclefs", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "Annonces_idAnnonces", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "Mots-clefs_idMotClef", updatable = false) })
+					@JoinColumn(name = "motsclefs_idMotClef", updatable = false) })
 	public Set<MotsClefs> getMotsClefses() {
 		return this.motsClefses;
 	}

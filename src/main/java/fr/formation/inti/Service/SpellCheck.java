@@ -2,24 +2,47 @@ package fr.formation.inti.Service;
 
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.interfaces.services.IMotsClefsService;
 
 // Le faire en singleton
 
-@Entity
-public class spellCheck<E> {
+@Transactional
+@Component
+public class SpellCheck {
 
 	public HashMap<String, Set<String>> motsEntres;
 	private final static int MAX_ERRORS = 3;
 
-	public spellCheck() {
+	@Autowired
+	IMotsClefsService motClefsService;
+
+	@PostConstruct
+	public void init() {
+		System.out.println("Blah");
+		List<MotsClefs> mots_clefs = motClefsService.getAllMotsClefs();
+		if (mots_clefs.isEmpty()) {
+			System.out.println("vide");
+		}
+		else {System.out.println("Pas vide !");}
+
+	}
+
+
+	public SpellCheck() {
 		this.motsEntres = new HashMap<String, Set<String>>();
+
 	}
 
 	public static String removeAccents(String text) {
@@ -50,7 +73,7 @@ public class spellCheck<E> {
 
 	public Set<int[]> populateMotsEntres(String mot) {
 
-		int[] motNumeric = spellCheck.convertMot(mot);
+		int[] motNumeric = SpellCheck.convertMot(mot);
 		Set<int[]> retour = new HashSet<int[]>();
 		retour.add(motNumeric);
 		int indice = 0;
@@ -89,8 +112,8 @@ public class spellCheck<E> {
 	}
 
 	public void addMot(String m) {
-		String mot = spellCheck.removeAccents(m);
-		int[] motNumeric = spellCheck.convertMot(mot);
+		String mot = SpellCheck.removeAccents(m);
+		int[] motNumeric = SpellCheck.convertMot(mot);
 		this.populate(motNumeric, mot);
 	}
 
@@ -109,7 +132,7 @@ public class spellCheck<E> {
 	}
 
 	public Set<String> search(String mDemande) {
-		String motDemande = spellCheck.removeAccents(mDemande);
+		String motDemande = SpellCheck.removeAccents(mDemande);
 		Set<String> results = new HashSet<String>();
 		Set<String> tempResults = new HashSet<String>();
 		Set<int[]> motsDemandes = (Set<int[]>) this.populateMotsEntres(motDemande);
@@ -120,8 +143,8 @@ public class spellCheck<E> {
 			motDemandeAltered = motDemande + "s";
 		}
 		motsDemandes.addAll(this.populateMotsEntres(motDemandeAltered));
-		motsDemandes.add(spellCheck.convertMot(motDemande));
-		motsDemandes.add(spellCheck.convertMot(motDemandeAltered));
+		motsDemandes.add(SpellCheck.convertMot(motDemande));
+		motsDemandes.add(SpellCheck.convertMot(motDemandeAltered));
 		for (int[] mot : motsDemandes) {
 			String motPossibleString = "";
 			for (int i : mot) {
@@ -134,7 +157,7 @@ public class spellCheck<E> {
 			}
 		}
 		for (String match : tempResults) {
-			if (spellCheck.calcEnchainement(motDemande, match)) {
+			if (SpellCheck.calcEnchainement(motDemande, match)) {
 				results.add(match);
 			}
 		}
@@ -143,15 +166,15 @@ public class spellCheck<E> {
 
 	public static boolean calcEnchainement(String motRef1, String motAComparer1) {
 
-		String[] motRef = spellCheck.tokenizationMot(motRef1);
-		String[] motAComparer = spellCheck.tokenizationMot(motAComparer1);
+		String[] motRef = SpellCheck.tokenizationMot(motRef1);
+		String[] motAComparer = SpellCheck.tokenizationMot(motAComparer1);
 
 		int nombreErreurs = 0;
 		int indiceRef = 0;
 		int indiceAC = 0;
 		int lenRef = motRef.length - 1;
 		int lenAC = motAComparer.length - 1;
-		
+
 		while (true) {
 			if (indiceAC == lenAC) {
 				nombreErreurs++;
@@ -187,7 +210,7 @@ public class spellCheck<E> {
 				indiceRef++;
 				indiceAC++;
 			} else {
-				
+
 				// Lettre manquante
 				if (indiceRef + 2 <= lenRef && indiceAC + 1 <= lenAC) {
 					if (motRef[indiceRef + 2].equals(motAComparer[indiceAC + 1])) {

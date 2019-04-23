@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import fr.formation.inti.Dao.UtilisateursDao;
+import fr.formation.inti.Service.SpellCheck;
 
 @Configuration
 @ComponentScan("fr.formation.inti.*")
@@ -90,7 +91,6 @@ public class ApplicationContextConfig {
 	     return viewResolver;
 	 }
 
-	
 	
 
 }

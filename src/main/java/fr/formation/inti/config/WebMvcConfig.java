@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import fr.formation.inti.Service.SessionInterceptor;
+import fr.formation.inti.Service.SpellCheck;
 
 @Configuration
 @EnableWebMvc
@@ -32,6 +33,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     SessionInterceptor sessionInterceptor() {
          return new SessionInterceptor();
+    }
+    
+    @Bean
+    SpellCheck spellCheck() {
+    	return new SpellCheck();
     }
 	
     @Override

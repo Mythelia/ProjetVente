@@ -20,21 +20,21 @@
 			Octave Parengo : achetez nos produits, sinon ils ne se vendront pas !
 		</p>
 		<br>
-		<div class="image">
-			<div class="media-left media-top">
-				<img src="${pageContext.request.contextPath }/img/jerem.png"
-					class="media-object" style="width: 80px">
-			</div>
-			<div class="media-body">
-				<h4 class="media-heading">Jeremy Van Migem</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			</div>
-		</div>
+<!-- 		<div class="image"> -->
+<!-- 			<div class="media-left media-top"> -->
+<%-- 				<img src="${pageContext.request.contextPath }/img/jerem.png" --%>
+<!-- 					class="media-object" style="width: 80px"> -->
+<!-- 			</div> -->
+<!-- 			<div class="media-body"> -->
+<!-- 				<h4 class="media-heading">Jeremy Van Migem</h4> -->
+<!-- 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed -->
+<!-- 					do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+<!-- 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed -->
+<!-- 					do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+<!-- 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed -->
+<!-- 					do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<hr>
 		<div class="media">
 			<div class="media-left media-middle">

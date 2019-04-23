@@ -68,9 +68,12 @@ public class AjoutController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("Inscription", "utilisateur", utilisateur);
 		}
-		
+
 		utilisateur.setIdUtilisateurs(1);
-		
+//		utilisateur = serviUtili.findByIdUtilisateurs(0);
+//		serviUtili.deleteUtilisateurs(utilisateur);
+		System.out.println(utilisateur);
+
 		serviUtili.createUtilisateurs(utilisateur);
 
 		ModelAndView mav = new ModelAndView("ValidationInscription");

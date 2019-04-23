@@ -47,7 +47,6 @@ public class Utilisateurs implements java.io.Serializable {
 	
 	private String password;
 
-	
 	private String mail;
 
 	private Set<Alertes> alertes = new HashSet<Alertes>(0);
@@ -197,5 +196,13 @@ public class Utilisateurs implements java.io.Serializable {
 	public void setMessagerieses(Set<Messageries> messagerieses) {
 		this.messagerieses = messagerieses;
 	}
+
+	@Override
+	public String toString() {
+		return "Utilisateurs [idUtilisateurs=" + idUtilisateurs + ", nom=" + nom + ", prénom=" + prénom
+				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + "]";
+	}
+	
+	
 
 }

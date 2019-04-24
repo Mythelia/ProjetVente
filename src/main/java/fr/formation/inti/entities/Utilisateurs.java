@@ -197,11 +197,10 @@ public class Utilisateurs implements java.io.Serializable {
 	}
 
 	public void setPasswordString(String passwordString) {
-//		this.passwordString = passwordString;
+
 		this.password = passwordString.hashCode();
 	}
 
-	@Override
 	public String toString() {
 		return "Utilisateurs [idUtilisateurs=" + idUtilisateurs + ", nom=" + nom + ", prenom=" + prenom
 				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + ", login=" + login + "]";

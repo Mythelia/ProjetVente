@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -60,17 +61,14 @@ public class AjoutController {
 		return ("Inscription");
 	}
 
-	@RequestMapping(value = "/forminscrip", method = RequestMethod.POST) // faire la validation + une jsp qui valide
-																			// l'ajout
+	@RequestMapping(value = "/forminscrip", method = RequestMethod.POST)
+	@Transactional
 	public ModelAndView AjouterUtilisateur(@ModelAttribute("utilisateur") @Validated Utilisateurs utilisateur,
 			BindingResult bindingResult) throws Exception {
 
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("Inscription", "utilisateur", utilisateur);
 		}
-
-
-		System.out.println(utilisateur);
 
 		serviUtili.createUtilisateurs(utilisateur);
 

@@ -19,11 +19,13 @@ import fr.formation.inti.entities.Utilisateurs;
  * @see fr.formation.inti.Dao.Utilisateurs
  * @author Hibernate Tools
  */
+
 @Repository("userDao")
 public class UtilisateursDao implements IUtilisateursDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
 
 	private static final Log log = LogFactory.getLog(UtilisateursDao.class);
 
@@ -46,10 +48,8 @@ public class UtilisateursDao implements IUtilisateursDao {
 	public void create(Utilisateurs utilisateurs) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			
-			
-			session.persist(utilisateurs);
-			
+
+			session.saveOrUpdate(utilisateurs);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
@@ -95,7 +95,6 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 	}
 
-	@Override
 	public Utilisateurs findByLogin(String login) {
 		Session session = sessionFactory.getCurrentSession();
 

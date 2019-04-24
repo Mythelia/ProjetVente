@@ -39,10 +39,10 @@
 					<form:errors path="nom" cssClass="error" />
 				</div>
 				<div class="form-group ">
-					<label for="prénom">Prénom:</label>
-					<form:input path="prénom" placeholder="Entrer votre prénom"
+					<label for="prenom">Prénom:</label>
+					<form:input path="prenom" placeholder="Entrer votre prénom"
 						class="form-control"></form:input>
-					<form:errors path="prénom" cssClass="error" />
+					<form:errors path="prenom" cssClass="error" />
 				</div>
 				<div class="form-group ">
 					<label for="mail">Adresse mail:</label>
@@ -76,12 +76,12 @@
 						placeholder="Entrez votre mot de passe" class="form-control"></form:input>
 					<form:errors path="password" cssClass="error" />
 				</div>
-				<div class="form-group">
-					<label for="password">Confirmer le mot de passe</label>
-					<form:input type="password" path="password"
-						placeholder="Confirmer le mot de passe" class="form-control"></form:input>
-					<form:errors path="password" cssClass="error" />
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label for="password">Confirmer le mot de passe</label> -->
+<%-- 					<form:input type="password" path="password" --%>
+<%-- 						placeholder="Confirmer le mot de passe" class="form-control"></form:input> --%>
+<%-- 					<form:errors path="password" cssClass="error" /> --%>
+<!-- 				</div> -->
 				<button type="submit" class="btn btn-primary">S'inscrire</button>
 			</form:form>
 		</div>

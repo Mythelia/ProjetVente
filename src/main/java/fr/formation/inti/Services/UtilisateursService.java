@@ -46,6 +46,10 @@ public class UtilisateursService implements IUtilisateursService {
 	public Utilisateurs findByIdUtilisateurs(int Id) {
 		return dao.findById(Id);
 	}
+	
+	public Utilisateurs findByLoginUtilisateurs(String login) {
+		return dao.findByLogin(login);
+	}
 
 	public void createUtilisateurs(Utilisateurs utilisateurs) {
 		dao.create(utilisateurs);

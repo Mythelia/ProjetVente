@@ -19,7 +19,7 @@ public class LoginValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "login.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordString", "passwordString.required");
 
 
 

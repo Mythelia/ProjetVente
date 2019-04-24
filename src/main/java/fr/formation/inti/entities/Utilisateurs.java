@@ -45,7 +45,9 @@ public class Utilisateurs implements java.io.Serializable {
 	private String login;
 
 	
-	private String password;
+	private int password;
+	
+	private String passwordString; 
 
 	
 	private String mail;
@@ -58,18 +60,18 @@ public class Utilisateurs implements java.io.Serializable {
 	public Utilisateurs() {
 	}
 
-	public Utilisateurs(String nom, String prénom, Date dateNaissance, int codePostal, String login, String password,
+	public Utilisateurs(String nom, String prénom, Date dateNaissance, int codePostal, String login, String passwordString,
 			String mail) {
 		this.nom = nom;
 		this.prénom = prénom;
 		this.dateNaissance = dateNaissance;
 		this.codePostal = codePostal;
 		this.login = login;
-		this.password = password;
+		this.password = passwordString.hashCode();
 		this.mail = mail;
 	}
 
-	public Utilisateurs(String nom, String prénom, Date dateNaissance, int codePostal, String login, String password,
+	public Utilisateurs(String nom, String prénom, Date dateNaissance, int codePostal, String login, String passwordString,
 			String mail, Set<Alertes> alertes, Set<Transactions> transactionses, Set<Annonces> annonceses,
 			Set<Messageries> messagerieses) {
 		this.nom = nom;
@@ -77,7 +79,7 @@ public class Utilisateurs implements java.io.Serializable {
 		this.dateNaissance = dateNaissance;
 		this.codePostal = codePostal;
 		this.login = login;
-		this.password = password;
+		this.password = passwordString.hashCode();
 		this.mail = mail;
 		this.alertes = alertes;
 		this.transactionses = transactionses;
@@ -145,11 +147,11 @@ public class Utilisateurs implements java.io.Serializable {
 	}
 
 	@Column(name = "Password", nullable = false)
-	public String getPassword() {
+	public int getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(int password) {
 		this.password = password;
 	}
 
@@ -197,5 +199,15 @@ public class Utilisateurs implements java.io.Serializable {
 	public void setMessagerieses(Set<Messageries> messagerieses) {
 		this.messagerieses = messagerieses;
 	}
+
+	public String getPasswordString() {
+		return passwordString;
+	}
+
+	public void setPasswordString(String passwordString) {
+		this.passwordString = passwordString;
+	}
+	
+	
 
 }

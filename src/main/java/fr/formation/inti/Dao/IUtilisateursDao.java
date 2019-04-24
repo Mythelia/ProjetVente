@@ -8,6 +8,8 @@ public interface IUtilisateursDao {
 	
 	Utilisateurs findById(Integer Id);
 	
+	Utilisateurs findByLogin(String login);
+	
 	void create(Utilisateurs utilisateurs);
 	
 	void delete(Utilisateurs utilisateurs);

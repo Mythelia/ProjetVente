@@ -9,9 +9,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -48,6 +48,7 @@ public class LoginController {
 		return ("Connection");
 	}
 
+	@Transactional
 	@RequestMapping(value = "/Login", method = RequestMethod.POST) // Rajouter le systeme de session
 	public ModelAndView Login(@ModelAttribute("utilisateurs") @Validated Utilisateurs utilisateurs,
 			BindingResult bindingResult, HttpSession session) throws Exception {
@@ -58,17 +59,21 @@ public class LoginController {
 		try {
 			System.out.println(0);
 //			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(utilisateurs.getLogin());
-			System.out.println(utilisateurs.getLogin());
+			String loginRequired = utilisateurs.getLogin();
+//			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(loginRequired);
 			Utilisateurs registeredUtilisateur = utilisateursService.findByIdUtilisateurs(1);
 			System.out.println(registeredUtilisateur);
+
 			if (registeredUtilisateur == null) {
+				System.out.println(.5);
 				ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 				String msg = "Cet utilisateur n'existe pas !";
 				returnPage.addObject("msg",msg );
 				return returnPage;
-				// Chercher comment ajouter une erreur dans le truc
 
 			} else {
+				System.out.println(utilisateurs.getPassword());
+				System.out.println(registeredUtilisateur.getPassword());
 				System.out.println(1);
 				if (utilisateurs.getPassword() == registeredUtilisateur.getPassword()) {
 					Login login = new Login(utilisateurs.getIdUtilisateurs(), utilisateurs.getLogin());
@@ -85,7 +90,7 @@ public class LoginController {
 		}
 
 		catch (Exception e) {
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 //		if (utilisateursService.findByLoginUtilisateurs(utilisateurs.getLogin()) == null) {
 //			return new ModelAndView("Inscription", "utilisateurs", utilisateurs);

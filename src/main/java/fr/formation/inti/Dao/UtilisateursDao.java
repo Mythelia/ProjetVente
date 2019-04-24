@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.entities.Utilisateurs;
 
@@ -25,18 +24,11 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 
 	private static final Log log = LogFactory.getLog(UtilisateursDao.class);
 
 	public Utilisateurs findById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-	
 
 		Utilisateurs instance;
 		try {
@@ -51,15 +43,12 @@ public class UtilisateursDao implements IUtilisateursDao {
 		}
 	}
 
-	
 	public void create(Utilisateurs utilisateurs) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			
 			
-			session.saveOrUpdate(utilisateurs);
-		
-		
+			session.persist(utilisateurs);
 			
 
 		} catch (HibernateException e) {

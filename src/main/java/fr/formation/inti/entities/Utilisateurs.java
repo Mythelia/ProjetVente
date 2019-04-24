@@ -1,8 +1,6 @@
 package fr.formation.inti.entities;
 // Generated 10 avr. 2019 10:51:44 by Hibernate Tools 5.1.10.Final
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -192,18 +191,22 @@ public class Utilisateurs implements java.io.Serializable {
 		this.messagerieses = messagerieses;
 	}
 
+	@Transient
 	public String getPasswordString() {
 		return passwordString;
 	}
 
 	public void setPasswordString(String passwordString) {
-		this.passwordString = passwordString;
+//		this.passwordString = passwordString;
+		this.password = passwordString.hashCode();
 	}
 
 	@Override
 	public String toString() {
 		return "Utilisateurs [idUtilisateurs=" + idUtilisateurs + ", nom=" + nom + ", prenom=" + prenom
-				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + "]";
+				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + ", login=" + login + "]";
 	}
+
+
 
 }

@@ -69,9 +69,7 @@ public class AjoutController {
 			return new ModelAndView("Inscription", "utilisateur", utilisateur);
 		}
 
-		utilisateur.setIdUtilisateurs(1);
-//		utilisateur = serviUtili.findByIdUtilisateurs(0);
-//		serviUtili.deleteUtilisateurs(utilisateur);
+
 		System.out.println(utilisateur);
 
 		serviUtili.createUtilisateurs(utilisateur);

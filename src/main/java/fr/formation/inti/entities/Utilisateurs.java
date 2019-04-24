@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,25 +27,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "utilisateurs", catalog = "projet")
 public class Utilisateurs implements java.io.Serializable {
 
-	
 	private Integer idUtilisateurs;
 
-	
 	private String nom;
-	
-	
-	private String prénom;
 
+	private String prenom;
 
 	private Date dateNaissance;
 
-	
 	private int codePostal;
 
-	
 	private String login;
 
-	
 	private String password;
 
 	private String mail;
@@ -57,10 +51,10 @@ public class Utilisateurs implements java.io.Serializable {
 	public Utilisateurs() {
 	}
 
-	public Utilisateurs(String nom, String prénom, Date dateNaissance, int codePostal, String login, String password,
+	public Utilisateurs(String nom, String prenom, Date dateNaissance, int codePostal, String login, String password,
 			String mail) {
 		this.nom = nom;
-		this.prénom = prénom;
+		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
 		this.codePostal = codePostal;
 		this.login = login;
@@ -68,11 +62,11 @@ public class Utilisateurs implements java.io.Serializable {
 		this.mail = mail;
 	}
 
-	public Utilisateurs(String nom, String prénom, Date dateNaissance, int codePostal, String login, String password,
+	public Utilisateurs(String nom, String prenom, Date dateNaissance, int codePostal, String login, String password,
 			String mail, Set<Alertes> alertes, Set<Transactions> transactionses, Set<Annonces> annonceses,
 			Set<Messageries> messagerieses) {
 		this.nom = nom;
-		this.prénom = prénom;
+		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
 		this.codePostal = codePostal;
 		this.login = login;
@@ -84,9 +78,8 @@ public class Utilisateurs implements java.io.Serializable {
 		this.messagerieses = messagerieses;
 	}
 
-	
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idUtilisateurs", unique = true, nullable = false)
 	public Integer getIdUtilisateurs() {
 		return this.idUtilisateurs;
@@ -105,13 +98,13 @@ public class Utilisateurs implements java.io.Serializable {
 		this.nom = nom;
 	}
 
-	@Column(name = "prénom", nullable = false, length = 45)
-	public String getprénom() {
-		return this.prénom;
+	@Column(name = "Prenom", nullable = false, length = 45)
+	public String getprenom() {
+		return this.prenom;
 	}
 
-	public void setprénom(String prénom) {
-		this.prénom = prénom;
+	public void setprenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -125,7 +118,7 @@ public class Utilisateurs implements java.io.Serializable {
 		this.dateNaissance = dateNaissance;
 	}
 
-	@Column(name = "Code Postal", nullable = false)
+	@Column(name = "CodePostal", nullable = false)
 	public int getCodePostal() {
 		return this.codePostal;
 	}
@@ -199,10 +192,8 @@ public class Utilisateurs implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Utilisateurs [idUtilisateurs=" + idUtilisateurs + ", nom=" + nom + ", prénom=" + prénom
+		return "Utilisateurs [idUtilisateurs=" + idUtilisateurs + ", nom=" + nom + ", prenom=" + prenom
 				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + "]";
 	}
-	
-	
 
 }

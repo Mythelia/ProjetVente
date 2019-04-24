@@ -95,4 +95,21 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 	}
 
+	@Override
+	public Utilisateurs findByLogin(String login) {
+		Session session = sessionFactory.getCurrentSession();
+
+		Utilisateurs instance;
+		try {
+
+			instance = (Utilisateurs) session.load(Utilisateurs.class, login);
+
+			return instance;
+		} catch (HibernateException e) {
+			log.error(e.getLocalizedMessage());
+
+			return null;
+		}
+	}
+
 }

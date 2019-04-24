@@ -8,6 +8,8 @@ public interface IUtilisateursService {
 	
 	Utilisateurs findByIdUtilisateurs(int Id);
 	
+	Utilisateurs findByLoginUtilisateurs(String login);
+	
 	void createUtilisateurs(Utilisateurs utilisateurs);
 	
 	void deleteUtilisateurs(Utilisateurs utilisateurs);

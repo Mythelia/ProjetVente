@@ -54,6 +54,12 @@
 	font-style: italic;
 	font-weight: bold;
 }
+
+#erreur {
+	color: #ff0000;
+	font-style: italic;
+	font-weight: bold;
+}
 </style>
 <body>
 	<jsp:include page="HeaderB.jsp" />
@@ -63,6 +69,8 @@
 		<form:form action="Login" commandName="utilisateurs" method="POST">
 			<table class=table>
 				<tbody>
+
+
 					<tr>
 						<td>Login</td>
 						<td><form:input path="login"></form:input></td>
@@ -70,10 +78,14 @@
 					</tr>
 					<tr>
 						<td>Password</td>
-						<td><form:password path="password"></form:password></td>
-						<td><form:errors path="password" cssClass="error" /></td>
-					</tr>
+						<td><form:password path="passwordString"></form:password></td>
+						<td><form:errors path="passwordString" cssClass="error" /></td>
 
+
+					</tr>
+					<tr>
+						<span id="erreur">${msg}</span>
+					</tr>
 				</tbody>
 			</table>
 			<div>

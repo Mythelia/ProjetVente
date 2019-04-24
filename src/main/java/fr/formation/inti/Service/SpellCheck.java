@@ -31,7 +31,7 @@ public class SpellCheck {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("Blah");
+		System.out.println("blabla".hashCode());
 		List<MotsClefs> mots_clefs = motClefsService.getAllMotsClefs();
 		for (MotsClefs m : mots_clefs) {
 			this.addMot(m.getMotClef());
@@ -40,7 +40,6 @@ public class SpellCheck {
 
 	public SpellCheck() {
 		this.motsEntres = new HashMap<String, Set<String>>();
-
 	}
 
 	class BddMotsClesComparator implements Comparator<String> {

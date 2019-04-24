@@ -72,9 +72,9 @@
 
 				<div class="form-group">
 					<label for="password">Mot de passe:</label>
-					<form:input type="password" path="password"
+					<form:input type="password" path="passwordString"
 						placeholder="Entrez votre mot de passe" class="form-control"></form:input>
-					<form:errors path="password" cssClass="error" />
+					<form:errors path="passwordString" cssClass="error" />
 				</div>
 <!-- 				<div class="form-group"> -->
 <!-- 					<label for="password">Confirmer le mot de passe</label> -->

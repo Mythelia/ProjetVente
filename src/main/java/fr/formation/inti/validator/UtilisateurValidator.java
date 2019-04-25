@@ -18,7 +18,7 @@ public class UtilisateurValidator implements Validator {
 	@Override
 	public boolean supports(Class<?> clazz) {
 
-		return Utilisateurs.class.equals(clazz);
+		return Utilisateurs.class.isAssignableFrom(clazz);
 	}
 
 	@Override

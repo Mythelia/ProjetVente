@@ -52,6 +52,9 @@ public class LoginController {
 	@RequestMapping(value = "/Login", method = RequestMethod.POST) // Rajouter le systeme de session
 	public ModelAndView Login(@ModelAttribute("utilisateurs") @Validated Utilisateurs utilisateurs,
 			BindingResult bindingResult, HttpSession session) throws Exception {
+		
+		
+//		validator.validate(utilisateurs, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("Connection", "utilisateurs", utilisateurs);
@@ -68,7 +71,7 @@ public class LoginController {
 				System.out.println(.5);
 				ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 				String msg = "Cet utilisateur n'existe pas !";
-				returnPage.addObject("msg",msg );
+				returnPage.addObject("msg", msg);
 				return returnPage;
 
 			} else {
@@ -82,7 +85,7 @@ public class LoginController {
 				} else {
 					ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 					String msg = "Mot de passe incorrect !";
-					returnPage.addObject("msg",msg );
+					returnPage.addObject("msg", msg);
 					System.out.println(3);
 					return returnPage;
 				}

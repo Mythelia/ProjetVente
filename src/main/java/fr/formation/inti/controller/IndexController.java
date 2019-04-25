@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.Service.SpellCheck;
+import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IMessagesService;
@@ -39,13 +40,14 @@ public class IndexController {
 
 	@RequestMapping(value = "/AjouterAnnonce")
 	public ModelAndView AjouterAnnonce(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("Returning AjouterAnnonce view");
-		return new ModelAndView("AjouterAnnonce");
+		ModelAndView mav = new ModelAndView("AjouterAnnonce", "annonce", new Annonces());
+
+		return mav;
 	}
 
 	@RequestMapping(value = "/Connection")
 	public ModelAndView Connection(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		ModelAndView mav = new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		return mav;
 	}
@@ -58,7 +60,7 @@ public class IndexController {
 		ModelAndView modelAndView = new ModelAndView("Messagerie", "list", list);
 		return modelAndView;
 	}
-	
+
 //	@RequestMapping(value="/Search")
 //	public ModelAndView Recherche(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		
@@ -70,11 +72,11 @@ public class IndexController {
 //		
 //		
 //	}
-	@RequestMapping(value="/Search")
+	@RequestMapping(value = "/Search")
 	public String someMethod(@RequestParam("searchC") String mDemande) {
 		System.out.println(mDemande);
 		System.out.println(spellCheck.search(mDemande));
 		return "index";
-		}
-	
+	}
+
 }

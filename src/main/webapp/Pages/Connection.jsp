@@ -84,7 +84,7 @@
 
 					</tr>
 					<tr>
-						<span id="erreur">${msg}</span>
+						<td><span id="erreur">${msg}</span></td>
 					</tr>
 				</tbody>
 			</table>

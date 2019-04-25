@@ -59,7 +59,9 @@
 
 				<div class="form-group ">
 					<label for="postal">Code postal de votre ville :</label>
-					<form:input path="codePostal" placeholder="Entrer votre code postal" class="form-control" value=""></form:input>
+					<form:input path="codePostal"
+						placeholder="Entrer votre code postal" class="form-control"
+						value=""></form:input>
 					<form:errors path="codePostal" cssClass="error" />
 				</div>
 
@@ -76,12 +78,12 @@
 						placeholder="Entrez votre mot de passe" class="form-control"></form:input>
 					<form:errors path="passwordString" cssClass="error" />
 				</div>
-<!-- 				<div class="form-group"> -->
-<!-- 					<label for="password">Confirmer le mot de passe</label> -->
-<%-- 					<form:input type="password" path="password" --%>
-<%-- 						placeholder="Confirmer le mot de passe" class="form-control"></form:input> --%>
-<%-- 					<form:errors path="password" cssClass="error" /> --%>
-<!-- 				</div> -->
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<label for="password">Confirmer le mot de passe</label> -->
+				<%-- 					<form:input type="password" path="password" --%>
+				<%-- 						placeholder="Confirmer le mot de passe" class="form-control"></form:input> --%>
+				<%-- 					<form:errors path="password" cssClass="error" /> --%>
+				<!-- 				</div> -->
 				<button type="submit" class="btn btn-primary">S'inscrire</button>
 			</form:form>
 		</div>

@@ -2,6 +2,9 @@ package fr.formation.inti.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import fr.formation.inti.Service.SessionInterceptor;
 import fr.formation.inti.Service.SpellCheck;
+import fr.formation.inti.validator.UtilisateurValidator;
 
 @Configuration
 @EnableWebMvc
@@ -29,20 +33,21 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
-    @Bean
-    SessionInterceptor sessionInterceptor() {
-         return new SessionInterceptor();
-    }
-    
-    @Bean
-    SpellCheck spellCheck() {
-    	return new SpellCheck();
-    }
-	
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new SessionInterceptor());
-    }
+
+	@Bean
+	SessionInterceptor sessionInterceptor() {
+		return new SessionInterceptor();
+	}
+
+	@Bean
+	SpellCheck spellCheck() {
+		return new SpellCheck();
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new SessionInterceptor());
+	}
+
 
 }

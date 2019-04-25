@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -15,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,24 +33,18 @@ public class Annonces implements java.io.Serializable {
 
 	private Transactions transactions;
 
-	
 	private Utilisateurs utilisateurs;
 
-	
 	private String description;
 
 	private String photo;
 
-	
 	private int prix;
 
-	
 	private Date date;
-
 
 	private String adresse;
 
-	
 	private String titre;
 
 	private Set<MotsClefs> motsClefses = new HashSet<MotsClefs>(0);
@@ -82,7 +79,7 @@ public class Annonces implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idAnnonces", unique = true, nullable = false)
 	public int getIdAnnonces() {
 		return this.idAnnonces;
@@ -92,6 +89,7 @@ public class Annonces implements java.io.Serializable {
 		this.idAnnonces = idAnnonces;
 	}
 
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Transactions_idTransactions", nullable = false)
 	public Transactions getTransactions() {
@@ -101,6 +99,7 @@ public class Annonces implements java.io.Serializable {
 	public void setTransactions(Transactions transactions) {
 		this.transactions = transactions;
 	}
+
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Utilisateurs_idUtilisateurs", nullable = false)
@@ -121,6 +120,7 @@ public class Annonces implements java.io.Serializable {
 		this.description = description;
 	}
 
+	@Transient
 	@Column(name = "Photo", length = 45)
 	public String getPhoto() {
 		return this.photo;
@@ -141,6 +141,7 @@ public class Annonces implements java.io.Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Date", nullable = false, length = 10)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date getDate() {
 		return this.date;
 	}
@@ -167,6 +168,7 @@ public class Annonces implements java.io.Serializable {
 		this.titre = titre;
 	}
 
+	@Transient
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "annonces_has_motsclefs", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "Annonces_idAnnonces", nullable = false, updatable = false) }, inverseJoinColumns = {

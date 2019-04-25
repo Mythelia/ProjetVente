@@ -10,6 +10,8 @@ import fr.formation.inti.entities.Utilisateurs;
 @Component("loginValidator")
 public class LoginValidator implements Validator {
 
+
+
 	@Override
 	public boolean supports(Class<?> clazz) {
 
@@ -18,10 +20,12 @@ public class LoginValidator implements Validator {
 
 	public void validate(Object target, Errors errors) {
 
+	
+
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "login.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordString", "passwordString.required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordString", "passwordString.required");
 
-
+	
 
 	}
 

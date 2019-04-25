@@ -26,7 +26,6 @@ public class UtilisateursDao implements IUtilisateursDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-
 	private static final Log log = LogFactory.getLog(UtilisateursDao.class);
 
 	public Utilisateurs findById(Integer id) {

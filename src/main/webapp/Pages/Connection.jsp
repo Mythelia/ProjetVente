@@ -75,19 +75,21 @@
 						<td>Login</td>
 						<td><form:input path="login"></form:input></td>
 						<td><form:errors path="login" cssClass="error" /></td>
+						<td><span id="erreur">${msgutil}</span></td>
+
 					</tr>
 					<tr>
 						<td>Password</td>
 						<td><form:password path="passwordString"></form:password></td>
 						<td><form:errors path="passwordString" cssClass="error" /></td>
+						<td><span id="erreur">${msgpass}</span></td>
+					</tr>
 
 
-					</tr>
-					<tr>
-						<td><span id="erreur">${msg}</span></td>
-					</tr>
+
 				</tbody>
 			</table>
+			<br>
 			<div>
 				<button class="btn btn-primary" type="submit">Login</button>
 				<img alt="facebook"

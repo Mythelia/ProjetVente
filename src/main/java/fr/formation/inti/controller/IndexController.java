@@ -6,6 +6,7 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,19 +18,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Login;
 import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
+import fr.formation.inti.interfaces.services.IMessageriesService;
 import fr.formation.inti.interfaces.services.IMessagesService;
+import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
 public class IndexController {
 	@Autowired
-	IMessagesService serviMess;
+	IMessageriesService serviMess;
 
 	@Autowired
-	IAnnoncesService annoMess;
-	
+	IAnnoncesService serviAnno;
+
+	@Autowired
+	IUtilisateursService serviUtili;
+
 	@Autowired
 	SpellCheck spellCheck;
 
@@ -40,7 +47,6 @@ public class IndexController {
 	@RequestMapping({ "/", "/index" })
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		logger.info("Returning index view");
 		return new ModelAndView("index");
 	}
 
@@ -52,20 +58,34 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/Connection")
-	public ModelAndView Connection(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView Connection(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception {
+		Login login = (Login) session.getAttribute("login");
+		if (login != null) {
+
+			return new ModelAndView("Compte");
+		}
 
 		ModelAndView mav = new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		return mav;
 	}
 
 	@RequestMapping(value = "/Messagerie")
-	public ModelAndView Messagerie(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView Messagerie(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception {
+		Login login = (Login) session.getAttribute("login");
+		if (login == null) {
 
-		List<Messages> list = serviMess.getAllMessages();
-		logger.info("Returning AjouterAnnonce view");
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		}
+		int idUtilisateur = login.getIdUtilisateurs();
+		String loginUtili = login.getLogin();
+
+		Utilisateurs utilisateur = serviUtili.findByLoginUtilisateurs(loginUtili);
+
+		List<Messages> list = serviMess.getMessagerieByUtilisateurId(idUtilisateur, utilisateur);
 		ModelAndView modelAndView = new ModelAndView("Messagerie", "list", list);
 		return modelAndView;
 	}
-
 
 }

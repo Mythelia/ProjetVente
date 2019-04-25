@@ -27,7 +27,7 @@ import fr.formation.inti.interfaces.dao.IMotsClefsDao;
 @Repository("MotClefDao")
 public class MotsClefsDao implements IMotsClefsDao {
 
-	 @Autowired
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	private static final Log log = LogFactory.getLog(MotsClefsDao.class);
@@ -90,15 +90,14 @@ public class MotsClefsDao implements IMotsClefsDao {
 
 			return null;
 		}
-		
+
 	}
-	
+
 	public MotsClefs findByMotClef(String motClef) {
 		Session session = sessionFactory.getCurrentSession();
 		List<MotsClefs> results;
 		try {
-			results = session.createCriteria(MotsClefs.class)
-					.add(Restrictions.like("motClef", motClef)).list();
+			results = session.createCriteria(MotsClefs.class).add(Restrictions.like("motClef", motClef)).list();
 
 			for (MotsClefs result : results) {
 				return result;
@@ -109,6 +108,5 @@ public class MotsClefsDao implements IMotsClefsDao {
 		}
 		return null;
 	}
-	
 
 }

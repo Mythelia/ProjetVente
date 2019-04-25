@@ -13,11 +13,13 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.formation.inti.entities.Messageries;
 import fr.formation.inti.entities.Messages;
+import fr.formation.inti.entities.MotsClefs;
 
 /**
  * Home object for domain model class Messages.
@@ -90,5 +92,13 @@ public class MessagesDao implements IMessagesDao {
 		}
 
 	}
+
+//	public List<Messages> getByIdLogin() {
+//		Session session = sessionFactory.getCurrentSession();
+//		
+//		List<Messages> list;
+//
+//		list = session.createCriteria(Messages.class).add(Restrictions.like("motClef", motClef)).list();
+//	}
 
 }

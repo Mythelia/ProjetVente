@@ -58,7 +58,7 @@ public class Messageries implements java.io.Serializable {
 		this.utilisateurs = utilisateurs;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "messageries")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "messageries")
 	public Set<Messages> getMessageses() {
 		return this.messageses;
 	}

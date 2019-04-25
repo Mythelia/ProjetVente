@@ -182,7 +182,7 @@ public class Utilisateurs implements java.io.Serializable {
 		this.annonceses = annonceses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateurs")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateurs")
 	public Set<Messageries> getMessagerieses() {
 		return this.messagerieses;
 	}
@@ -201,10 +201,14 @@ public class Utilisateurs implements java.io.Serializable {
 		this.password = passwordString.hashCode();
 	}
 
+	@Override
 	public String toString() {
 		return "Utilisateurs [idUtilisateurs=" + idUtilisateurs + ", nom=" + nom + ", prenom=" + prenom
-				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + ", login=" + login + "]";
+				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + ", login=" + login + ", password="
+				+ password + ", mail=" + mail + "]";
 	}
+	
+	
 
 
 

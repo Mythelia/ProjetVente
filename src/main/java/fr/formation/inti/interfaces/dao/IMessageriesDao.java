@@ -3,6 +3,8 @@ package fr.formation.inti.interfaces.dao;
 import java.util.List;
 
 import fr.formation.inti.entities.Messageries;
+import fr.formation.inti.entities.Messages;
+import fr.formation.inti.entities.Utilisateurs;
 
 public interface IMessageriesDao {
 
@@ -15,5 +17,7 @@ public interface IMessageriesDao {
 	List<Messageries> getAll();
 
 	void update(Messageries messageries);
+
+	List<Messages> getMessagerieByUtiliId(int utiliId, Utilisateurs utilisateur);
 
 }

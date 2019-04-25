@@ -52,4 +52,8 @@ public class MotsClefsService implements IMotsClefsService {
 	public MotsClefs findByIdMotsClefs(int Id) {
 		return dao.findById(Id);
 	}
+	
+	public MotsClefs findByMotClef(String motClef) {
+		return dao.findByMotClef(motClef);
+	}
 }

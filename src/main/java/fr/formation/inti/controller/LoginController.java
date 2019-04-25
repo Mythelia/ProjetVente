@@ -57,33 +57,24 @@ public class LoginController {
 			return new ModelAndView("Connection", "utilisateurs", utilisateurs);
 		}
 		try {
-			System.out.println(0);
-//			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(utilisateurs.getLogin());
+
 			String loginRequired = utilisateurs.getLogin();
-//			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(loginRequired);
-			Utilisateurs registeredUtilisateur = utilisateursService.findByIdUtilisateurs(1);
-			System.out.println(registeredUtilisateur);
+			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(loginRequired);
 
 			if (registeredUtilisateur == null) {
-				System.out.println(.5);
 				ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 				String msg = "Cet utilisateur n'existe pas !";
 				returnPage.addObject("msg",msg );
 				return returnPage;
 
 			} else {
-				System.out.println(utilisateurs.getPassword());
-				System.out.println(registeredUtilisateur.getPassword());
-				System.out.println(1);
 				if (utilisateurs.getPassword() == registeredUtilisateur.getPassword()) {
 					Login login = new Login(utilisateurs.getIdUtilisateurs(), utilisateurs.getLogin());
 					session.setAttribute("login", login);
-					System.out.println(2);
 				} else {
 					ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 					String msg = "Mot de passe incorrect !";
 					returnPage.addObject("msg",msg );
-					System.out.println(3);
 					return returnPage;
 				}
 			}

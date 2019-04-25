@@ -1,6 +1,8 @@
 package fr.formation.inti.controller;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,15 +16,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.Service.SpellCheck;
+import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
 @Controller
 public class IndexController {
 	@Autowired
 	IMessagesService serviMess;
-//	IUtilisateursService serviceUtili;
+
+	@Autowired
+	IAnnoncesService annoMess;
+	
 	@Autowired
 	SpellCheck spellCheck;
 
@@ -70,11 +77,6 @@ public class IndexController {
 //		
 //		
 //	}
-	@RequestMapping(value="/Search")
-	public String someMethod(@RequestParam("searchC") String mDemande) {
-		System.out.println(mDemande);
-		System.out.println(spellCheck.search(mDemande));
-		return "index";
-		}
+
 	
 }

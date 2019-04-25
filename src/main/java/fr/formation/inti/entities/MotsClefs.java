@@ -69,7 +69,7 @@ public class MotsClefs implements java.io.Serializable {
 		this.motClef = motClef;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "annonces_has_motsclefs", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "motsclefs_idMotClef", updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Annonces_idAnnonces", nullable = false, updatable = false) })

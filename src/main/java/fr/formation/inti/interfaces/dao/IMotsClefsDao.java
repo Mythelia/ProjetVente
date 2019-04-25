@@ -16,5 +16,5 @@ public interface IMotsClefsDao {
 	
 	List<MotsClefs> getAll();
 	
-
+	public MotsClefs findByMotClef(String motClef);
 }

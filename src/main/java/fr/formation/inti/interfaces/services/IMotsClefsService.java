@@ -16,5 +16,5 @@ public interface IMotsClefsService {
 	
 	List<MotsClefs> getAllMotsClefs();
 	
-
+	public MotsClefs findByMotClef(String motClef);
 }

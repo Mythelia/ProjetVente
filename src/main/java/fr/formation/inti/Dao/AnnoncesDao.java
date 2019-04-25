@@ -2,8 +2,7 @@ package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
 import java.util.List;
-
-import javax.ejb.Stateless;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.interfaces.dao.IAnnoncesDao;
+import fr.formation.inti.interfaces.services.IMotsClefsService;
 
 /**
  * Home object for domain model class Annonces.
@@ -27,6 +28,9 @@ public class AnnoncesDao implements IAnnoncesDao {
 
 	 @Autowired
 	 private SessionFactory sessionFactory;
+	 
+	 @Autowired
+	 private IMotsClefsService motsClefsServices;
 
 	private static final Log log = LogFactory.getLog(AnnoncesDao.class);
 
@@ -86,6 +90,14 @@ public class AnnoncesDao implements IAnnoncesDao {
 
 		}
 
+	}
+	
+	public Set<Annonces> getAnnoncesByMotClef(String motClef) {
+	
+		MotsClefs mc = motsClefsServices.findByMotClef(motClef);
+		return mc.getAnnonceses();
+		
+		
 	}
 
 }

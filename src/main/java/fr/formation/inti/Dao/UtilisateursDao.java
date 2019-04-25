@@ -1,6 +1,7 @@
 package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -8,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -96,18 +98,19 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 	public Utilisateurs findByLogin(String login) {
 		Session session = sessionFactory.getCurrentSession();
-
-		Utilisateurs instance;
+		List<Utilisateurs> results;
 		try {
+			results = session.createCriteria(Utilisateurs.class)
+					.add(Restrictions.like("login", login)).list();
 
-			instance = (Utilisateurs) session.load(Utilisateurs.class, login);
-
-			return instance;
-		} catch (HibernateException e) {
-			log.error(e.getLocalizedMessage());
-
+			for (Utilisateurs result : results) {
+				return result;
+			}
+		} catch (Exception e) {
 			return null;
+
 		}
+		return null;
 	}
 
 }

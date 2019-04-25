@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 
@@ -14,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 
 // Le faire en singleton
@@ -29,6 +32,9 @@ public class SpellCheck {
 	@Autowired
 	IMotsClefsService motClefsService;
 
+	@Autowired
+	IAnnoncesService annoService;
+	
 	@PostConstruct
 	public void init() {
 		System.out.println("blabla".hashCode());
@@ -36,6 +42,7 @@ public class SpellCheck {
 		for (MotsClefs m : mots_clefs) {
 			this.addMot(m.getMotClef());
 		}
+
 	}
 
 	public SpellCheck() {
@@ -145,9 +152,9 @@ public class SpellCheck {
 		this.motsEntres.put(motVarie, tempList);
 	}
 
-	public Set<String> search(String mDemande) {
+	public TreeMap<Integer, String> search(String mDemande) {
 		String motDemande = SpellCheck.removeAccents(mDemande);
-		Set<String> results = new HashSet<String>();
+		TreeMap<Integer, String> results = new TreeMap<Integer, String>();
 		Set<String> tempResults = new HashSet<String>();
 		Set<int[]> motsDemandes = (Set<int[]>) this.populateMotsEntres(motDemande);
 		String motDemandeAltered = "";
@@ -173,10 +180,18 @@ public class SpellCheck {
 		for (String match : tempResults) {
 			String[] matchCompte = match.split(" ");
 			if (SpellCheck.calcEnchainement(motDemande, matchCompte[0])) {
-				results.add(match);
+				results.put(Integer.valueOf(matchCompte[1]), matchCompte[0]);
 			}
 		}
 		return results;
+	}
+	
+	public Set<Annonces> getAnnonces(String motClef) {
+
+		Set<Annonces> retour = annoService.getAnnoncesByMotClef(motClef);
+
+		return retour;
+		
 	}
 
 	public static boolean calcEnchainement(String motRef1, String motAComparer1) {

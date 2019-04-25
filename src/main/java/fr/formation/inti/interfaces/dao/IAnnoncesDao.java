@@ -1,6 +1,7 @@
 package fr.formation.inti.interfaces.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import fr.formation.inti.entities.Annonces;
 
@@ -16,5 +17,5 @@ public interface IAnnoncesDao {
 
 	void update(Annonces annonces);
 
-
+	public Set<Annonces> getAnnoncesByMotClef(String motClef);
 }

@@ -1,6 +1,8 @@
 package fr.formation.inti.controller;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,13 +19,17 @@ import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
 @Controller
 public class IndexController {
 	@Autowired
 	IMessagesService serviMess;
-//	IUtilisateursService serviceUtili;
+
+	@Autowired
+	IAnnoncesService annoMess;
+	
 	@Autowired
 	SpellCheck spellCheck;
 
@@ -61,22 +67,5 @@ public class IndexController {
 		return modelAndView;
 	}
 
-//	@RequestMapping(value="/Search")
-//	public ModelAndView Recherche(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		
-//		String mDemande = (String) request.getAttribute("searchC");
-//		System.out.println(mDemande);
-//		System.out.println(spellCheck.search(mDemande));
-//		ModelAndView modelAndView = new ModelAndView("index");
-//		return modelAndView;
-//		
-//		
-//	}
-	@RequestMapping(value = "/Search")
-	public String someMethod(@RequestParam("searchC") String mDemande) {
-		System.out.println(mDemande);
-		System.out.println(spellCheck.search(mDemande));
-		return "index";
-	}
 
 }

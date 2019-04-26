@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -32,7 +33,7 @@ public class MotsClefs implements java.io.Serializable {
 	private String motClef;
 	private Set<Annonces> annonceses = new HashSet<Annonces>(0);
 	private Set<Alertes> alertes = new HashSet<Alertes>(0);
-
+	
 	public MotsClefs() {
 	}
 
@@ -92,5 +93,5 @@ public class MotsClefs implements java.io.Serializable {
 	public void setAlertes(Set<Alertes> alertes) {
 		this.alertes = alertes;
 	}
-
+	
 }

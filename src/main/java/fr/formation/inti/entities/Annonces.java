@@ -120,7 +120,6 @@ public class Annonces implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Transient
 	@Column(name = "Photo", length = 45)
 	public String getPhoto() {
 		return this.photo;

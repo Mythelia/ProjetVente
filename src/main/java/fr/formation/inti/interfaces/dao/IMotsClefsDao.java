@@ -18,4 +18,6 @@ public interface IMotsClefsDao {
 	List<MotsClefs> getAll();
 	
 	public MotsClefs findByMotClef(String motClef);
+	
+	public Integer countMotClefOccurences(MotsClefs motClef);
 }

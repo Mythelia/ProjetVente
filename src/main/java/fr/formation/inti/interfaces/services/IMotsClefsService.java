@@ -17,4 +17,6 @@ public interface IMotsClefsService {
 	List<MotsClefs> getAllMotsclefs();
 	
 	public MotsClefs findByMotclef(String motClef);
+	
+	public Integer countMotClefOccurences(MotsClefs motClef);
 }

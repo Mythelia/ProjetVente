@@ -55,5 +55,8 @@ public class MotsclefsService implements IMotsClefsService {
 	public MotsClefs findByMotclef(String motClef) {
 		return dao.findByMotClef(motClef);
 	}
+	public Integer countMotClefOccurences(MotsClefs motClef) {
+		return dao.countMotClefOccurences(motClef);
+	}
 
 }

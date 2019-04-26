@@ -17,8 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
+import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 // Le faire en singleton
 
@@ -34,22 +36,21 @@ public class SpellCheck {
 
 	@Autowired
 	IAnnoncesService annoService;
-
+	@Autowired
+	IUtilisateursService utilService;
+	
 	@PostConstruct
 	public void init() {
-
 //		// SpellCheck bean initialization : all keywords are sucked out from database
-//		List<MotsClefs> mots_clefs = motClefsService.getAllMotsclefs();
-//		// This block counts announces linked by each keyword
-//		for (MotsClefs m : mots_clefs) {
-//			String mot = m.getMotClef();
-//			for (Annonces an : annoService.getAnnoncesByMotClef(mot)) {
-//				this.addMot(mot);
-//			}
-//
-//			System.out.println("blabla".hashCode());
-
-//		}
+		List<MotsClefs> mots_clefs = motClefsService.getAllMotsclefs();
+		// This block counts announces linked by each keyword
+		for (MotsClefs m : mots_clefs) {
+			int occurences = motClefsService.countMotClefOccurences(m);
+			String mot = m.getMotClef();
+			for (int i=0;i<occurences;i++) { // TODO ça bug ici
+				this.addMot(mot);
+			}
+		}
 	}
 
 	public SpellCheck() {

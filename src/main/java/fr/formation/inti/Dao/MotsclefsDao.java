@@ -5,13 +5,16 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.formation.inti.entities.AnnoncesHasMotsclefs;
 import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.interfaces.dao.IMotsClefsDao;
 
@@ -80,7 +83,7 @@ public class MotsclefsDao implements IMotsClefsDao {
 	public List<MotsClefs> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			List<MotsClefs> list = session.createQuery("from Motsclefs").list();
+			List<MotsClefs> list = session.createQuery("from MotsClefs").list();
 			return list;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
@@ -104,6 +107,24 @@ public class MotsclefsDao implements IMotsClefsDao {
 
 		}
 		return null;
+	}
+	
+	public Integer countMotClefOccurences(MotsClefs motClef) {
+
+		Session session = sessionFactory.getCurrentSession();
+		Integer result = 0;
+		
+		try {
+			Criteria crit = session.createCriteria(AnnoncesHasMotsclefs.class).add(Restrictions.like("idMotClef", motClef.getIdMotClef()));
+			result = ((Number)crit.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			return null;
+
+		}
+		
 	}
 
 }

@@ -7,9 +7,6 @@ import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.Scanner;
 
-import fr.formation.inti.Dao.MotsClefsDao;
-import fr.formation.inti.entities.MotsClefs;
-
 public class testSpell {
 	
 

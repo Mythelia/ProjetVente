@@ -10,7 +10,7 @@ public interface IUtilisateursService {
 	
 	Utilisateurs findByLoginUtilisateurs(String login);
 	
-	void createUtilisateurs(Utilisateurs utilisateurs);
+	Utilisateurs createUtilisateurs(Utilisateurs utilisateurs);
 	
 	void deleteUtilisateurs(Utilisateurs utilisateurs);
 	

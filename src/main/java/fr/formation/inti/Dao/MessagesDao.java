@@ -3,11 +3,6 @@ package fr.formation.inti.Dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transaction;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
@@ -16,7 +11,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.formation.inti.entities.Messageries;
 import fr.formation.inti.entities.Messages;
 
 /**
@@ -90,5 +84,13 @@ public class MessagesDao implements IMessagesDao {
 		}
 
 	}
+
+//	public List<Messages> getByIdLogin() {
+//		Session session = sessionFactory.getCurrentSession();
+//		
+//		List<Messages> list;
+//
+//		list = session.createCriteria(Messages.class).add(Restrictions.like("motClef", motClef)).list();
+//	}
 
 }

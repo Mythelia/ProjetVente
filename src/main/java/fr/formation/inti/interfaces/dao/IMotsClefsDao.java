@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.formation.inti.entities.MotsClefs;
 
+
 public interface IMotsClefsDao {
 	
 	MotsClefs findById(int Id);

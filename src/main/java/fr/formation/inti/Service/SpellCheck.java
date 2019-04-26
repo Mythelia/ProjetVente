@@ -37,14 +37,18 @@ public class SpellCheck {
 
 	@PostConstruct
 	public void init() {
+
 		// SpellCheck bean initialization : all keywords are sucked out from database
-		List<MotsClefs> mots_clefs = motClefsService.getAllMotsClefs();
+		List<MotsClefs> mots_clefs = motClefsService.getAllMotsclefs();
 		// This block counts announces linked by each keyword
 		for (MotsClefs m : mots_clefs) {
 			String mot = m.getMotClef();
 			for (Annonces an : annoService.getAnnoncesByMotClef(mot)) {
 				this.addMot(mot);
 			}
+
+			System.out.println("blabla".hashCode());
+
 		}
 	}
 

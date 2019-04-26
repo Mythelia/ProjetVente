@@ -1,12 +1,9 @@
 package fr.formation.inti.controller;
 
-import java.text.SimpleDateFormat;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.entities.Annonces;
-import fr.formation.inti.entities.Transactions;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
@@ -66,8 +62,8 @@ public class AjouterAnnonceControler {
 		}
 		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(0);
 		annonce.setUtilisateurs(utilisateurs);
-		Transactions trans = new Transactions(0, utilisateurs);
-		annonce.setTransactions(trans);
+//		Transactions trans = new Transactions(0, utilisateurs);
+//		annonce.setTransactions(trans);
 		// !!!! Ajouter la session et voir pour récup l'id de l'utilisateur
 
 		serviAnn.createAnnonces(annonce);

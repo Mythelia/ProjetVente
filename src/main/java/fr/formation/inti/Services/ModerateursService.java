@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.Dao.ModerateursDao;
 import fr.formation.inti.entities.Moderateurs;
 import fr.formation.inti.interfaces.dao.IModerateursDao;
 import fr.formation.inti.interfaces.services.IModerateursService;

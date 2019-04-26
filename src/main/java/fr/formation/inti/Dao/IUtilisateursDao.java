@@ -10,7 +10,7 @@ public interface IUtilisateursDao {
 	
 	Utilisateurs findByLogin(String login);
 	
-	void create(Utilisateurs utilisateurs);
+	Utilisateurs create(Utilisateurs utilisateurs);
 	
 	void delete(Utilisateurs utilisateurs);
 	

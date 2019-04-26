@@ -3,11 +3,6 @@ package fr.formation.inti.Dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transaction;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
@@ -16,8 +11,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.formation.inti.entities.Annonces;
-import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Moderateurs;
 import fr.formation.inti.interfaces.dao.IModerateursDao;
 

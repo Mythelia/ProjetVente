@@ -3,9 +3,6 @@ package fr.formation.inti.Dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.transaction.Transaction;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
@@ -14,8 +11,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.formation.inti.entities.Alertes;
-import fr.formation.inti.interfaces.dao.IAlertesDao;
+import fr.formation.inti.entities.Alerte;
+import fr.formation.inti.interfaces.dao.IAlerteDao;
 
 /**
  * Home object for domain model class Alerte.
@@ -24,18 +21,18 @@ import fr.formation.inti.interfaces.dao.IAlertesDao;
  * @author Hibernate Tools
  */
 @Repository("AlerteDao")
-public class AlertesDao implements IAlertesDao {
+public class AlerteDao implements IAlerteDao {
 
-	 @Autowired
+	@Autowired
 	private SessionFactory sessionFactory;
 
-	private static final Log log = LogFactory.getLog(AlertesDao.class);
+	private static final Log log = LogFactory.getLog(AlerteDao.class);
 
-	public Alertes findById(int id) {
+	public Alerte findById(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Alertes instance;
+		Alerte instance;
 		try {
-			instance = (Alertes) session.get(Alertes.class, id);
+			instance = (Alerte) session.get(Alerte.class, id);
 			return instance;
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
@@ -45,10 +42,10 @@ public class AlertesDao implements IAlertesDao {
 		}
 	}
 
-	public void create(Alertes alertes) {
+	public void create(Alerte Alerte) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.persist(alertes);
+			session.persist(Alerte);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
@@ -56,10 +53,10 @@ public class AlertesDao implements IAlertesDao {
 		}
 	}
 
-	public void update(Alertes alertes) {
+	public void update(Alerte Alerte) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.update(alertes);
+			session.update(Alerte);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
@@ -67,10 +64,10 @@ public class AlertesDao implements IAlertesDao {
 		}
 	}
 
-	public void delete(Alertes alertes) {
+	public void delete(Alerte Alerte) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.delete(alertes);
+			session.delete(Alerte);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
@@ -78,10 +75,10 @@ public class AlertesDao implements IAlertesDao {
 		}
 	}
 
-	public List<Alertes> getAll() {
+	public List<Alerte> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			List<Alertes> list = session.createQuery("from Alertes").list();
+			List<Alerte> list = session.createQuery("from Alerte").list();
 			return list;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

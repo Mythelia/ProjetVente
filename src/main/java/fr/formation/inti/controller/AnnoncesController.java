@@ -23,7 +23,7 @@ public class AnnoncesController {
 
 	@Autowired
 	SpellCheck spellCheck;
-	
+
 	@Autowired
 	IAnnoncesService annonceService;
 
@@ -71,8 +71,8 @@ public class AnnoncesController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
-	
-	@RequestMapping(value ="Annonce")
+
+	@RequestMapping(value = "Annonce")
 	public ModelAndView showAnnonce(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("show") int idAnnonce) {
 		Annonces annonce = annonceService.findByIdAnnonces(idAnnonce);

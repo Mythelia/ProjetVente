@@ -8,18 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.Dao.MotsClefsDao;
 import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.interfaces.dao.IMotsClefsDao;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 
 @Service
 @Transactional
-public class MotsClefsService implements IMotsClefsService {
+public class MotsclefsService implements IMotsClefsService {
 
-	private static final Log log = LogFactory.getLog(MotsClefsService.class);
+	private static final Log log = LogFactory.getLog(MotsclefsService.class);
 
-	public MotsClefsService() {
+	public MotsclefsService() {
 
 	}
 
@@ -31,29 +30,30 @@ public class MotsClefsService implements IMotsClefsService {
 
 	}
 
-	public void updateMotsClefs(MotsClefs motsclefs) {
-		dao.update(motsclefs);
+	public void updateMotsclefs(MotsClefs Motsclefs) {
+		dao.update(Motsclefs);
 	}
 
-	public void deleteMotsClefs(MotsClefs motsclefs) {
-		dao.delete(motsclefs);
+	public void deleteMotsclefs(MotsClefs Motsclefs) {
+		dao.delete(Motsclefs);
 
 	}
 
-	public List<MotsClefs> getAllMotsClefs() {
+	public List<MotsClefs> getAllMotsclefs() {
 		return dao.getAll();
 	}
 
-	public void createMotsClefs(MotsClefs motsclefs) {
-		dao.create(motsclefs);
+	public void createMotsclefs(MotsClefs Motsclefs) {
+		dao.create(Motsclefs);
 
 	}
 
 	public MotsClefs findByIdMotsClefs(int Id) {
 		return dao.findById(Id);
 	}
-	
-	public MotsClefs findByMotClef(String motClef) {
+
+	public MotsClefs findByMotclef(String motClef) {
 		return dao.findByMotClef(motClef);
 	}
+
 }

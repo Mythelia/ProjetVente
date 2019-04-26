@@ -8,13 +8,13 @@ public interface IMotsClefsService {
 	
 	MotsClefs findByIdMotsClefs(int Id);
 	
-	void createMotsClefs(MotsClefs motsclefs);
+	void createMotsclefs(MotsClefs motsclefs);
 	
-	void deleteMotsClefs(MotsClefs motsclefs);
+	void deleteMotsclefs(MotsClefs motsclefs);
 	
-	void updateMotsClefs(MotsClefs motsclefs);
+	void updateMotsclefs(MotsClefs motsclefs);
 	
-	List<MotsClefs> getAllMotsClefs();
+	List<MotsClefs> getAllMotsclefs();
 	
-	public MotsClefs findByMotClef(String motClef);
+	public MotsClefs findByMotclef(String motClef);
 }

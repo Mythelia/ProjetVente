@@ -29,15 +29,17 @@
 			<form action="forminscrip">
 				<div class="form-group ">
 					<label for="nom">Nom:</label> <input type="text"
-						class="form-control" id="nom" placeholder="${Nom}">
+						class="form-control" id="nom" placeholder="${utilisateur.nom}">
 				</div>
 				<div class="form-group ">
 					<label for="prenom">Prénom:</label> <input type="text"
-						class="form-control" id="prenom" placeholder="${Prenom}">
+						class="form-control" id="prenom"
+						placeholder="${utilisateur.prenom}">
 				</div>
 				<div class="form-group ">
-					<label for="mail">Adresse mail:</label> <input type="${Mail}"
-						class="form-control" id="mail" placeholder="${DateNaissance}">
+					<label for="mail">Adresse mail:</label> <input
+						type="${utilisateur.mail}" class="form-control" id="mail"
+						placeholder="${utilisateur.dateNaissance}">
 				</div>
 				<div class="form-group " id="dateNaissance">
 					<label for="date">Date de naissance:</label> <input type="date"
@@ -47,24 +49,23 @@
 				<div class="form-group ">
 					<label for="postal">Code postal de votre ville :</label> <input
 						type="text" class="form-control" id="postal"
-						placeholder="${CodePostal}">
+						placeholder="${utilisateur.codePostal}">
 				</div>
 
 				<div class="form-group ">
 					<label for="pseudo">Pseudo:</label> <input type="text"
-						class="form-control" id="pseudo" placeholder="${Pseudo}">
+						class="form-control" id="pseudo"
+						placeholder="${utilisateur.login}">
 				</div>
 
 				<div class="form-group ">
 					<label for="password">Mot de passe:</label> <input type="password"
-						class="form-control" id="password" placeholder="${Password}">
+						class="form-control" id="password"
+						placeholder="Modifier votre mot de passe">
 				</div>
-				<div class="form-group">
-					<label for="password">Confirmer le mot de passe</label> <input
-						type="password" class="form-control" id="password"
-						placeholder="${Password}">
-				</div>
-				<button type="submit" class="btn btn-primary">S'inscrire</button>
+
+				<button type="submit" class="btn btn-primary">Modifier le
+					profil</button>
 			</form>
 		</div>
 	</div>

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.Dao.IMessagesDao;
 import fr.formation.inti.entities.Messages;
+import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
 @Service("serviceMess")
@@ -43,10 +44,16 @@ public class MessagesService implements IMessagesService {
 
 	public void createMessages(Messages messages) {
 		dao.create(messages);
-}
+	}
 
-public Messages findByIdMessages(int Id) {
-	return dao.findById(Id);
-}
+	public Messages findByIdMessages(int Id) {
+		return dao.findById(Id);
+	}
+
+	@Override
+	public List<Messages> getMessagesByUtilisateur(Utilisateurs utlisateur) {
+
+		return dao.getMessagesByUtilisateur(utlisateur);
+	}
 
 }

@@ -6,19 +6,25 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.formation.inti.entities.Login;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
 public class CompteController {
+	@Autowired
+	IUtilisateursService utilisateursService;
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	// voir messagerie et publier annonce déjà dans index controller
-
+	@Transactional
 	@RequestMapping(value = "/ModifProfil")
 	public ModelAndView ModifProfil(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
@@ -26,7 +32,9 @@ public class CompteController {
 
 			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}
-		return new ModelAndView("ModifProfil");
+		Login login = (Login) session.getAttribute("login");
+		Utilisateurs utilisateur = utilisateursService.findByIdUtilisateurs(login.getIdUtilisateurs());
+		return new ModelAndView("ModifProfil", "utilisateur", utilisateur);
 	}
 
 	@RequestMapping(value = "/VosAnn")

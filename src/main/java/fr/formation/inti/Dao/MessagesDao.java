@@ -1,7 +1,9 @@
 package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,13 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.formation.inti.entities.Messages;
+import fr.formation.inti.entities.Utilisateurs;
 
-/**
- * Home object for domain model class Messages.
- * 
- * @see fr.formation.inti.Dao.Messages
- * @author Hibernate Tools
- */
 @Repository("MessageDao")
 public class MessagesDao implements IMessagesDao {
 
@@ -85,12 +82,18 @@ public class MessagesDao implements IMessagesDao {
 
 	}
 
-//	public List<Messages> getByIdLogin() {
-//		Session session = sessionFactory.getCurrentSession();
-//		
-//		List<Messages> list;
-//
-//		list = session.createCriteria(Messages.class).add(Restrictions.like("motClef", motClef)).list();
-//	}
+	public List<Messages> getMessagesByUtilisateur(Utilisateurs utlisateur) {
+
+		Set<Messages> set = utlisateur.getMessagesesForIdUtilisateurReceveur();
+		List<Messages> items = new ArrayList<>();
+		for (Messages messages : set) {
+
+			items.add(messages);
+
+		}
+
+		return items;
+
+	}
 
 }

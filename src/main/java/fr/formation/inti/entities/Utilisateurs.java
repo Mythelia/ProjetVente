@@ -178,7 +178,7 @@ public class Utilisateurs implements java.io.Serializable {
 		this.annonceses = annonceses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateursByIdUtilisateurReceveur")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateursByIdUtilisateurReceveur")
 	public Set<Messages> getMessagesesForIdUtilisateurReceveur() {
 		return this.messagesesForIdUtilisateurReceveur;
 	}
@@ -187,7 +187,7 @@ public class Utilisateurs implements java.io.Serializable {
 		this.messagesesForIdUtilisateurReceveur = messagesesForIdUtilisateurReceveur;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateursByIdUtilisateurExpediteur")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateursByIdUtilisateurExpediteur")
 	public Set<Messages> getMessagesesForIdUtilisateurExpediteur() {
 		return this.messagesesForIdUtilisateurExpediteur;
 	}
@@ -195,5 +195,14 @@ public class Utilisateurs implements java.io.Serializable {
 	public void setMessagesesForIdUtilisateurExpediteur(Set<Messages> messagesesForIdUtilisateurExpediteur) {
 		this.messagesesForIdUtilisateurExpediteur = messagesesForIdUtilisateurExpediteur;
 	}
+
+	@Override
+	public String toString() {
+		return "Utilisateurs [idUtilisateurs=" + idUtilisateurs + ", nom=" + nom + ", prenom=" + prenom
+				+ ", dateNaissance=" + dateNaissance + ", codePostal=" + codePostal + ", login=" + login + ", password="
+				+ password + ", mail=" + mail + "]";
+	}
+	
+	
 
 }

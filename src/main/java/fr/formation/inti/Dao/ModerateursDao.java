@@ -77,7 +77,7 @@ public class ModerateursDao implements IModerateursDao {
 	public List<Moderateurs> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			List<Moderateurs> list = session.createQuery("from MotsClefs").list();
+			List<Moderateurs> list = session.createQuery("from Moderateurs").list();
 			return list;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

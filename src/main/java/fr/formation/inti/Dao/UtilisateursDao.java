@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.entities.Utilisateurs;
 
@@ -29,6 +30,7 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 	private static final Log log = LogFactory.getLog(UtilisateursDao.class);
 
+	
 	public Utilisateurs findById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 
@@ -50,7 +52,6 @@ public class UtilisateursDao implements IUtilisateursDao {
 		try {
 
 			session.saveOrUpdate(utilisateurs);
-			
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());

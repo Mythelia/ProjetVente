@@ -80,7 +80,7 @@ public class MotsclefsDao implements IMotsClefsDao {
 	public List<MotsClefs> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			List<MotsClefs> list = session.createQuery("from Motsclefs").list();
+			List<MotsClefs> list = session.createQuery("from MotsClefs").list(); // ça n'a pas de sens
 			return list;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

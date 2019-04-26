@@ -40,6 +40,16 @@
 
 				</div>
 				<div class="form-group ">
+					<label for="motsClefs">Mots-clefs:</label>
+<!-- 					<input type="text" class="form-control" placeholder="Entrer les mots-clefs associés à votre annonce" -->
+<!-- 							name="motsClefs"> -->
+					<form:input class="form-control" path="motsClefs"
+						placeholder="Entrer les mots-clefs associés à votre annonce"></form:input>
+
+<%-- 					<form:errors path="titre" cssClass="error" /> --%>
+
+				</div>
+				<div class="form-group ">
 					<label for="adresse">Adresse:</label>
 					<form:input class="form-control" path="adresse"
 						placeholder="Entrer votre Adresse"></form:input>

@@ -1,6 +1,7 @@
 package fr.formation.inti.entities;
 // Generated 26 avr. 2019 11:17:57 by Hibernate Tools 5.1.10.Final
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -49,7 +50,7 @@ public class AnnoncesHasMotsclefs implements java.io.Serializable {
 		this.annoncesIdAnnonces = annoncesIdAnnonces;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY) // attention !
 	@PrimaryKeyJoinColumn
 	public Annonces getAnnonces() {
 		return this.annonces;

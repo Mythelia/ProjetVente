@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.formation.inti.entities.Login;
-import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.Entities.Login;
+import fr.formation.inti.Entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller

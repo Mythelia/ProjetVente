@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.Entities.Annonces;
 import fr.formation.inti.interfaces.dao.IAnnoncesDao;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 

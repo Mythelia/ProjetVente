@@ -74,7 +74,7 @@ public class ApplicationContextConfig {
 //		properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
 
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-		factoryBean.setPackagesToScan(new String[] { "fr.formation.inti.entities" });
+		factoryBean.setPackagesToScan(new String[] { "fr.formation.inti.Entities" });
 		factoryBean.setDataSource(dataSource);
 		factoryBean.setHibernateProperties(properties);
 		factoryBean.afterPropertiesSet();

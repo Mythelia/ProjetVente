@@ -1,18 +1,13 @@
 package fr.formation.inti.controller;
 
-import java.text.SimpleDateFormat;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.Entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IMessagesService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
@@ -32,6 +28,9 @@ public class AjoutController {
 
 	@Autowired
 	IUtilisateursService serviUtili;
+
+	@Autowired
+	IMessagesService serviMess;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
@@ -52,7 +51,6 @@ public class AjoutController {
 	}
 
 	@RequestMapping(value = "/forminscrip", method = RequestMethod.POST)
-	@Transactional
 	public ModelAndView AjouterUtilisateur(@ModelAttribute("utilisateur") Utilisateurs utilisateur,
 			BindingResult bindingResult) throws Exception {
 
@@ -61,10 +59,22 @@ public class AjoutController {
 			return new ModelAndView("Inscription", "utilisateur", utilisateur);
 		}
 
-		serviUtili.createUtilisateurs(utilisateur);
+		Utilisateurs user = serviUtili.createUtilisateurs(utilisateur);
+//		Messageries messageries = new Messageries(user);
+//		serviMess.createMessageries(messageries);
 
 		ModelAndView mav = new ModelAndView("ValidationInscription");
 		return mav;
 	}
+	
+//	@RequestMapping(value = "/formMessagerie")
+//	@Transactional
+//	public ModelAndView AjouterMessagerie(@ModelAttribute("utilisateur") Utilisateurs utilisateur) {
+//
+//		Messageries messageries = new Messageries(utilisateur);
+//		serviMess.createMessageries(messageries);
+//		ModelAndView mav = new ModelAndView("ValidationInscription");
+//		return mav;
+//	}
 
 }

@@ -1,6 +1,5 @@
 package fr.formation.inti.controller;
 
-import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -15,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.formation.inti.Entities.Annonces;
 import fr.formation.inti.Service.SpellCheck;
-import fr.formation.inti.entities.Annonces;
-import fr.formation.inti.entities.Messages;
 
 @Controller
 public class AnnoncesController {

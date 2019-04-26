@@ -2,19 +2,19 @@ package fr.formation.inti.interfaces.services;
 
 import java.util.List;
 
-import fr.formation.inti.entities.Alertes;
+import fr.formation.inti.Entities.Alerte;
 
 public interface IAlertesService {
 
-	Alertes findByIdAlertes(int Id);
+	Alerte findByIdAlerte(int Id);
 	
-	void createAlertes(Alertes alrt);
+	void createAlerte(Alerte alrt);
 	
-	void deleteAlertes(Alertes alrt);
+	void deleteAlerte(Alerte alrt);
 	
-	List<Alertes> getAllAlertes();
+	List<Alerte> getAllAlerte();
 	
-	void updateAlertes(Alertes alrt);
+	void updateAlerte(Alerte alrt);
 	
 	
 	

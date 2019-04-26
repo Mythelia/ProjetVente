@@ -2,19 +2,20 @@ package fr.formation.inti.interfaces.dao;
 
 import java.util.List;
 
-import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.Entities.Motsclefs;
+
 
 public interface IMotsClefsDao {
 	
-	MotsClefs findById(int Id);
+	Motsclefs findById(int Id);
 	
-	void create(MotsClefs motsclefs);
+	void create(Motsclefs motsclefs);
 	
-	void delete(MotsClefs motsclefs);
+	void delete(Motsclefs motsclefs);
 	
-	void update(MotsClefs motsclefs);
+	void update(Motsclefs motsclefs);
 	
-	List<MotsClefs> getAll();
+	List<Motsclefs> getAll();
 	
-	public MotsClefs findByMotClef(String motClef);
+	public Motsclefs findByMotClef(String motClef);
 }

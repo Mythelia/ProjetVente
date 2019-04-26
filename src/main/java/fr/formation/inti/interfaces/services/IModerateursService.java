@@ -2,7 +2,7 @@ package fr.formation.inti.interfaces.services;
 
 import java.util.List;
 
-import fr.formation.inti.entities.Moderateurs;
+import fr.formation.inti.Entities.Moderateurs;
 
 public interface IModerateursService {
 

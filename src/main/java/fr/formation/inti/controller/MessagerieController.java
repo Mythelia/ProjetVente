@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.formation.inti.entities.Messages;
+import fr.formation.inti.Entities.Messages;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
 @Controller

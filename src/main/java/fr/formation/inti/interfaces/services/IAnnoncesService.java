@@ -3,7 +3,7 @@ package fr.formation.inti.interfaces.services;
 import java.util.List;
 import java.util.Set;
 
-import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.Entities.Annonces;
 
 public interface IAnnoncesService {
 

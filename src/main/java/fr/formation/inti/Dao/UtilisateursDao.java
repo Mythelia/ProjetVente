@@ -1,7 +1,6 @@
 package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,7 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.Entities.Utilisateurs;
 
 /**
  * Home object for domain model class Utilisateurs.
@@ -46,16 +45,18 @@ public class UtilisateursDao implements IUtilisateursDao {
 		}
 	}
 
-	public void create(Utilisateurs utilisateurs) {
+	public Utilisateurs create(Utilisateurs utilisateurs) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 
 			session.saveOrUpdate(utilisateurs);
+			
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
 
 		}
+		return utilisateurs;
 	}
 
 	public void update(Utilisateurs utilisateurs) {
@@ -100,8 +101,7 @@ public class UtilisateursDao implements IUtilisateursDao {
 		Session session = sessionFactory.getCurrentSession();
 		List<Utilisateurs> results;
 		try {
-			results = session.createCriteria(Utilisateurs.class)
-					.add(Restrictions.like("login", login)).list();
+			results = session.createCriteria(Utilisateurs.class).add(Restrictions.like("login", login)).list();
 
 			for (Utilisateurs result : results) {
 				return result;

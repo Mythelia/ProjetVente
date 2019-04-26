@@ -12,8 +12,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.formation.inti.entities.Annonces;
-import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.Entities.Annonces;
+import fr.formation.inti.Entities.Motsclefs;
 import fr.formation.inti.interfaces.dao.IAnnoncesDao;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 
@@ -91,13 +91,18 @@ public class AnnoncesDao implements IAnnoncesDao {
 		}
 
 	}
-	
+
 	public Set<Annonces> getAnnoncesByMotClef(String motClef) {
 	
-		MotsClefs mc = motsClefsServices.findByMotClef(motClef);
-		return mc.getAnnonceses();
-		
-		
+		return null;
 	}
+	
+//	public Set<Annonces> getAnnoncesByMotClef(String motClef) {
+//	
+//		Motsclefs mc = motsClefsServices.findByMotclef(motClef);
+//		return mc.getAnnonceses();
+//		
+//		
+//	}
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.Dao.IUtilisateursDao;
-import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.Entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Service("serviceUtil")
@@ -46,13 +46,13 @@ public class UtilisateursService implements IUtilisateursService {
 	public Utilisateurs findByIdUtilisateurs(int Id) {
 		return dao.findById(Id);
 	}
-
+	
 	public Utilisateurs findByLoginUtilisateurs(String login) {
 		return dao.findByLogin(login);
 	}
-
-	public void createUtilisateurs(Utilisateurs utilisateurs) {
-		dao.create(utilisateurs);
+	@Transactional
+	public Utilisateurs createUtilisateurs(Utilisateurs utilisateurs) {
+		return dao.create(utilisateurs);
 
 	}
 }

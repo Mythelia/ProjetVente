@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.Entities.Utilisateurs;
 
 @Controller
 public class CompteController {

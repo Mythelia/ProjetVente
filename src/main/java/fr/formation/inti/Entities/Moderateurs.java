@@ -1,8 +1,10 @@
-package fr.formation.inti.entities;
-// Generated 10 avr. 2019 10:51:44 by Hibernate Tools 5.1.10.Final
+package fr.formation.inti.Entities;
+// Generated 26 avr. 2019 11:17:57 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "moderateurs", catalog = "projet")
 public class Moderateurs implements java.io.Serializable {
 
-	private int idModerateurs;
+	private Integer idModerateurs;
 	private String login;
 	private int password;
 	private String mail;
@@ -22,8 +24,7 @@ public class Moderateurs implements java.io.Serializable {
 	public Moderateurs() {
 	}
 
-	public Moderateurs(int idModerateurs, String login, int password, String mail, String adresse) {
-		this.idModerateurs = idModerateurs;
+	public Moderateurs(String login, int password, String mail, String adresse) {
 		this.login = login;
 		this.password = password;
 		this.mail = mail;
@@ -31,13 +32,14 @@ public class Moderateurs implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idModerateurs", unique = true, nullable = false)
-	public int getIdModerateurs() {
+	public Integer getIdModerateurs() {
 		return this.idModerateurs;
 	}
 
-	public void setIdModerateurs(int idModerateurs) {
+	public void setIdModerateurs(Integer idModerateurs) {
 		this.idModerateurs = idModerateurs;
 	}
 

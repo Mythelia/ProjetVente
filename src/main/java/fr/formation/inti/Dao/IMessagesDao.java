@@ -2,7 +2,7 @@ package fr.formation.inti.Dao;
 
 import java.util.List;
 
-import fr.formation.inti.entities.Messages;
+import fr.formation.inti.Entities.Messages;
 
 
 

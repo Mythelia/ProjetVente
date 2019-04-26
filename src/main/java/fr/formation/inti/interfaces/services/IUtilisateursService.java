@@ -2,7 +2,7 @@ package fr.formation.inti.interfaces.services;
 
 import java.util.List;
 
-import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.Entities.Utilisateurs;
 
 public interface IUtilisateursService {
 	
@@ -10,7 +10,7 @@ public interface IUtilisateursService {
 	
 	Utilisateurs findByLoginUtilisateurs(String login);
 	
-	void createUtilisateurs(Utilisateurs utilisateurs);
+	Utilisateurs createUtilisateurs(Utilisateurs utilisateurs);
 	
 	void deleteUtilisateurs(Utilisateurs utilisateurs);
 	

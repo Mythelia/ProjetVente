@@ -3,23 +3,15 @@ package fr.formation.inti.Dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transaction;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.formation.inti.entities.Messageries;
-import fr.formation.inti.entities.Messages;
-import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.Entities.Messages;
 
 /**
  * Home object for domain model class Messages.

@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.Entities.Annonces;
 
 @Component("annonceValidator")
 public class AnnonceValidator implements Validator {

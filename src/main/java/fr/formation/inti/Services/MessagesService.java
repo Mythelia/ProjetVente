@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.Dao.IMessagesDao;
-import fr.formation.inti.entities.Messages;
+import fr.formation.inti.Entities.Messages;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
 @Service("serviceMess")

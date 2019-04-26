@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.entities.Annonces;
-import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.Entities.Annonces;
+import fr.formation.inti.Entities.Motsclefs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 
@@ -38,8 +38,8 @@ public class SpellCheck {
 	@PostConstruct
 	public void init() {
 		System.out.println("blabla".hashCode());
-		List<MotsClefs> mots_clefs = motClefsService.getAllMotsClefs();
-		for (MotsClefs m : mots_clefs) {
+		List<Motsclefs> mots_clefs = motClefsService.getAllMotsclefs();
+		for (Motsclefs m : mots_clefs) {
 			this.addMot(m.getMotClef());
 		}
 

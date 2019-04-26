@@ -2,19 +2,19 @@ package fr.formation.inti.interfaces.services;
 
 import java.util.List;
 
-import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.Entities.Motsclefs;
 
 public interface IMotsClefsService {
 	
-	MotsClefs findByIdMotsClefs(int Id);
+	Motsclefs findByIdMotsClefs(int Id);
 	
-	void createMotsClefs(MotsClefs motsclefs);
+	void createMotsclefs(Motsclefs motsclefs);
 	
-	void deleteMotsClefs(MotsClefs motsclefs);
+	void deleteMotsclefs(Motsclefs motsclefs);
 	
-	void updateMotsClefs(MotsClefs motsclefs);
+	void updateMotsclefs(Motsclefs motsclefs);
 	
-	List<MotsClefs> getAllMotsClefs();
+	List<Motsclefs> getAllMotsclefs();
 	
-	public MotsClefs findByMotClef(String motClef);
+	public Motsclefs findByMotclef(String motClef);
 }

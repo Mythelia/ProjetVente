@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.entities.Alertes;
-import fr.formation.inti.interfaces.dao.IAlertesDao;
+import fr.formation.inti.Entities.Alerte;
+import fr.formation.inti.interfaces.dao.IAlerteDao;
 import fr.formation.inti.interfaces.services.IAlertesService;
 
 @Service
@@ -21,32 +21,32 @@ public class AlertesService implements IAlertesService {
 	public AlertesService() {
 	}
 	@Autowired
-	private IAlertesDao dao;
+	private IAlerteDao dao;
 
-	public void setDao(IAlertesDao dao) {
+	public void setDao(IAlerteDao dao) {
 		this.dao = dao;
 
 	}
 
-	public void updateAlertes(Alertes alrt) {
+	public void updateAlerte(Alerte alrt) {
 		dao.update(alrt);
 
 	}
 
-	public void deleteAlertes(Alertes alrt) {
+	public void deleteAlerte(Alerte alrt) {
 		dao.delete(alrt);
 
 	}
 
-	public List<Alertes> getAllAlertes() {
+	public List<Alerte> getAllAlerte() {
 		return dao.getAll();
 	}
 
-	public void createAlertes(Alertes alrt) {
+	public void createAlerte(Alerte alrt) {
 		dao.create(alrt);
 	}
 
-	public Alertes findByIdAlertes(int Id) {
+	public Alerte findByIdAlerte(int Id) {
 		return dao.findById(Id);
 	}
 

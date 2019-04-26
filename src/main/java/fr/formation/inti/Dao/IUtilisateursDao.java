@@ -2,7 +2,7 @@ package fr.formation.inti.Dao;
 
 import java.util.List;
 
-import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.Entities.Utilisateurs;
 
 public interface IUtilisateursDao {
 	
@@ -10,7 +10,7 @@ public interface IUtilisateursDao {
 	
 	Utilisateurs findByLogin(String login);
 	
-	void create(Utilisateurs utilisateurs);
+	Utilisateurs create(Utilisateurs utilisateurs);
 	
 	void delete(Utilisateurs utilisateurs);
 	

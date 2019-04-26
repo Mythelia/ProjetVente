@@ -36,8 +36,8 @@ public class IndexController {
 	@Autowired
 	IUtilisateursService serviUtili;
 
-//	@Autowired
-//	SpellCheck spellCheck;
+	@Autowired
+	SpellCheck spellCheck;
 
 	@Autowired
 	IMotsClefsService serviMots;

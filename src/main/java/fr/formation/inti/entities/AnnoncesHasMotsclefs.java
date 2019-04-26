@@ -25,6 +25,8 @@ public class AnnoncesHasMotsclefs implements java.io.Serializable {
 	private int annoncesIdAnnonces;
 	private Annonces annonces;
 	private MotsClefs motsclefs;
+	
+	private int idMotClef;
 
 	public AnnoncesHasMotsclefs() {
 	}
@@ -66,5 +68,16 @@ public class AnnoncesHasMotsclefs implements java.io.Serializable {
 	public void setMotsclefs(MotsClefs motsclefs) {
 		this.motsclefs = motsclefs;
 	}
+	
+	@Column(name = "motsclefs_idMotClef", insertable=false, updatable=false)
+	public int getIdMotClef() {
+		return idMotClef;
+	}
+
+	public void setIdMotClef(int idMotsClefs) {
+		this.idMotClef = idMotsClefs;
+	}
+	
+	
 
 }

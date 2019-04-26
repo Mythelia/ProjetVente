@@ -33,8 +33,8 @@ public class IndexController {
 	@Autowired
 	IUtilisateursService serviUtili;
 
-	@Autowired
-	SpellCheck spellCheck;
+//	@Autowired
+//	SpellCheck spellCheck;
 
 	// Possède aussi les controller du Header
 

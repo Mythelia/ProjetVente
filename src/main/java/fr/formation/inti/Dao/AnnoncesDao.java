@@ -54,7 +54,7 @@ public class AnnoncesDao implements IAnnoncesDao {
 	public void create(Annonces annonces) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.persist(annonces);
+			session.saveOrUpdate(annonces);
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
 

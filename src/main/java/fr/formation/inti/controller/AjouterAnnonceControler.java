@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
 import fr.formation.inti.entities.MotsClefs;
@@ -38,6 +39,9 @@ public class AjouterAnnonceControler {
 	@Autowired
 	@Qualifier("annonceValidator")
 	private Validator validator;
+
+	@Autowired
+	SpellCheck spellCheck;
 
 	@Autowired
 	IAnnoncesService serviAnn;
@@ -73,7 +77,7 @@ public class AjouterAnnonceControler {
 		String dateS = dateFormat.format(date);
 		Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(dateS);
 		annonce.setDate(date1);
-		
+
 		validator.validate(annonce, bindingResult);
 
 		if (bindingResult.hasErrors()) {
@@ -84,6 +88,17 @@ public class AjouterAnnonceControler {
 		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id); // TODO : bug nullpointer si l'utilisateur
 																			// n'est pas loggé
 		annonce.setUtilisateurs(utilisateurs);
+
+		String[] motsClefs = annonce.getMotClefs().split(" ");
+		for (String motClef : motsClefs) {
+			MotsClefs mc = mcService.findByMotclef(motClef);
+			if (mc == null) {
+				mc = new MotsClefs(motClef);
+				mcService.createMotsclefs(mc);
+				spellCheck.addMot(motClef);
+			}
+			annonce.getMotsclefses().add(mc);
+		}
 
 		serviAnn.createAnnonces(annonce);
 

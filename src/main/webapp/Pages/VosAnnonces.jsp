@@ -37,12 +37,12 @@
 						<td>${a.prix}</td>
 						<td>
 							<form action="Jue.jsp" method="post">
-								<input type='hidden' name="id" value="${a.anId}"> <input
+								<input type='hidden' name="id" value="${a.idAnnonces}"> <input
 									type="submit" value="Update"></input>
 							</form>
 						</td>
 						<td><form action="DeleteAn" method="post">
-								<input type='hidden' name="id" value="${a.anId}"> <input
+								<input type='hidden' name="id" value="${a.idAnnonces}"> <input
 									type="submit" value="Supprimer"></input>
 							</form></td>
 					</tr>

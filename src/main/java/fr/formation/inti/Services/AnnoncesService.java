@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.dao.IAnnoncesDao;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 
@@ -55,5 +56,9 @@ public class AnnoncesService implements IAnnoncesService {
 
 	public Set<Annonces> getAnnoncesByMotClef(String motClef) {
 		return dao.getAnnoncesByMotClef(motClef);
+	}
+
+	public List<Annonces> getAnnoncesByUtilisateur(Utilisateurs utlisateur) {
+		return dao.getAnnoncesByUtilisateur(utlisateur);
 	}
 }

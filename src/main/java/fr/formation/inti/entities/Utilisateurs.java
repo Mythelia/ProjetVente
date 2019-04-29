@@ -169,7 +169,7 @@ public class Utilisateurs implements java.io.Serializable {
 		this.alertes = alertes;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateurs")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateurs")
 	public Set<Annonces> getAnnonceses() {
 		return this.annonceses;
 	}

@@ -1,5 +1,7 @@
 package fr.formation.inti.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
+import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
@@ -33,6 +35,9 @@ public class CompteController {
 	@Autowired
 	@Qualifier("utilisateurValidator")
 	private Validator validator;
+
+	@Autowired
+	IAnnoncesService annonceService;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
@@ -56,7 +61,8 @@ public class CompteController {
 		System.out.println(utilisateur); // Eclipse c'est de la m........................
 		return new ModelAndView("ModifProfil", "utilisateur", utilisateur);
 	}
-
+	
+	@Transactional
 	@RequestMapping(value = "/VosAnn")
 	public ModelAndView VosAnnonnces(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
@@ -65,8 +71,14 @@ public class CompteController {
 
 			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}
+		Login login = (Login) session.getAttribute("login");
+		int id = login.getIdUtilisateurs();
+		Utilisateurs utilisateurs = utilisateursService.findByIdUtilisateurs(id);
+		System.out.println(utilisateurs.getLogin());
 
-		return new ModelAndView("VosAnnonces");
+		List<Annonces> list = annonceService.getAnnoncesByUtilisateur(utilisateurs);
+
+		return new ModelAndView("VosAnnonces", "annonce", list);
 	}
 
 	@RequestMapping(value = "/Logout")

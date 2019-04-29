@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Utilisateurs;
 
 public interface IAnnoncesDao {
 
@@ -18,4 +19,6 @@ public interface IAnnoncesDao {
 	void update(Annonces annonces);
 
 	public Set<Annonces> getAnnoncesByMotClef(String motClef);
+
+	public List<Annonces> getAnnoncesByUtilisateur(Utilisateurs utlisateur);
 }

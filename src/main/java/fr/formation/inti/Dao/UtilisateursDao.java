@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.dao.IUtilisateursDao;
 
 /**
  * Home object for domain model class Utilisateurs.
@@ -101,6 +102,7 @@ public class UtilisateursDao implements IUtilisateursDao {
 		Session session = sessionFactory.getCurrentSession();
 		List<Utilisateurs> results;
 		try {
+			
 			results = session.createCriteria(Utilisateurs.class).add(Restrictions.like("login", login)).list();
 
 			for (Utilisateurs result : results) {

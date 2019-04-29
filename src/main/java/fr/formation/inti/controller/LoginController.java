@@ -1,5 +1,7 @@
 package fr.formation.inti.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IMessagesService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
@@ -40,6 +44,9 @@ public class LoginController {
 	@Autowired
 	IUtilisateursService utilisateursService;
 
+	@Autowired
+	IMessagesService servMess;
+
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@RequestMapping(value = "/Login", method = RequestMethod.GET)
@@ -52,8 +59,8 @@ public class LoginController {
 	@RequestMapping(value = "/Login", method = RequestMethod.POST) // Rajouter le systeme de session
 	public ModelAndView Login(@ModelAttribute("utilisateurs") @Validated Utilisateurs utilisateurs,
 			BindingResult bindingResult, HttpSession session) throws Exception {
-
 		
+
 		validator.validate(utilisateurs, bindingResult);
 
 		if (bindingResult.hasErrors()) {
@@ -63,6 +70,7 @@ public class LoginController {
 
 			String loginRequired = utilisateurs.getLogin();
 			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(loginRequired);
+			List<Messages> list = servMess.getMessagesByUtilisateur(registeredUtilisateur);
 
 			if (registeredUtilisateur == null) {
 				ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
@@ -72,8 +80,10 @@ public class LoginController {
 
 			} else {
 				if (utilisateurs.getPassword() == registeredUtilisateur.getPassword()) {
-					Login login = new Login(registeredUtilisateur.getIdUtilisateurs(), registeredUtilisateur.getLogin());
+					Login login = new Login(registeredUtilisateur.getIdUtilisateurs(), registeredUtilisateur.getLogin(),
+							list.size());
 					session.setAttribute("login", login);
+
 				} else {
 					ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 					String msg = "Mot de passe incorrect !";

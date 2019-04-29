@@ -30,7 +30,6 @@ public class UtilisateursDao implements IUtilisateursDao {
 
 	private static final Log log = LogFactory.getLog(UtilisateursDao.class);
 
-	
 	public Utilisateurs findById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 
@@ -65,7 +64,7 @@ public class UtilisateursDao implements IUtilisateursDao {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 
-			session.update(utilisateurs);
+			session.saveOrUpdate(utilisateurs);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());

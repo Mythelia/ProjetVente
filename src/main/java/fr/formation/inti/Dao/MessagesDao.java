@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.dao.IMessagesDao;
 
 @Repository("MessageDao")
 public class MessagesDao implements IMessagesDao {

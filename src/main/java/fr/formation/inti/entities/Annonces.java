@@ -1,23 +1,24 @@
 package fr.formation.inti.entities;
-// Generated 26 avr. 2019 11:17:57 by Hibernate Tools 5.1.10.Final
+// Generated 29 avr. 2019 15:09:20 by Hibernate Tools 5.1.10.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,8 +37,7 @@ public class Annonces implements java.io.Serializable {
 	private Date date;
 	private String adresse;
 	private String titre;
-	private AnnoncesHasMotsclefs annoncesHasMotsclefs;
-	private String motsClefs;
+	private Set<MotsClefs> motsclefses = new HashSet<MotsClefs>(0);
 
 	public Annonces() {
 	}
@@ -52,7 +52,7 @@ public class Annonces implements java.io.Serializable {
 	}
 
 	public Annonces(Utilisateurs utilisateurs, String description, String photo, int prix, Date date, String adresse,
-			String titre, AnnoncesHasMotsclefs annoncesHasMotsclefs) {
+			String titre, Set<MotsClefs> motsclefses) {
 		this.utilisateurs = utilisateurs;
 		this.description = description;
 		this.photo = photo;
@@ -60,7 +60,7 @@ public class Annonces implements java.io.Serializable {
 		this.date = date;
 		this.adresse = adresse;
 		this.titre = titre;
-		this.annoncesHasMotsclefs = annoncesHasMotsclefs;
+		this.motsclefses = motsclefses;
 	}
 
 	@Id
@@ -75,7 +75,7 @@ public class Annonces implements java.io.Serializable {
 		this.idAnnonces = idAnnonces;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "utilisateurs_idUtilisateurs", nullable = false)
 	public Utilisateurs getUtilisateurs() {
 		return this.utilisateurs;
@@ -113,8 +113,8 @@ public class Annonces implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date", nullable = false, length = 10)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "Date", nullable = false, length = 10)
 	public Date getDate() {
 		return this.date;
 	}
@@ -141,22 +141,16 @@ public class Annonces implements java.io.Serializable {
 		this.titre = titre;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "annonces")
-	public AnnoncesHasMotsclefs getAnnoncesHasMotsclefs() {
-		return this.annoncesHasMotsclefs;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "motsclefs_has_annonces", catalog = "projet", joinColumns = {
+			@JoinColumn(name = "annonces_idAnnonces", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "motsclefs_idMotClef", nullable = false, updatable = false) })
+	public Set<MotsClefs> getMotsclefses() {
+		return this.motsclefses;
 	}
 
-	public void setAnnoncesHasMotsclefs(AnnoncesHasMotsclefs annoncesHasMotsclefs) {
-		this.annoncesHasMotsclefs = annoncesHasMotsclefs;
-	}
-
-	@Transient
-	public String getMotsClefs() {
-		return motsClefs;
-	}
-
-	public void setMotsClefs(String motsClefs) {
-		this.motsClefs = motsClefs;
+	public void setMotsclefses(Set<MotsClefs> motsclefses) {
+		this.motsclefses = motsclefses;
 	}
 
 }

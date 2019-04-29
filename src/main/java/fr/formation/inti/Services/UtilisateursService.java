@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.Dao.IUtilisateursDao;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.dao.IUtilisateursDao;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Service("serviceUtil")

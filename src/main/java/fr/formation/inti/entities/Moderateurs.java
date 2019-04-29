@@ -1,5 +1,5 @@
 package fr.formation.inti.entities;
-// Generated 26 avr. 2019 11:17:57 by Hibernate Tools 5.1.10.Final
+// Generated 29 avr. 2019 15:09:20 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

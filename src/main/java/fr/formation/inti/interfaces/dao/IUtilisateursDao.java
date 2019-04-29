@@ -1,4 +1,4 @@
-package fr.formation.inti.Dao;
+package fr.formation.inti.interfaces.dao;
 
 import java.util.List;
 

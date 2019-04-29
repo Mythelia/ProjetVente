@@ -1,5 +1,5 @@
 package fr.formation.inti.entities;
-// Generated 26 avr. 2019 11:17:57 by Hibernate Tools 5.1.10.Final
+// Generated 29 avr. 2019 15:09:20 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,9 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,7 +24,7 @@ public class Alerte implements java.io.Serializable {
 
 	private Integer idAlerte;
 	private Utilisateurs utilisateurs;
-	private Set<MotsclefsHasAlerte> motsclefsHasAlertes = new HashSet<MotsclefsHasAlerte>(0);
+	private Set<MotsClefs> motsclefses = new HashSet<MotsClefs>(0);
 
 	public Alerte() {
 	}
@@ -32,9 +33,9 @@ public class Alerte implements java.io.Serializable {
 		this.utilisateurs = utilisateurs;
 	}
 
-	public Alerte(Utilisateurs utilisateurs, Set<MotsclefsHasAlerte> motsclefsHasAlertes) {
+	public Alerte(Utilisateurs utilisateurs, Set<MotsClefs> motsclefses) {
 		this.utilisateurs = utilisateurs;
-		this.motsclefsHasAlertes = motsclefsHasAlertes;
+		this.motsclefses = motsclefses;
 	}
 
 	@Id
@@ -59,13 +60,16 @@ public class Alerte implements java.io.Serializable {
 		this.utilisateurs = utilisateurs;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "alerte")
-	public Set<MotsclefsHasAlerte> getMotsclefsHasAlertes() {
-		return this.motsclefsHasAlertes;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "motsclefs_has_alerte", catalog = "projet", joinColumns = {
+			@JoinColumn(name = "alerte_idAlerte", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "motsclefs_idMotClef", nullable = false, updatable = false) })
+	public Set<MotsClefs> getMotsclefses() {
+		return this.motsclefses;
 	}
 
-	public void setMotsclefsHasAlertes(Set<MotsclefsHasAlerte> motsclefsHasAlertes) {
-		this.motsclefsHasAlertes = motsclefsHasAlertes;
+	public void setMotsclefses(Set<MotsClefs> motsclefses) {
+		this.motsclefses = motsclefses;
 	}
 
 }

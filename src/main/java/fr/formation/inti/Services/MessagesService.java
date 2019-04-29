@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.formation.inti.Dao.IMessagesDao;
 import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.dao.IMessagesDao;
 import fr.formation.inti.interfaces.services.IMessagesService;
 
 @Service("serviceMess")

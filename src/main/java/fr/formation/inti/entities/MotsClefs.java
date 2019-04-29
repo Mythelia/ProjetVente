@@ -3,6 +3,8 @@ package fr.formation.inti.entities;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -72,7 +74,7 @@ public class MotsClefs implements java.io.Serializable {
 		this.alertes = alertes;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "motsclefs_has_annonces", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "motsclefs_idMotClef", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "annonces_idAnnonces", nullable = false, updatable = false) })

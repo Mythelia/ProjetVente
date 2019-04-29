@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <style type="text/css">
 img.head {
 	width: 35px;
@@ -65,7 +67,15 @@ a.head:hover {
 				<li class="active"><a class="head" href='Connection'> <img
 						class="head" alt="compte"
 						src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-circle-512.png"
-						id="Icompte"> Mon compte
+						id="Icompte"> <c:choose>
+							<c:when test="${empty login }">
+						 Mon compte
+						 </c:when>
+							<c:otherwise>
+						 ${login.login }
+						 </c:otherwise>
+
+						</c:choose>
 				</a></li>
 			</ul>
 		</div>

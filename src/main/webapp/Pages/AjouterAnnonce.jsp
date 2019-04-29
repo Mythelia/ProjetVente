@@ -40,8 +40,8 @@
 
 				</div>
 				<div class="form-group ">
-					<label for="motsClefs">Mots-clefs:</label>
-					<form:input class="form-control" path="motsclefses"
+					<label for="motClefs">Mots-clefs:</label>
+					<form:input class="form-control" path="motClefs"
 						placeholder="Entrer les mots-clefs associés à votre annonce"></form:input>
 
 				</div>

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,6 +40,7 @@ public class Annonces implements java.io.Serializable {
 	private String adresse;
 	private String titre;
 	private Set<MotsClefs> motsclefses = new HashSet<MotsClefs>(0);
+	private String motClefs;
 
 	public Annonces() {
 	}
@@ -141,7 +144,7 @@ public class Annonces implements java.io.Serializable {
 		this.titre = titre;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "motsclefs_has_annonces", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "annonces_idAnnonces", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "motsclefs_idMotClef", nullable = false, updatable = false) })
@@ -151,6 +154,15 @@ public class Annonces implements java.io.Serializable {
 
 	public void setMotsclefses(Set<MotsClefs> motsclefses) {
 		this.motsclefses = motsclefses;
+	}
+
+	@Transient
+	public String getMotClefs() {
+		return motClefs;
+	}
+
+	public void setMotClefs(String motClefs) {
+		this.motClefs = motClefs;
 	}
 
 }

@@ -101,17 +101,11 @@ public class MotsclefsDao implements IMotsClefsDao {
 		return null;
 	}
 
-	@Override
-	public Integer countMotClefOccurences(MotsClefs motClef) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-//	public Integer countMotClefOccurences(MotsClefs motClef) {
-//
-//		Session session = sessionFactory.getCurrentSession();
-//		Integer result = 0;
-//		
+	public Integer countMotClefOccurences(MotsClefs motClef) {
+
+		return motClef.getAnnonceses().size();
+		
 //		try {
 //			Criteria crit = session.createCriteria(AnnoncesHasMotsclefs.class).add(Restrictions.like("idMotClef", motClef.getIdMotClef()));
 //			result = ((Number)crit.setProjection(Projections.rowCount()).uniqueResult()).intValue();
@@ -122,7 +116,7 @@ public class MotsclefsDao implements IMotsClefsDao {
 //			return null;
 //
 //		}
-//		
-//	}
+		
+	}
 
 }

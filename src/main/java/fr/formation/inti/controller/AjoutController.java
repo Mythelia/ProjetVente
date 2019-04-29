@@ -60,21 +60,9 @@ public class AjoutController {
 		}
 
 		Utilisateurs user = serviUtili.createUtilisateurs(utilisateur);
-//		Messageries messageries = new Messageries(user);
-//		serviMess.createMessageries(messageries);
 
 		ModelAndView mav = new ModelAndView("ValidationInscription");
 		return mav;
 	}
-	
-//	@RequestMapping(value = "/formMessagerie")
-//	@Transactional
-//	public ModelAndView AjouterMessagerie(@ModelAttribute("utilisateur") Utilisateurs utilisateur) {
-//
-//		Messageries messageries = new Messageries(utilisateur);
-//		serviMess.createMessageries(messageries);
-//		ModelAndView mav = new ModelAndView("ValidationInscription");
-//		return mav;
-//	}
 
 }

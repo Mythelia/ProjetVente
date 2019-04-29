@@ -84,7 +84,7 @@
 					<li><a href="#">informatique</a></li>
 					<li><a href="#">Consoles & Jeux vidéos</a></li>
 					<li><a href="#">Image & son</a></li>
-					<li><a href="#">Telephonie</a></li>				
+					<li><a href="#">Telephonie</a></li>
 					<li class="dropdown-header">Loisirs</li>
 					<li><a href="#">DVD/Films</a></li>
 					<li><a href="#">CD/Musique</a></li>
@@ -113,7 +113,7 @@
 					<li><a href="#">Covoiturage</a></li>
 					<li class="dropdown-header">Autres</li>
 					<li><a href="#">Autres</a></li>
-				
+
 
 				</ul>
 			</div>
@@ -165,10 +165,10 @@
 		</form>
 	</div>
 	</div>
-	
-<footer class="container-fluid">
-  <p>Footer Text</p>
-</footer>
+
+	<footer class="container-fluid">
+		<p>Footer Text</p>
+	</footer>
 
 </body>
 </html>

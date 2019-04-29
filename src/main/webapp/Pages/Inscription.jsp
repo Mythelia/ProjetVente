@@ -31,7 +31,7 @@
 		<h2>Inscription</h2>
 		<div class="col-sm-5" id="inscription">
 			<form:form commandName="utilisateur" method="POST"
-				action="forminscrip">
+				action="formmodifp">
 				<div class="form-group">
 					<label for="nom">Nom:</label>
 					<form:input path="nom" placeholder="Entrer votre nom"

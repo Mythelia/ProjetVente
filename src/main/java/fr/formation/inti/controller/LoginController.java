@@ -72,19 +72,25 @@ public class LoginController {
 			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(loginRequired);
 			List<Messages> list = servMess.getMessagesByUtilisateur(registeredUtilisateur);
 
+			System.out.println(0);
+			
 			if (registeredUtilisateur == null) {
+				System.out.println(1);
 				ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 				String msg = "Cet utilisateur n'existe pas !";
 				returnPage.addObject("msgutil", msg);
 				return returnPage;
 
 			} else {
+				System.out.println(2);
 				if (utilisateurs.getPassword() == registeredUtilisateur.getPassword()) {
+					System.out.println(3);
 					Login login = new Login(registeredUtilisateur.getIdUtilisateurs(), registeredUtilisateur.getLogin(),
 							list.size());
 					session.setAttribute("login", login);
 
 				} else {
+					System.out.println(4);
 					ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
 					String msg = "Mot de passe incorrect !";
 					returnPage.addObject("msgpass", msg);

@@ -23,14 +23,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
+import fr.formation.inti.interfaces.services.IMessagesService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
 public class CompteController {
 	@Autowired
 	IUtilisateursService utilisateursService;
+
+	@Autowired
+	IAnnoncesService annSeri;
+
+	@Autowired
+	IMessagesService messServ;
 
 	@Autowired
 	@Qualifier("utilisateurValidator")
@@ -58,10 +66,10 @@ public class CompteController {
 		Login login = (Login) session.getAttribute("login");
 		int id = login.getIdUtilisateurs();
 		Utilisateurs utilisateur = utilisateursService.findByIdUtilisateurs(id);
-		System.out.println(utilisateur); // Eclipse c'est de la m........................
+		System.out.println(utilisateur); // Sinon utilisateur n'es pas envoyé ...
 		return new ModelAndView("ModifProfil", "utilisateur", utilisateur);
 	}
-	
+
 	@Transactional
 	@RequestMapping(value = "/VosAnn")
 	public ModelAndView VosAnnonnces(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -112,7 +120,7 @@ public class CompteController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/Desinscrip") // jsp à faire
+	@RequestMapping(value = "/Desinscrip")
 	public ModelAndView Desinscription(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
 
@@ -121,6 +129,34 @@ public class CompteController {
 			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}
 
-		return new ModelAndView("Compte");
+		return new ModelAndView("ValidationDesinscripton");
+	}
+
+	@Transactional
+	@RequestMapping(value = "/DeleteUtilisateur")
+	public ModelAndView DeleteUtilisateur(HttpSession session) throws Exception {
+		if (session.getAttribute("login") == null) {
+
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		}
+		Login login = (Login) session.getAttribute("login");
+		int id = login.getIdUtilisateurs();
+		Utilisateurs utilisateur = utilisateursService.findByIdUtilisateurs(id);
+		System.out.println(utilisateur);
+		session.setAttribute("login", null);
+
+		List<Annonces> listA = annSeri.getAnnoncesByUtilisateur(utilisateur);
+		for (Annonces annonces : listA) {
+			annSeri.deleteAnnonces(annonces);
+		}
+
+		List<Messages> lisM = messServ.getMessagesByUtilisateur(utilisateur);
+		for (Messages messages : lisM) {
+			messServ.deleteMessages(messages);
+		}
+
+		utilisateursService.deleteUtilisateurs(utilisateur);
+
+		return new ModelAndView("Desinscrit");
 	}
 }

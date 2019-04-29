@@ -1,5 +1,9 @@
 package fr.formation.inti.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
+import fr.formation.inti.interfaces.services.IMotsClefsService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
@@ -31,6 +38,9 @@ public class AjouterAnnonceControler {
 
 	@Autowired
 	IAnnoncesService serviAnn;
+	
+	@Autowired
+	IMotsClefsService mcService;
 
 	@Autowired
 	IUtilisateursService serviUtili;
@@ -52,23 +62,38 @@ public class AjouterAnnonceControler {
 
 	@RequestMapping(value = "/formannonce", method = RequestMethod.POST)
 	@Transactional
-	public ModelAndView AjouterAnnoncePOST(@ModelAttribute("annonce") @Validated Annonces annonce,
-			BindingResult bindingResult) throws Exception {
+	public ModelAndView AjouterAnnoncePOST(@ModelAttribute("annonce") @Validated Annonces annonce, BindingResult bindingResult, HttpSession session) throws Exception {
 
 		validator.validate(annonce, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("AjouterAnnonce", "annonce", annonce);
 		}
-		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(0);
+		Login login = (Login) session.getAttribute("login");
+		int id = login.getIdUtilisateurs();
+		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id);  // TODO : bug nullpointer si l'utilisateur n'est pas loggé
 		annonce.setUtilisateurs(utilisateurs);
-//		Transactions trans = new Transactions(0, utilisateurs);
-//		annonce.setTransactions(trans);
-		// !!!! Ajouter la session et voir pour récup l'id de l'utilisateur
-
 		serviAnn.createAnnonces(annonce);
+		
+		String[] motsClefs = annonce.getMotsClefs().split(" ");
+		
+		for (String motClef : motsClefs) {
+			
+			MotsClefs alreadyHere = mcService.findByMotclef(motClef);
+			int mcId;
+			if (null == alreadyHere) {
+				alreadyHere = new MotsClefs(motClef);
+				mcService.createMotsclefs(alreadyHere);
+				alreadyHere = mcService.findByMotclef(motClef);
+			}
+			// TODO : compléter, et gérer le cas dans la table intermédiaire, et gérer la suppression
+			
+			
+		}
+		
 		ModelAndView mav = new ModelAndView("ValidationInscription");
 		return mav;
+
 	}
 
 }

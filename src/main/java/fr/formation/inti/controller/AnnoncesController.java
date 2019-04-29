@@ -45,6 +45,7 @@ public class AnnoncesController {
 			return modelAndView;
 		}
 		String motClefPlusAbondant = results.lastEntry().getValue();
+		String autreRecherche = null;
 		// Si le mot demandé est celui correspondant au plus grand nombre d'entrées dans
 		// la base
 		if (motClefPlusAbondant.equals(mDemande)) {
@@ -52,18 +53,23 @@ public class AnnoncesController {
 			otherWord = null;
 		} else {
 			annonces = spellCheck.getAnnonces(motClefPlusAbondant);
+			annonces.addAll(spellCheck.getAnnonces(mDemande));
 			otherWord = motClefPlusAbondant;
 		}
 		if (mDemande.equals(otherWord)) {
 			message = "Voici les résultats pour " + mDemande + " :";
 		} else if (otherWord != null) {
 			message = "Vous aviez recherché " + mDemande + " mais peut-être vouliez vous dire " + otherWord + " ?\n"
-					+ "Voici les résultats pour " + otherWord + " :";
+					+ "Voici les résultats pour " + otherWord + " et " + mDemande + " :\n" + "Rechercher uniquement pour " + mDemande;
+			autreRecherche =  mDemande;
 		}
 
+
+		
 		logger.info("Returning AjouterAnnonce view");
 		ModelAndView modelAndView = new ModelAndView("showAnnonces", "annonces", annonces);
 		modelAndView.addObject("message", message);
+		modelAndView.addObject("autreRecherche", autreRecherche);
 		return modelAndView;
 	}
 
@@ -72,6 +78,17 @@ public class AnnoncesController {
 			@RequestParam("show") int idAnnonce) {
 		Annonces annonce = annonceService.findByIdAnnonces(idAnnonce);
 		System.out.println(annonce.getDescription());
-		return null;
+		return new ModelAndView("showAnnonce", "annonce", annonce);
 	}
+	
+	@RequestMapping(value = "searchAgain")
+	public ModelAndView showAnnonce(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("annonceAgain") String mot) {
+		Set<Annonces> annonces =  spellCheck.getAnnonces(mot);
+		String message = "Voici les résultats pour " + mot + " :";
+		ModelAndView modelAndView = new ModelAndView("showAnnonces", "annonces", annonces);
+		modelAndView.addObject("message", message);
+		return  modelAndView;
+	}
+	
 }

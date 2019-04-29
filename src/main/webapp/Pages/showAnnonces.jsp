@@ -61,7 +61,12 @@ img {
 <body>
 	<jsp:include page="/Pages/HeaderB.jsp"></jsp:include>
 	<div class="container">
-		<h2>${message}</h2>
+		<h2>${message}</h2><br>
+		<c:if test="${not empty autreRecherche}">
+			<form method="POST" action="searchAgain">
+				<button name="annonceAgain" type="submit" value=${autreRecherche }>${autreRecherche }</button>
+			</form>
+		</c:if>
 		<br> <br> <br>
 		<table>
 			<c:forEach items="${annonces}" var="u">

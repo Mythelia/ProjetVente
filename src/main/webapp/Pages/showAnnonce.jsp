@@ -13,7 +13,6 @@
 <link
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-
 <title>Bonjour</title>
 <style type="text/css">
 #custom-search-input {
@@ -57,6 +56,12 @@
 img {
 	max-height: 300px;
 }
+
+.row-centered {
+	text-align: center;
+	margin: 20px;
+	border:1px;
+}
 /* #SButton { */
 /* margin-left: 0px; */
 /* } */
@@ -64,32 +69,29 @@ img {
 </head>
 <body>
 	<jsp:include page="/Pages/HeaderB.jsp"></jsp:include>
-	<div class="container">
-		<h2>${message}</h2>
-		<br> <br> <br>
 
-		<table>
-			<c:forEach items="${annonces}" var="u">
-				<div class="row-sm-3">
-					<div class="col-sm-4">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<button name="show" type="submit" value=${u.idAnnonces }>${u.description}</button>
-							</div>
-							<div class="panel-body">
 
-								<img src=${u.photo } class="img-responsive" style="width: 100%"
-									alt="Image">
-							</div>
-							<div class="panel-footer">${ u.prix }</div>
+	<div class="container-fluid">
+		<div class="row row-centered">
+			<div class="col-sm-12">${annonce.titre }</div>
+		</div>
+		<div class="row row-centered">
+			<div class="col-sm-12">${annonce.description }</div>
+		</div>
+		<div class="row row-centered">
+			<div class="col-sm-8">${annonce.prix } €</div>
+			<div class="col-sm-4">${annonce.photo}</div>
+		</div>
+		<div class="row row-centered">
+			<div class="col-sm-4">${annonce.date }</div>
+			<div class="col-sm-4">${annonce.adresse }</div>
+			<div class="col-sm-4">Contact</div>
 
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</table>
+		</div>
 
 	</div>
+
+
 </body>
 
 

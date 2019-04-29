@@ -71,7 +71,7 @@
 				<div class="form-group ">
 					<label for="password">Mot de passe:</label>
 					<form:input type="password" class="form-control" path="password"
-						placeholder="Modifier votre mot de passe"></form:input>
+						placeholder="Modifier votre mot de passe" value=""></form:input>
 					<form:errors path="passwordString" cssClass="error" />
 				</div>
 

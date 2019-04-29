@@ -1,5 +1,9 @@
 package fr.formation.inti.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IMessagesService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
@@ -52,7 +58,7 @@ public class AjoutController {
 
 	@RequestMapping(value = "/forminscrip", method = RequestMethod.POST)
 	public ModelAndView AjouterUtilisateur(@ModelAttribute("utilisateur") Utilisateurs utilisateur,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult, HttpSession session) throws Exception {
 
 		validator.validate(utilisateur, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -60,6 +66,10 @@ public class AjoutController {
 		}
 
 		Utilisateurs user = serviUtili.createUtilisateurs(utilisateur);
+		List<Messages> list = serviMess.getMessagesByUtilisateur(utilisateur);
+
+		Login login = new Login(utilisateur.getIdUtilisateurs(), utilisateur.getLogin(), list.size());
+		session.setAttribute("login", login);
 
 		ModelAndView mav = new ModelAndView("ValidationInscription");
 		return mav;

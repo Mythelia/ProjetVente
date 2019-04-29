@@ -23,12 +23,12 @@
 		<div class="col-sm-10">
 			<h2>Bienvenue sur votre profil</h2>
 
-			<a href="ModifProfil" class="btn btn-primary">Modifier le profil</a> <a
-				href="Messagerie" class="btn btn-primary">Voir la messagerie</a>
-			<a href="AjouterAnnonce" class="btn btn-primary">Publier une
+			<a href="ModifProfil" class="btn btn-primary">Modifier le profil</a>
+			<a href="Messagerie" class="btn btn-primary">Voir la messagerie</a> <a
+				href="AjouterAnnonce" class="btn btn-primary">Publier une
 				annonce</a> <a href="VosAnn" class="btn btn-primary">Vos annonces</a> <a
-				href="Logout" class="btn btn-primary">Se déconnecter</a> <a href="Desinscrip"
-				class="btn btn-primary">Se désinscire</a>
+				href="Logout" class="btn btn-primary">Se déconnecter</a> <a
+				href="Desinscrip" class="btn btn-primary">Se désinscire</a>
 
 		</div>
 

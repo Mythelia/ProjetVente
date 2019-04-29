@@ -1,5 +1,8 @@
 package fr.formation.inti.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -38,7 +41,7 @@ public class AjouterAnnonceControler {
 
 	@Autowired
 	IAnnoncesService serviAnn;
-	
+
 	@Autowired
 	IMotsClefsService mcService;
 
@@ -62,8 +65,15 @@ public class AjouterAnnonceControler {
 
 	@RequestMapping(value = "/formannonce", method = RequestMethod.POST)
 	@Transactional
-	public ModelAndView AjouterAnnoncePOST(@ModelAttribute("annonce") @Validated Annonces annonce, BindingResult bindingResult, HttpSession session) throws Exception {
+	public ModelAndView AjouterAnnoncePOST(@ModelAttribute("annonce") @Validated Annonces annonce,
+			BindingResult bindingResult, HttpSession session) throws Exception {
 
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd"); // surement pas optimisé
+		Date date = new Date();
+		String dateS = dateFormat.format(date);
+		Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(dateS);
+		annonce.setDate(date1);
+		
 		validator.validate(annonce, bindingResult);
 
 		if (bindingResult.hasErrors()) {
@@ -71,14 +81,16 @@ public class AjouterAnnonceControler {
 		}
 		Login login = (Login) session.getAttribute("login");
 		int id = login.getIdUtilisateurs();
-		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id);  // TODO : bug nullpointer si l'utilisateur n'est pas loggé
+		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id); // TODO : bug nullpointer si l'utilisateur
+																			// n'est pas loggé
 		annonce.setUtilisateurs(utilisateurs);
+
 		serviAnn.createAnnonces(annonce);
-		
+
 		String[] motsClefs = annonce.getMotsClefs().split(" ");
-		
+
 		for (String motClef : motsClefs) {
-			
+
 			MotsClefs alreadyHere = mcService.findByMotclef(motClef);
 			int mcId;
 			if (null == alreadyHere) {
@@ -86,11 +98,11 @@ public class AjouterAnnonceControler {
 				mcService.createMotsclefs(alreadyHere);
 				alreadyHere = mcService.findByMotclef(motClef);
 			}
-			// TODO : compléter, et gérer le cas dans la table intermédiaire, et gérer la suppression
-			
-			
+			// TODO : compléter, et gérer le cas dans la table intermédiaire, et gérer la
+			// suppression
+
 		}
-		
+
 		ModelAndView mav = new ModelAndView("ValidationInscription");
 		return mav;
 

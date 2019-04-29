@@ -41,12 +41,8 @@
 				</div>
 				<div class="form-group ">
 					<label for="motsClefs">Mots-clefs:</label>
-<!-- 					<input type="text" class="form-control" placeholder="Entrer les mots-clefs associés à votre annonce" -->
-<!-- 							name="motsClefs"> -->
 					<form:input class="form-control" path="motsClefs"
 						placeholder="Entrer les mots-clefs associés à votre annonce"></form:input>
-
-<%-- 					<form:errors path="titre" cssClass="error" /> --%>
 
 				</div>
 				<div class="form-group ">
@@ -56,11 +52,11 @@
 					<form:errors path="adresse" cssClass="error" />
 				</div>
 
-				<div class="form-group " id="date">
-					<label for="date">Date:</label>
-					<form:input type="date" class="form-control" path="date"></form:input>
-					<form:errors path="date" cssClass="error" />
-				</div>
+<!-- 				<div class="form-group " id="date"> -->
+<!-- 					<label for="date">Date:</label> -->
+<%-- 					<form:input type="date" class="form-control" path="date"></form:input> --%>
+<%-- 					<form:errors path="date" cssClass="error" /> --%>
+<!-- 				</div> -->
 
 				<div class="form-group ">
 					<label for="prix">Prix de votre article</label>

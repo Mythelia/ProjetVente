@@ -1,6 +1,7 @@
 package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.MotsClefs;
+import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.dao.IAnnoncesDao;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 
@@ -26,11 +29,11 @@ import fr.formation.inti.interfaces.services.IMotsClefsService;
 @Repository("AnnonceDao")
 public class AnnoncesDao implements IAnnoncesDao {
 
-	 @Autowired
-	 private SessionFactory sessionFactory;
-	 
-	 @Autowired
-	 private IMotsClefsService motsClefsServices;
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Autowired
+	private IMotsClefsService motsClefsServices;
 
 	private static final Log log = LogFactory.getLog(AnnoncesDao.class);
 
@@ -74,7 +77,7 @@ public class AnnoncesDao implements IAnnoncesDao {
 			session.delete(annonces);
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
-			
+
 		}
 	}
 
@@ -96,13 +99,26 @@ public class AnnoncesDao implements IAnnoncesDao {
 //	
 //		return null;
 //	}
-	
+
 	public Set<Annonces> getAnnoncesByMotClef(String motClef) {
-	
+
 		MotsClefs mc = motsClefsServices.findByMotclef(motClef);
 		return mc.getAnnonceses();
-		
-		
+
+	}
+
+	public List<Annonces> getAnnoncesByUtilisateur(Utilisateurs utlisateur) {
+
+		Set<Annonces> set = utlisateur.getAnnonceses();
+		List<Annonces> items = new ArrayList<>();
+		for (Annonces annonce : set) {
+
+			items.add(annonce);
+
+		}
+
+		return items;
+
 	}
 
 }

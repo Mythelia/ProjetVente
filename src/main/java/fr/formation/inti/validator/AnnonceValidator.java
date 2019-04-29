@@ -20,7 +20,6 @@ public class AnnonceValidator implements Validator {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titre", "titre.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "adresse", "adresse.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "date", "date.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prix", "prix.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "description.required");
 

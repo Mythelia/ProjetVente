@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
@@ -43,6 +44,9 @@ public class AnnoncesController {
 
 	@Autowired
 	IMotsClefsService mcService;
+
+	@Autowired
+	IUtilisateursService serviUtili;
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -157,6 +161,41 @@ public class AnnoncesController {
 		ModelAndView modelAndView = new ModelAndView("showAnnonces", "annonces", annonces);
 		modelAndView.addObject("message", message);
 		return modelAndView;
+	}
+
+	@Transactional
+	@RequestMapping(value = "AcheterAnn")
+	public ModelAndView AcheterAnnonce(HttpSession session, @RequestParam("idAnnonce") int id) {
+
+		Login login = (Login) session.getAttribute("login");
+		if (login == null) {
+
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		}
+
+		Annonces annonce = annonceService.findByIdAnnonces(id);
+		System.out.println(annonce.getTitre());
+
+		return new ModelAndView("AccepterAnnonce", "annonce", annonce);
+
+	}
+
+	@Transactional
+	@RequestMapping(value = "AnnonceAchete")
+	public ModelAndView AnnonceAchete(HttpSession session, @RequestParam("idAnnonce") int id) {
+
+		Login login = (Login) session.getAttribute("login");
+		if (login == null) {
+
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		}
+
+		Annonces annonce = annonceService.findByIdAnnonces(id);
+		System.out.println(annonce.getTitre());
+		annonceService.deleteAnnonces(annonce);
+
+		return new ModelAndView("ValidationAchat");
+
 	}
 
 }

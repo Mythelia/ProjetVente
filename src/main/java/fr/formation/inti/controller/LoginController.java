@@ -35,7 +35,7 @@ public class LoginController {
 	@Autowired
 	@Qualifier("loginValidator")
 	private Validator validator;
-
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -80,6 +80,7 @@ public class LoginController {
 				return returnPage;
 
 			} else {
+				//Permet d'avoir le nombre de message à coté de l'icone dans le header
 				List<Messages> list = servMess.getMessagesByUtilisateur(registeredUtilisateur);
 				System.out.println(2);
 				if (utilisateurs.getPassword() == registeredUtilisateur.getPassword()) {
@@ -120,6 +121,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/Inscription")
 	public ModelAndView Inscription() throws Exception {
+		// obligation d'instancier un utilisateur sinon la validation crash
 		ModelAndView mav = new ModelAndView("Inscription", "utilisateur", new Utilisateurs());
 		return mav;
 	}

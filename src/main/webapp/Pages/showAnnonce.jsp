@@ -65,9 +65,15 @@ img {
 			<h3>${annonce.photo}</h3>
 
 			<form action="contactAnn">
-
-				<input type="hidden" name="idAnnonceur" value="${annonce.utilisateurs.idUtilisateurs}">
+				<input type="hidden" name="idAnnonceur"
+					value="${annonce.utilisateurs.idUtilisateurs}">
 				<button class="btn btn-primary" type="submit">Contact</button>
+			</form>
+
+			<form action="AcheterAnn">
+				<input type="hidden" name="idAnnonce"
+					value="${annonce.idAnnonces}">
+				<button class="btn btn-primary" type="submit">Acheter</button>
 			</form>
 		</div>
 

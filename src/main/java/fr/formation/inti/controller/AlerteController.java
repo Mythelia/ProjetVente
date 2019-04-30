@@ -50,6 +50,7 @@ public class AlerteController {
 	@Autowired
 	SpellCheck spellCheck;
 
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);

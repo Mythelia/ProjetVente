@@ -36,7 +36,8 @@ public class MessagerieController {
 	@Autowired
 	@Qualifier("MessageValidator")
 	private Validator validator;
-
+	
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -97,7 +98,7 @@ public class MessagerieController {
 			}
 			message.setUtilisateursByIdUtilisateurReceveur(utilisateurR);
 
-			// une idée pour afficher l'erreur ?
+			
 		} catch (Exception e) {
 
 		}

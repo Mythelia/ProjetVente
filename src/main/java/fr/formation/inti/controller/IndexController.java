@@ -95,7 +95,8 @@ public class IndexController {
 		String loginUtili = login.getLogin();
 
 		Utilisateurs utilisateur = serviUtili.findByLoginUtilisateurs(loginUtili);
-
+		
+		//récupère les messges liées à l'uilisateur
 		List<Messages> list = serviMess.getMessagesByUtilisateur(utilisateur);
 
 		ModelAndView modelAndView = new ModelAndView("Messagerie", "list", list);

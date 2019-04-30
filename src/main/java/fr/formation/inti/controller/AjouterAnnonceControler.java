@@ -66,6 +66,7 @@ public class AjouterAnnonceControler {
 	@Autowired
 	IMessagesService serviMess;
 
+	// initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -100,11 +101,13 @@ public class AjouterAnnonceControler {
 		Date date = new Date();
 		String dateS = dateFormat.format(date);
 		Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(dateS);
+
 		newAnnonce.setDate(date1);
 		newAnnonce.setTitre(annonce.getTitre());
 		newAnnonce.setPrix(annonce.getPrix());
 		newAnnonce.setDescription(annonce.getDescription());
 		newAnnonce.setAdresse(annonce.getAdresse());
+
 		serviAnn.updateAnnonces(newAnnonce);
 
 		List<Annonces> list = serviAnn.getAnnoncesByUtilisateur(utilisateurs);
@@ -136,6 +139,7 @@ public class AjouterAnnonceControler {
 		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id);
 		annonce.setUtilisateurs(utilisateurs);
 
+		// Permet d'ajouter les mots clefs dans la base de données si non existant
 		String[] motsClefs = annonce.getMotClefs().split(" ");
 		for (String motClef : motsClefs) {
 			MotsClefs mc = mcService.findByMotclef(motClef);
@@ -147,19 +151,30 @@ public class AjouterAnnonceControler {
 			mc.getAnnonceses().add(annonce);
 		}
 
+		// création de l'annonce
 		serviAnn.createAnnonces(annonce);
 
+		// Cette partie permet de vérifier si des alertes ont les mots clefs présents
+		// dans l'annonce puis envoie un message si c'est le càs
+
+		// Récupération de "l'utilisateur" qui va envoyer le message
 		Utilisateurs utilisateur = serviUtili.findByLoginUtilisateurs("alerte");
 
+		// Récupération de la liste de toutes les alertes
 		List<Alerte> list = serviAlerte.getAllAlerte();
 
+		// Ici on sor la liste des mots clefs des alertes
 		for (Alerte alerte : list) {
 			Set<MotsClefs> set = alerte.getMotsclefses();
 			List<MotsClefs> listMc = new ArrayList(set);
+
+			// pour chaque mot clef de la liste des alertes
 			for (MotsClefs motClefs : listMc) {
 
+				// on compare à la liste des mots clefs présent dans l'annonce nouvellement crée
 				for (String motClef : motsClefs) {
 
+					// et si il a des mots clefs en communs, envoie un message
 					if (motClef.equals(motClefs.getMotClef())) {
 						Messages message = new Messages(utilisateurs, utilisateur, "noreply: Alerte : " + motClef,
 								date1,

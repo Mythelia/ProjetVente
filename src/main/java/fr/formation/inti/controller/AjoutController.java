@@ -38,6 +38,7 @@ public class AjoutController {
 	@Autowired
 	IMessagesService serviMess;
 
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);

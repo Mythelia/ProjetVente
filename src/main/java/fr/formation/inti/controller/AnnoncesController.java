@@ -13,6 +13,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
+import fr.formation.inti.interfaces.services.IMotsClefsService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Controller
@@ -29,34 +34,71 @@ public class AnnoncesController {
 
 	@Autowired
 	IUtilisateursService utilisateursService;
-	
+
 	@Autowired
 	SpellCheck spellCheck;
 
 	@Autowired
 	IAnnoncesService annonceService;
 
+	@Autowired
+	IMotsClefsService mcService;
+
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	
-	@RequestMapping(value="DeleteAn")
+	@RequestMapping(value = "UpdateAnn")
+	@Transactional
+	public ModelAndView updateAnnonce(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+			@RequestParam("idAnn") int idAnn) {
+
+		System.out.println(idAnn);
+		Annonces annonce = annonceService.findByIdAnnonces(idAnn);
+		String motClefs = "";
+		for (MotsClefs mc : annonce.getMotsclefses()) {
+			motClefs += mc.getMotClef() + " ";
+		}
+		annonce.setMotClefs(motClefs);
+
+		ModelAndView modelAndView = new ModelAndView("UpdateAnnonces", "annonce", annonce);
+		return modelAndView;
+
+	}
+
+	@RequestMapping(value = "DeleteAn")
 	@Transactional
 	public ModelAndView deleteAnnonce(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			@RequestParam("id") Integer idAnn) {
-		
+
 		Annonces annonce = annonceService.findByIdAnnonces(idAnn);
+
+		Set<MotsClefs> mcAnnonce = annonce.getMotsclefses();
+
+		for (MotsClefs mc : mcAnnonce) {
+			mc.getAnnonceses().remove(annonce);
+			for (Annonces an : mc.getAnnonceses()) {
+				System.out.println(an.getTitre());
+			}
+			if (!mc.getAnnonceses().isEmpty()) {
+				mcService.updateMotsclefs(mc);
+			} else {
+				mcService.deleteMotsclefs(mc);
+				// TODO : mettre à jour spellcheck
+			}
+		}
+
 		annonceService.deleteAnnonces(annonce);
+
 		if (session.getAttribute("login") == null) {
 
 			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}
 		Login login = (Login) session.getAttribute("login");
-		int idUtil = login.getIdUtilisateurs();		
+		int idUtil = login.getIdUtilisateurs();
 		ModelAndView mv = new ModelAndView("Compte");
 		return mv;
-		
+
 	}
-	
+
 	@RequestMapping(value = "/Search")
 	public ModelAndView Search(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("searchC") String mDemande) throws Exception {
@@ -87,12 +129,11 @@ public class AnnoncesController {
 			message = "Voici les résultats pour " + mDemande + " :";
 		} else if (otherWord != null) {
 			message = "Vous aviez recherché " + mDemande + " mais peut-être vouliez vous dire " + otherWord + " ?\n"
-					+ "Voici les résultats pour " + otherWord + " et " + mDemande + " :\n" + "Rechercher uniquement pour " + mDemande;
-			autreRecherche =  mDemande;
+					+ "Voici les résultats pour " + otherWord + " et " + mDemande + " :\n"
+					+ "Rechercher uniquement pour " + mDemande;
+			autreRecherche = mDemande;
 		}
 
-
-		
 		logger.info("Returning AjouterAnnonce view");
 		ModelAndView modelAndView = new ModelAndView("showAnnonces", "annonces", annonces);
 		modelAndView.addObject("message", message);
@@ -107,15 +148,15 @@ public class AnnoncesController {
 		System.out.println(annonce.getDescription());
 		return new ModelAndView("showAnnonce", "annonce", annonce);
 	}
-	
+
 	@RequestMapping(value = "searchAgain")
 	public ModelAndView showAnnonce(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("annonceAgain") String mot) {
-		Set<Annonces> annonces =  spellCheck.getAnnonces(mot);
+		Set<Annonces> annonces = spellCheck.getAnnonces(mot);
 		String message = "Voici les résultats pour " + mot + " :";
 		ModelAndView modelAndView = new ModelAndView("showAnnonces", "annonces", annonces);
 		modelAndView.addObject("message", message);
-		return  modelAndView;
+		return modelAndView;
 	}
-	
+
 }

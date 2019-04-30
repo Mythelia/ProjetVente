@@ -8,6 +8,7 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,7 +119,15 @@ public class AnnoncesDao implements IAnnoncesDao {
 		}
 
 		return items;
-
 	}
 
+	public List<Annonces> getLastAnnonces() {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		@SuppressWarnings("unchecked")
+		List<Annonces> list = session.createQuery("from Annonces order by date DESC").setMaxResults(12).list();
+
+		return list;
+	}
 }

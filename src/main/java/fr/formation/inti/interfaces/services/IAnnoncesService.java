@@ -21,5 +21,7 @@ public interface IAnnoncesService {
 	Set<Annonces> getAnnoncesByMotClef(String motClef);
 
 	List<Annonces> getAnnoncesByUtilisateur(Utilisateurs utlisateur);
+	
+	List<Annonces> getLastAnnonces();
 
 }

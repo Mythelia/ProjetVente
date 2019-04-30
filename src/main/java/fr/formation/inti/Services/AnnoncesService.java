@@ -61,4 +61,8 @@ public class AnnoncesService implements IAnnoncesService {
 	public List<Annonces> getAnnoncesByUtilisateur(Utilisateurs utlisateur) {
 		return dao.getAnnoncesByUtilisateur(utlisateur);
 	}
+	
+	public List<Annonces> getLastAnnonces() {
+		return dao.getLastAnnonces();
+	}
 }

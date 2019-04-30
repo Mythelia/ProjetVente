@@ -46,11 +46,20 @@ public class IndexController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	
+	
 	@RequestMapping({ "/", "/index" })
 	@Transactional
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		return new ModelAndView("index");
+		
+		
+		List<Annonces> lastAnnonces = serviAnno.getLastAnnonces();
+		ModelAndView modelAndView = new ModelAndView("index");
+		modelAndView.addObject("lastAnnonces", lastAnnonces);
+		
+		
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/AjouterAnnonce")

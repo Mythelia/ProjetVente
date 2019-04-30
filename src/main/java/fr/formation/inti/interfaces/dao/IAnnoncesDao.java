@@ -21,4 +21,6 @@ public interface IAnnoncesDao {
 	public Set<Annonces> getAnnoncesByMotClef(String motClef);
 
 	public List<Annonces> getAnnoncesByUtilisateur(Utilisateurs utlisateur);
+
+	List<Annonces> getLastAnnonces();
 }

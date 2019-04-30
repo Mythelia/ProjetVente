@@ -3,9 +3,9 @@ package fr.formation.inti.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.View;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -61,8 +61,10 @@ public class AjouterAnnonceControler {
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@RequestMapping(value = "/formannonce", method = RequestMethod.GET)
-	public String AjouterAnnonceGET(Model model) throws Exception {
-
+	public String AjouterAnnonceGET(Model model, HttpSession session) throws Exception {
+		
+		Login login = (Login) session.getAttribute("login");
+		
 		model.addAttribute("annonce", new Annonces());
 		return ("AjouterAnnonce");
 	}
@@ -83,8 +85,10 @@ public class AjouterAnnonceControler {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("AjouterAnnonce", "annonce", annonce);
 		}
+
 		Login login = (Login) session.getAttribute("login");
 		int id = login.getIdUtilisateurs();
+
 		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id); // TODO : bug nullpointer si l'utilisateur
 																			// n'est pas loggé
 		annonce.setUtilisateurs(utilisateurs);

@@ -74,7 +74,7 @@ public class MotsClefs implements java.io.Serializable {
 		this.alertes = alertes;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "motsclefs_has_annonces", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "motsclefs_idMotClef", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "annonces_idAnnonces", nullable = false, updatable = false) })

@@ -155,13 +155,14 @@ public class MessagerieController {
 		Login login = (Login) session.getAttribute("login");
 		if (login == null) {
 
-			return new ModelAndView("Compte");
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}
 
 		Utilisateurs utilisateur = serviUtili.findByIdUtilisateurs(id);
 		System.out.println(utilisateur.getIdUtilisateurs());
 
 		message.setUtilisateursByIdUtilisateurExpediteur(utilisateur);
+		System.out.println(message.getUtilisateursByIdUtilisateurExpediteur());
 
 		return new ModelAndView("FormMessageRep", "message", message);
 

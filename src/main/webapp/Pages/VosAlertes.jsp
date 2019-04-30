@@ -19,6 +19,9 @@
 
 	<div class="container">
 		<h2>Vos alertes</h2>
+
+		<a href="formAlerte" role="button" class="btn btn-primary">Nouvelle alerte</a> <br> <br>
+
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>

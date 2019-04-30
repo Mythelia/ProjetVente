@@ -2,11 +2,13 @@ package fr.formation.inti.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.text.View;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,11 +29,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.Service.SpellCheck;
+import fr.formation.inti.entities.Alerte;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Utilisateurs;
+import fr.formation.inti.interfaces.services.IAlertesService;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
+import fr.formation.inti.interfaces.services.IMessagesService;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
 
@@ -54,9 +60,14 @@ public class AjouterAnnonceControler {
 	@Autowired
 	IUtilisateursService serviUtili;
 
+	@Autowired
+	IAlertesService serviAlerte;
+
+	@Autowired
+	IMessagesService serviMess;
+
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
-//		CustomDateEditor editor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
 		binder.setValidator(validator);
 	}
 
@@ -64,8 +75,6 @@ public class AjouterAnnonceControler {
 
 	@RequestMapping(value = "/formannonce", method = RequestMethod.GET)
 	public String AjouterAnnonceGET(Model model, HttpSession session) throws Exception {
-
-		Login login = (Login) session.getAttribute("login");
 
 		model.addAttribute("annonce", new Annonces());
 		return ("AjouterAnnonce");
@@ -84,9 +93,9 @@ public class AjouterAnnonceControler {
 		Login login = (Login) session.getAttribute("login");
 		int id = login.getIdUtilisateurs();
 		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id);
-		
+
 		Annonces newAnnonce = serviAnn.findByIdAnnonces(idAnn);
-		
+
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = new Date();
 		String dateS = dateFormat.format(date);
@@ -97,11 +106,10 @@ public class AjouterAnnonceControler {
 		newAnnonce.setDescription(annonce.getDescription());
 		newAnnonce.setAdresse(annonce.getAdresse());
 		serviAnn.updateAnnonces(newAnnonce);
-		
+
 		List<Annonces> list = serviAnn.getAnnoncesByUtilisateur(utilisateurs);
 
 		return new ModelAndView("VosAnnonces", "annonce", list);
-
 
 	}
 
@@ -125,8 +133,7 @@ public class AjouterAnnonceControler {
 		Login login = (Login) session.getAttribute("login");
 		int id = login.getIdUtilisateurs();
 
-		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id); // TODO : bug nullpointer si l'utilisateur
-																			// n'est pas loggé
+		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id);
 		annonce.setUtilisateurs(utilisateurs);
 
 		String[] motsClefs = annonce.getMotClefs().split(" ");
@@ -141,6 +148,27 @@ public class AjouterAnnonceControler {
 		}
 
 		serviAnn.createAnnonces(annonce);
+
+		Utilisateurs utilisateur = serviUtili.findByLoginUtilisateurs("alerte");
+
+		List<Alerte> list = serviAlerte.getAllAlerte();
+
+		for (Alerte alerte : list) {
+			Set<MotsClefs> set = alerte.getMotsclefses();
+			List<MotsClefs> listMc = new ArrayList(set);
+			for (MotsClefs motClefs : listMc) {
+
+				for (String motClef : motsClefs) {
+
+					if (motClef.equals(motClefs.getMotClef())) {
+						Messages message = new Messages(utilisateurs, utilisateur, "noreply: Alerte : " + motClef,
+								date1,
+								"Une nouvelle annonce correspondant à votre alerte est vient d'être mise en ligne !");
+						serviMess.createMessages(message);
+					}
+				}
+			}
+		}
 
 		ModelAndView mav = new ModelAndView("SuccèsAnnonce");
 		return mav;

@@ -178,6 +178,11 @@ public class CompteController {
 			messServ.deleteMessages(messages);
 		}
 
+		List<Alerte> listAl = alertServi.getAlerteByUtilisateur(utilisateur);
+		for (Alerte alerte : listAl) {
+			alertServi.deleteAlerte(alerte);
+		}
+
 		utilisateursService.deleteUtilisateurs(utilisateur);
 
 		return new ModelAndView("Desinscrit");

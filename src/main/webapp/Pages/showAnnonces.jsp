@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page isELIgnored="false"%>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -68,34 +69,33 @@ img {
 				<button name="annonceAgain" type="submit" value=${autreRecherche }>${autreRecherche }</button>
 			</form>
 		</c:if>
-		<br> <br> 
-		<table>
-			<c:forEach items="${annonces}" var="u">
-				<div class="row-sm-3">
-					<div class="col-sm-4">
-						<form method="POST" action="Annonce">
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-									<button name="show" type="submit" class="btn btn-primary"
-										value=${u.idAnnonces}>${u.titre}</button>
-								</div>
-								<div class="panel-body">
-									<img src=${u.photo } class="img-responsive" style="width: 100%"
-										alt="Image">
-								</div>
-								<div class="panel-footer">${u.prix}</div>
+		<br> <br>
+		<c:forEach items="${annonces}" var="u">
+			<div class="row-sm-3">
+				<div class="col-sm-4">
+					<form method="POST" action="Annonce">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<button name="show" type="submit" class="btn btn-primary"
+									value=${u.idAnnonces}>${u.titre}</button>
 							</div>
-						</form>
-					</div>
+							<div class="panel-body">
+								<img width="100" height="100"
+									src="/getAnnoncePhoto/<c:out value='${u.idAnnonces}'/>" />
+							</div>
+							<div class="panel-footer">${u.prix}</div>
+						</div>
+					</form>
 				</div>
-			</c:forEach>
-		</table>
+			</div>
+		</c:forEach>
 		<br>
 		<hr>
 		<form action="formAlerte">
 			<input type="hidden" name="recherche" value="${message}">
-			<button type="submit" class="btn btn-primary">Vous ne trouvez pas chaussure a votre
-				pied ? Pourquoi ne pas creer une alerte ?</button>
+			<button type="submit" class="btn btn-primary">Vous ne
+				trouvez pas chaussure a votre pied ? Pourquoi ne pas creer une
+				alerte ?</button>
 
 		</form>
 	</div>

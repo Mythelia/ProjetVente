@@ -1,6 +1,8 @@
 package fr.formation.inti.controller;
 
-import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -8,14 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +29,7 @@ import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
+
 
 @Controller
 public class AnnoncesController {
@@ -157,6 +159,17 @@ public class AnnoncesController {
 		ModelAndView modelAndView = new ModelAndView("showAnnonces", "annonces", annonces);
 		modelAndView.addObject("message", message);
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "getAnnoncePhoto/{id}")
+	public void getAnnoncePhoto(HttpServletResponse response, @PathVariable("id") int id) throws Exception {
+		response.setContentType("image/jpeg");
+		System.out.println("hello ?");
+		Blob ph =annonceService.findByIdAnnonces(id).getPhoto();
+
+		byte[] bytes = ph.getBytes(1, (int) ph.length());
+		InputStream inputStream = new ByteArrayInputStream(bytes);
+		IOUtils.copy(inputStream, response.getOutputStream());
 	}
 
 }

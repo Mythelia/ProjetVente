@@ -56,7 +56,7 @@
 
 		<!-- SQLServer JDBC driver (JTDS) -->
 		<!-- http://mvnrepository.com/artifact/net.sourceforge.jtds/jtds -->
-		
+
 
 		<dependency>
 			<groupId>commons-validator</groupId>
@@ -105,11 +105,11 @@
 			<version>4.3.4.RELEASE</version>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.hibernate</groupId> -->
-<!-- 			<artifactId>hibernate-validator</artifactId> -->
-<!-- 			<version>4.0.2.GA</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.hibernate</groupId> -->
+		<!-- <artifactId>hibernate-validator</artifactId> -->
+		<!-- <version>4.0.2.GA</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -127,6 +127,11 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.1</version>
 		</dependency>
 	</dependencies>
 	<build>

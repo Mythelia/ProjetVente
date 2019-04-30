@@ -153,7 +153,7 @@ public class MessagerieController {
 		Messages message = new Messages();
 
 		Login login = (Login) session.getAttribute("login");
-		if (login != null) {
+		if (login == null) {
 
 			return new ModelAndView("Compte");
 		}

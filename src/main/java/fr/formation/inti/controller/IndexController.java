@@ -57,10 +57,9 @@ public class IndexController {
 	public ModelAndView AjouterAnnonce(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
 
-		Login login = (Login) session.getAttribute("login");
-		if (login != null) {
+		if (session.getAttribute("login") == null) {
 
-			return new ModelAndView("Compte");
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}
 		ModelAndView mav = new ModelAndView("AjouterAnnonce", "annonce", new Annonces());
 
@@ -84,7 +83,7 @@ public class IndexController {
 	public ModelAndView Messagerie(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		Login login = (Login) session.getAttribute("login");
-		if (login == null) {
+		if (session.getAttribute("login") == null) {
 
 			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}

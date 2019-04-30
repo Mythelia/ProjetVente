@@ -44,7 +44,7 @@ img {
 			</h2>
 
 			<div id="annprix">
-				<h3>${annonce.prix}euros</h3>
+				<h3>${annonce.prix} euros</h3>
 
 			</div>
 
@@ -71,8 +71,7 @@ img {
 			</form>
 
 			<form action="AcheterAnn">
-				<input type="hidden" name="idAnnonce"
-					value="${annonce.idAnnonces}">
+				<input type="hidden" name="idAnnonce" value="${annonce.idAnnonces}">
 				<button class="btn btn-primary" type="submit">Acheter</button>
 			</form>
 		</div>

@@ -75,7 +75,7 @@ img {
 						<form method="POST" action="Annonce">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<button name="show" type="submit" value=${u.idAnnonces }>${u.titre}</button>
+									<button name="show" type="submit" class="btn btn-primary" value=${u.idAnnonces }>${u.titre}</button>
 								</div>
 								<div class="panel-body">
 									<img src=${u.photo } class="img-responsive" style="width: 100%"

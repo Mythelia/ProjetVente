@@ -91,11 +91,15 @@ public class MessagerieController {
 		try {
 			// récupération de l'utilisateur receveur
 			utilisateurR = serviUtili.findByLoginUtilisateurs(Pseudo);
+			if (utilisateurR == null) {
+				return new ModelAndView("MessageForm", "message", message);
+
+			}
 			message.setUtilisateursByIdUtilisateurReceveur(utilisateurR);
 
 			// une idée pour afficher l'erreur ?
 		} catch (Exception e) {
-			return new ModelAndView("MessageForm", "message", message);
+
 		}
 
 		validator.validate(message, bindingResult);
@@ -142,4 +146,25 @@ public class MessagerieController {
 		return new ModelAndView("FormMessageRep", "message", message1);
 
 	}
+
+	@Transactional
+	@RequestMapping(value = "contactAnn")
+	public ModelAndView ContactAnn(HttpSession session, @RequestParam("idAnnonceur") int id) {
+		Messages message = new Messages();
+
+		Login login = (Login) session.getAttribute("login");
+		if (login != null) {
+
+			return new ModelAndView("Compte");
+		}
+
+		Utilisateurs utilisateur = serviUtili.findByIdUtilisateurs(id);
+		System.out.println(utilisateur.getIdUtilisateurs());
+
+		message.setUtilisateursByIdUtilisateurExpediteur(utilisateur);
+
+		return new ModelAndView("FormMessageRep", "message", message);
+
+	}
+
 }

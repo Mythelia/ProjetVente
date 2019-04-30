@@ -54,7 +54,14 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/AjouterAnnonce")
-	public ModelAndView AjouterAnnonce(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView AjouterAnnonce(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception {
+
+		Login login = (Login) session.getAttribute("login");
+		if (login != null) {
+
+			return new ModelAndView("Compte");
+		}
 		ModelAndView mav = new ModelAndView("AjouterAnnonce", "annonce", new Annonces());
 
 		return mav;

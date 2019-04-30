@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Nouveau Message</title>
+<title>Contacter</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -31,12 +31,11 @@
 				<div class="form-group">
 					<label for="nom">Destinataire (Pseudo)</label> <input
 						name="utilisateurName" class="form-control"
-						value="${message.utilisateursByIdUtilisateurExpediteur.login}"></input>
+						value="${message.utilisateursByIdUtilisateurExpediteur.nom}"></input>
 				</div>
 				<div class="form-group ">
 					<label for="titre">Objet</label>
-					<form:input path="titre" class="form-control"
-						value="Re: ${message.titre}"></form:input>
+					<form:input path="titre" class="form-control" value=""></form:input>
 					<form:errors path="titre" cssClass="error" />
 				</div>
 				<div class="form-group ">

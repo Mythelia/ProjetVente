@@ -102,23 +102,7 @@ public class AjouterAnnonceControler {
 
 		serviAnn.createAnnonces(annonce);
 
-//		String[] motsClefs = annonce.getMotsClefs().split(" ");
-//
-//		for (String motClef : motsClefs) {
-//
-//			MotsClefs alreadyHere = mcService.findByMotclef(motClef);
-//			int mcId;
-//			if (null == alreadyHere) {
-//				alreadyHere = new MotsClefs(motClef);
-//				mcService.createMotsclefs(alreadyHere);
-//				alreadyHere = mcService.findByMotclef(motClef);
-//			}
-//			// TODO : compléter, et gérer le cas dans la table intermédiaire, et gérer la
-//			// suppression
-//
-//		}
-
-		ModelAndView mav = new ModelAndView("ValidationInscription");
+		ModelAndView mav = new ModelAndView("SuccèsAnnonce");
 		return mav;
 
 	}

@@ -68,7 +68,7 @@ img {
 				<button name="annonceAgain" type="submit" value=${autreRecherche }>${autreRecherche }</button>
 			</form>
 		</c:if>
-		<br> <br> 
+		<br> <br>
 		<table>
 			<c:forEach items="${annonces}" var="u">
 				<div class="row-sm-3">
@@ -90,12 +90,15 @@ img {
 				</div>
 			</c:forEach>
 		</table>
+	</div>
+	<div class="container">
 		<br>
 		<hr>
 		<form action="formAlerte">
 			<input type="hidden" name="recherche" value="${message}">
-			<button type="submit" class="btn btn-primary">Vous ne trouvez pas chaussure a votre
-				pied ? Pourquoi ne pas creer une alerte ?</button>
+			<button type="submit" class="btn btn-primary">Vous ne
+				trouvez pas chaussure a votre pied ? Pourquoi ne pas creer une
+				alerte ?</button>
 
 		</form>
 	</div>

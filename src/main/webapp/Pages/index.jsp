@@ -66,13 +66,13 @@
 		<br>
 
 
-		<form class="form-inline">
+		<form class="form-inline" action="Search">
 			<div class="container">
 				<div class="row">
 					<div id="custom-search-input">
 						<div class="input-group col-sm-12">
 							<input type="text" class="  search-query form-control"
-								placeholder="Search" /> <span class="input-group-btn">
+								placeholder="Search" name="searchC" /> <span class="input-group-btn">
 								<button class="btn btn-danger" type="button">
 									<span class=" glyphicon glyphicon-search"></span>
 								</button>

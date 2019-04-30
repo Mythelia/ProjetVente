@@ -36,8 +36,8 @@
 						<td>${a.date}</td>
 						<td>${a.prix}</td>
 						<td>
-							<form action="Jue.jsp" method="post">
-								<input type='hidden' name="id" value="${a.idAnnonces}"> <input
+							<form action="UpdateAnn" method="post">
+								<input type='hidden' name="idAnn" value="${a.idAnnonces}"> <input
 									type="submit" value="Update"></input>
 							</form>
 						</td>

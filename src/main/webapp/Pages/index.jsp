@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -53,15 +54,13 @@
 	z-index: 3;
 }
 
-
-
 /* #SButton { */
 /* margin-left: 0px; */
 /* } */
 </style>
 </head>
 <body>
-	<jsp:include page="/Pages/HeaderB.jsp" ></jsp:include>
+	<jsp:include page="/Pages/HeaderB.jsp"></jsp:include>
 	<div class="container">
 		<h2>Bienvenu sur notre projet</h2>
 		<br>
@@ -86,38 +85,28 @@
 
 
 		<br> <br>
-		<div class="row">
-			<div class="col-sm-6">
-				<form action="">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Titre</div>
-						<div class="panel-body">
-							<img src="https://placehold.it/150x80?text=IMAGE"
-								class="img-responsive" style="width: 100%" alt="Image">
-						</div>
-						<div class="panel-footer">Prix</div>
+
+		<table>
+			<c:forEach items="${lastAnnonces}" var="u">
+				<div class="row-sm-3">
+					<div class="col-sm-4">
+						<form method="POST" action="Annonce">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<button name="show" type="submit" class="btn btn-primary"
+										value=${u.idAnnonces }>${u.titre}</button>
+								</div>
+								<div class="panel-body">
+									<img src=${u.photo } class="img-responsive" style="width: 100%"
+										alt="Image">
+								</div>
+								<div class="panel-footer">${ u.prix }</div>
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
-			<div class="col-sm-6">
-				<form action="">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Titre</div>
-						<div class="panel-body">
-							<img src="https://placehold.it/150x80?text=IMAGE"
-								class="img-responsive" style="width: 100%" alt="Image">
-						</div>
-						<div class="panel-footer">Prix</div>
-
-					</div>
-
-				</form>
-			</div>
-
-
-
-
-		</div>
+				</div>
+			</c:forEach>
+		</table>
 
 	</div>
 </body>

@@ -50,7 +50,7 @@ public class SpellCheck {
 			for (int i=0;i<occurences;i++) { // TODO ça bug ici
 				this.addMot(mot);
 			}
-		}
+		}		
 	}
 
 	public SpellCheck() {

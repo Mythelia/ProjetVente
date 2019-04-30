@@ -82,7 +82,6 @@ public class CompteController {
 		Login login = (Login) session.getAttribute("login");
 		int id = login.getIdUtilisateurs();
 		Utilisateurs utilisateurs = utilisateursService.findByIdUtilisateurs(id);
-		System.out.println(utilisateurs.getLogin());
 
 		List<Annonces> list = annonceService.getAnnoncesByUtilisateur(utilisateurs);
 
@@ -116,7 +115,7 @@ public class CompteController {
 		utilisateur.setIdUtilisateurs(id);
 		utilisateursService.updateUtilisateurs(utilisateur);
 
-		ModelAndView mav = new ModelAndView("ValidationInscription");
+		ModelAndView mav = new ModelAndView("VosAnnonces");
 		return mav;
 	}
 

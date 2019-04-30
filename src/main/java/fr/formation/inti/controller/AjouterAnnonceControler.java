@@ -3,6 +3,7 @@ package fr.formation.inti.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.swing.text.View;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.formation.inti.Service.SpellCheck;
@@ -62,11 +64,45 @@ public class AjouterAnnonceControler {
 
 	@RequestMapping(value = "/formannonce", method = RequestMethod.GET)
 	public String AjouterAnnonceGET(Model model, HttpSession session) throws Exception {
-		
+
 		Login login = (Login) session.getAttribute("login");
-		
+
 		model.addAttribute("annonce", new Annonces());
 		return ("AjouterAnnonce");
+	}
+
+	@RequestMapping(value = "/UpdateAnnonce", method = RequestMethod.POST)
+	@Transactional
+	public ModelAndView UpdateAnnoncePOST(@ModelAttribute("annonce") @Validated Annonces annonce,
+			BindingResult bindingResult, HttpSession session, @RequestParam("idAnn") Integer idAnn) throws Exception {
+		System.out.println(annonce.getTitre());
+		System.out.println(idAnn);
+		if (session.getAttribute("login") == null) {
+
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		}
+		Login login = (Login) session.getAttribute("login");
+		int id = login.getIdUtilisateurs();
+		Utilisateurs utilisateurs = serviUtili.findByIdUtilisateurs(id);
+		
+		Annonces newAnnonce = serviAnn.findByIdAnnonces(idAnn);
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date();
+		String dateS = dateFormat.format(date);
+		Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(dateS);
+		newAnnonce.setDate(date1);
+		newAnnonce.setTitre(annonce.getTitre());
+		newAnnonce.setPrix(annonce.getPrix());
+		newAnnonce.setDescription(annonce.getDescription());
+		newAnnonce.setAdresse(annonce.getAdresse());
+		serviAnn.updateAnnonces(newAnnonce);
+		
+		List<Annonces> list = serviAnn.getAnnoncesByUtilisateur(utilisateurs);
+
+		return new ModelAndView("VosAnnonces", "annonce", list);
+
+
 	}
 
 	@RequestMapping(value = "/formannonce", method = RequestMethod.POST)
@@ -101,7 +137,7 @@ public class AjouterAnnonceControler {
 				mcService.createMotsclefs(mc);
 				spellCheck.addMot(motClef);
 			}
-			annonce.getMotsclefses().add(mc);
+			mc.getAnnonceses().add(annonce);
 		}
 
 		serviAnn.createAnnonces(annonce);

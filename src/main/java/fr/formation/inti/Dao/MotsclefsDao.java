@@ -42,7 +42,7 @@ public class MotsclefsDao implements IMotsClefsDao {
 	public void create(MotsClefs Motsclefs) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.persist(Motsclefs);
+			session.saveOrUpdate(Motsclefs);
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
 
@@ -53,7 +53,7 @@ public class MotsclefsDao implements IMotsClefsDao {
 
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.update(Motsclefs);
+			session.saveOrUpdate(Motsclefs);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
@@ -105,17 +105,6 @@ public class MotsclefsDao implements IMotsClefsDao {
 	public Integer countMotClefOccurences(MotsClefs motClef) {
 
 		return motClef.getAnnonceses().size();
-		
-//		try {
-//			Criteria crit = session.createCriteria(AnnoncesHasMotsclefs.class).add(Restrictions.like("idMotClef", motClef.getIdMotClef()));
-//			result = ((Number)crit.setProjection(Projections.rowCount()).uniqueResult()).intValue();
-//			return result;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			log.error(e.getMessage());
-//			return null;
-//
-//		}
 		
 	}
 

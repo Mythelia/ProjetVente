@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.entities.Alerte;
+import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.dao.IAlerteDao;
 import fr.formation.inti.interfaces.services.IAlertesService;
 
@@ -20,6 +21,7 @@ public class AlertesService implements IAlertesService {
 
 	public AlertesService() {
 	}
+
 	@Autowired
 	private IAlerteDao dao;
 
@@ -48,6 +50,10 @@ public class AlertesService implements IAlertesService {
 
 	public Alerte findByIdAlerte(int Id) {
 		return dao.findById(Id);
+	}
+
+	public List<Alerte> getAlerteByUtilisateur(Utilisateurs utlisateur) {
+		return dao.getAlerteByUtilisateur(utlisateur);
 	}
 
 }

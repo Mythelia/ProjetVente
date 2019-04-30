@@ -27,6 +27,7 @@ public class MotsClefs implements java.io.Serializable {
 	private String motClef;
 	private Set<Alerte> alertes = new HashSet<Alerte>(0);
 	private Set<Annonces> annonceses = new HashSet<Annonces>(0);
+	private String motClefs;
 
 	public MotsClefs() {
 	}
@@ -84,6 +85,11 @@ public class MotsClefs implements java.io.Serializable {
 
 	public void setAnnonceses(Set<Annonces> annonceses) {
 		this.annonceses = annonceses;
+	}
+
+	@Override
+	public String toString() {
+		return motClef;
 	}
 
 }

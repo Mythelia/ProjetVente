@@ -74,5 +74,8 @@ public class AjoutController {
 		ModelAndView mav = new ModelAndView("ValidationInscription");
 		return mav;
 	}
+	
+
+
 
 }

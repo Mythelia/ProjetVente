@@ -1,7 +1,9 @@
 package fr.formation.inti.Dao;
 // Generated 10 avr. 2019 10:55:56 by Hibernate Tools 5.1.10.Final
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.formation.inti.entities.Alerte;
+import fr.formation.inti.entities.Annonces;
+import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.dao.IAlerteDao;
 
 /**
@@ -56,7 +60,7 @@ public class AlerteDao implements IAlerteDao {
 	public void update(Alerte Alerte) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.update(Alerte);
+			session.saveOrUpdate(Alerte);
 
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
@@ -85,6 +89,20 @@ public class AlerteDao implements IAlerteDao {
 
 			return null;
 		}
+
+	}
+
+	public List<Alerte> getAlerteByUtilisateur(Utilisateurs utlisateur) {
+
+		Set<Alerte> set = utlisateur.getAlertes();
+		List<Alerte> items = new ArrayList<>();
+		for (Alerte alerte : set) {
+
+			items.add(alerte);
+
+		}
+
+		return items;
 
 	}
 

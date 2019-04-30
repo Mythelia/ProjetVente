@@ -61,13 +61,14 @@ img {
 <body>
 	<jsp:include page="/Pages/HeaderB.jsp"></jsp:include>
 	<div class="container">
-		<h2>${message}</h2><br>
+		<h2>${message}</h2>
+		<br>
 		<c:if test="${not empty autreRecherche}">
 			<form method="POST" action="searchAgain">
 				<button name="annonceAgain" type="submit" value=${autreRecherche }>${autreRecherche }</button>
 			</form>
 		</c:if>
-		<br> <br> <br>
+		<br> <br> 
 		<table>
 			<c:forEach items="${annonces}" var="u">
 				<div class="row-sm-3">
@@ -75,19 +76,28 @@ img {
 						<form method="POST" action="Annonce">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<button name="show" type="submit" class="btn btn-primary" value=${u.idAnnonces }>${u.titre}</button>
+									<button name="show" type="submit" class="btn btn-primary"
+										value=${u.idAnnonces}>${u.titre}</button>
 								</div>
 								<div class="panel-body">
 									<img src=${u.photo } class="img-responsive" style="width: 100%"
 										alt="Image">
 								</div>
-								<div class="panel-footer">${ u.prix }</div>
+								<div class="panel-footer">${u.prix}</div>
 							</div>
 						</form>
 					</div>
 				</div>
 			</c:forEach>
 		</table>
+		<br>
+		<hr>
+		<form action="formAlerte">
+			<input type="hidden" name="recherche" value="${message}">
+			<button type="submit" class="btn btn-primary">Vous ne trouvez pas chaussure a votre
+				pied ? Pourquoi ne pas creer une alerte ?</button>
+
+		</form>
 	</div>
 </body>
 

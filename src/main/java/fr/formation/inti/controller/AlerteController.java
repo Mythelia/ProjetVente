@@ -50,6 +50,7 @@ public class AlerteController {
 	@Autowired
 	SpellCheck spellCheck;
 
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -91,7 +92,7 @@ public class AlerteController {
 		}
 		serviAlerte.createAlerte(alerte);
 
-		ModelAndView mav = new ModelAndView("ValidationInscription");
+		ModelAndView mav = new ModelAndView("ValidationAlertes");
 		return mav;
 	}
 

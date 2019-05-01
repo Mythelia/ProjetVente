@@ -35,7 +35,7 @@ public class LoginController {
 	@Autowired
 	@Qualifier("loginValidator")
 	private Validator validator;
-
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -59,7 +59,6 @@ public class LoginController {
 	@RequestMapping(value = "/Login", method = RequestMethod.POST) // Rajouter le systeme de session
 	public ModelAndView Login(@ModelAttribute("utilisateurs") @Validated Utilisateurs utilisateurs,
 			BindingResult bindingResult, HttpSession session) throws Exception {
-		
 
 		validator.validate(utilisateurs, bindingResult);
 
@@ -70,10 +69,9 @@ public class LoginController {
 
 			String loginRequired = utilisateurs.getLogin();
 			Utilisateurs registeredUtilisateur = utilisateursService.findByLoginUtilisateurs(loginRequired);
-			List<Messages> list = servMess.getMessagesByUtilisateur(registeredUtilisateur);
 
 			System.out.println(0);
-			
+
 			if (registeredUtilisateur == null) {
 				System.out.println(1);
 				ModelAndView returnPage = new ModelAndView("Connection", "utilisateurs", utilisateurs);
@@ -82,6 +80,8 @@ public class LoginController {
 				return returnPage;
 
 			} else {
+				//Permet d'avoir le nombre de message à coté de l'icone dans le header
+				List<Messages> list = servMess.getMessagesByUtilisateur(registeredUtilisateur);
 				System.out.println(2);
 				if (utilisateurs.getPassword() == registeredUtilisateur.getPassword()) {
 					System.out.println(3);
@@ -121,6 +121,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/Inscription")
 	public ModelAndView Inscription() throws Exception {
+		// obligation d'instancier un utilisateur sinon la validation crash
 		ModelAndView mav = new ModelAndView("Inscription", "utilisateur", new Utilisateurs());
 		return mav;
 	}

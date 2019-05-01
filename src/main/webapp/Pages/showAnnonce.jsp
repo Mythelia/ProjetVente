@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -48,7 +49,7 @@ img {
 
 			</div>
 
-			<h3>Publie le : ${annonce.date }s</h3>
+			<h3>Publie le : ${annonce.date }</h3>
 			<hr>
 
 			<h2 class="Bi">
@@ -62,12 +63,19 @@ img {
 			<h3>${annonce.adresse }</h3>
 
 
-			<h3>${annonce.photo}</h3>
+
+			<img src=${annonce.photo } class="img-responsive" alt="Image">
+			<br>
 
 			<form action="contactAnn">
-
-				<input type="hidden" name="idAnnonceur" value="${annonce.utilisateurs.idUtilisateurs}">
+				<input type="hidden" name="idAnnonceur"
+					value="${annonce.utilisateurs.idUtilisateurs}">
 				<button class="btn btn-primary" type="submit">Contact</button>
+			</form>
+
+			<form action="AcheterAnn">
+				<input type="hidden" name="idAnnonce" value="${annonce.idAnnonces}">
+				<button class="btn btn-primary" type="submit">Acheter</button>
 			</form>
 		</div>
 

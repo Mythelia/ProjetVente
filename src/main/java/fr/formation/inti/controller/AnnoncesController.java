@@ -1,8 +1,6 @@
 package fr.formation.inti.controller;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.sql.Blob;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -10,13 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,12 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
+import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMotsClefsService;
 import fr.formation.inti.interfaces.services.IUtilisateursService;
-
 
 @Controller
 public class AnnoncesController {
@@ -45,6 +44,9 @@ public class AnnoncesController {
 
 	@Autowired
 	IMotsClefsService mcService;
+
+	@Autowired
+	IUtilisateursService serviUtili;
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -160,16 +162,40 @@ public class AnnoncesController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
-	
-	@RequestMapping(value = "getAnnoncePhoto/{id}")
-	public void getAnnoncePhoto(HttpServletResponse response, @PathVariable("id") int id) throws Exception {
-		response.setContentType("image/jpeg");
-		System.out.println("hello ?");
-		Blob ph =annonceService.findByIdAnnonces(id).getPhoto();
 
-		byte[] bytes = ph.getBytes(1, (int) ph.length());
-		InputStream inputStream = new ByteArrayInputStream(bytes);
-		IOUtils.copy(inputStream, response.getOutputStream());
+	@Transactional
+	@RequestMapping(value = "AcheterAnn")
+	public ModelAndView AcheterAnnonce(HttpSession session, @RequestParam("idAnnonce") int id) {
+
+		Login login = (Login) session.getAttribute("login");
+		if (login == null) {
+
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		}
+
+		Annonces annonce = annonceService.findByIdAnnonces(id);
+		System.out.println(annonce.getTitre());
+
+		return new ModelAndView("AccepterAnnonce", "annonce", annonce);
+
+	}
+
+	@Transactional
+	@RequestMapping(value = "AnnonceAchete")
+	public ModelAndView AnnonceAchete(HttpSession session, @RequestParam("idAnnonce") int id) {
+
+		Login login = (Login) session.getAttribute("login");
+		if (login == null) {
+
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
+		}
+
+		Annonces annonce = annonceService.findByIdAnnonces(id);
+		System.out.println(annonce.getTitre());
+		annonceService.deleteAnnonces(annonce);
+
+		return new ModelAndView("ValidationAchat");
+
 	}
 
 }

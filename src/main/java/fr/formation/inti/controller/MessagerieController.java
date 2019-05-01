@@ -36,7 +36,8 @@ public class MessagerieController {
 	@Autowired
 	@Qualifier("MessageValidator")
 	private Validator validator;
-
+	
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -97,7 +98,7 @@ public class MessagerieController {
 			}
 			message.setUtilisateursByIdUtilisateurReceveur(utilisateurR);
 
-			// une idée pour afficher l'erreur ?
+			
 		} catch (Exception e) {
 
 		}
@@ -155,13 +156,14 @@ public class MessagerieController {
 		Login login = (Login) session.getAttribute("login");
 		if (login == null) {
 
-			return new ModelAndView("Compte");
+			return new ModelAndView("Connection", "utilisateurs", new Utilisateurs());
 		}
 
 		Utilisateurs utilisateur = serviUtili.findByIdUtilisateurs(id);
 		System.out.println(utilisateur.getIdUtilisateurs());
 
 		message.setUtilisateursByIdUtilisateurExpediteur(utilisateur);
+		System.out.println(message.getUtilisateursByIdUtilisateurExpediteur());
 
 		return new ModelAndView("FormMessageRep", "message", message);
 

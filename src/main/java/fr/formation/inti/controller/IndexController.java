@@ -18,7 +18,6 @@ import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
 import fr.formation.inti.entities.Messages;
-import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
 import fr.formation.inti.interfaces.services.IMessagesService;
@@ -46,19 +45,14 @@ public class IndexController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	
-	
 	@RequestMapping({ "/", "/index" })
 	@Transactional
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		
-		
 		List<Annonces> lastAnnonces = serviAnno.getLastAnnonces();
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("lastAnnonces", lastAnnonces);
-		
-		
+
 		return modelAndView;
 	}
 
@@ -100,7 +94,8 @@ public class IndexController {
 		String loginUtili = login.getLogin();
 
 		Utilisateurs utilisateur = serviUtili.findByLoginUtilisateurs(loginUtili);
-
+		
+		//récupère les messges liées à l'uilisateur
 		List<Messages> list = serviMess.getMessagesByUtilisateur(utilisateur);
 
 		ModelAndView modelAndView = new ModelAndView("Messagerie", "list", list);

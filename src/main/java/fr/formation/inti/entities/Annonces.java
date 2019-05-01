@@ -3,12 +3,10 @@ package fr.formation.inti.entities;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.sql.Blob;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,7 +33,7 @@ public class Annonces implements java.io.Serializable {
 	private Integer idAnnonces;
 	private Utilisateurs utilisateurs;
 	private String description;
-	private Blob photo;
+	private String photo;
 	private int prix;
 	private Date date;
 	private String adresse;
@@ -55,7 +53,7 @@ public class Annonces implements java.io.Serializable {
 		this.titre = titre;
 	}
 
-	public Annonces(Utilisateurs utilisateurs, String description, Blob photo, int prix, Date date, String adresse,
+	public Annonces(Utilisateurs utilisateurs, String description, String photo, int prix, Date date, String adresse,
 			String titre, Set<MotsClefs> motsclefses) {
 		this.utilisateurs = utilisateurs;
 		this.description = description;
@@ -98,12 +96,12 @@ public class Annonces implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "Photo")
-	public Blob getPhoto() {
+	@Column(name = "Photo", length = 45)
+	public String getPhoto() {
 		return this.photo;
 	}
 
-	public void setPhoto(Blob photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 

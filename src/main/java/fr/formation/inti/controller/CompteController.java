@@ -52,6 +52,8 @@ public class CompteController {
 	@Autowired
 	IAlertesService alertServi;
 
+	
+	//initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -176,6 +178,11 @@ public class CompteController {
 		List<Messages> lisM = messServ.getMessagesByUtilisateur(utilisateur);
 		for (Messages messages : lisM) {
 			messServ.deleteMessages(messages);
+		}
+
+		List<Alerte> listAl = alertServi.getAlerteByUtilisateur(utilisateur);
+		for (Alerte alerte : listAl) {
+			alertServi.deleteAlerte(alerte);
 		}
 
 		utilisateursService.deleteUtilisateurs(utilisateur);

@@ -81,7 +81,7 @@
 
 				<div class="form-group">
 					<label for="photo">Ajouter une photo</label>
-					<form:input type="file" class="form-control-file" path="photo"  enctype="multipart/form-data"></form:input>
+					<form:input type="text" class="form-control-file" path="photo"></form:input>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Soumettre</button>

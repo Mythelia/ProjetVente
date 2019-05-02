@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Bootstrap Example</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style type="text/css">
+
 img.head {
 	width: 35px;
 	height: 35px;
@@ -34,9 +23,8 @@ a.head:hover {
 #but-glyp-s {
 	background-color: #e3f2fd;
 }
+
 </style>
-</head>
-<body>
 	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
 		<div id="head" class="container-inner">
 
@@ -44,7 +32,7 @@ a.head:hover {
 
 				<ul class="nav navbar-nav">
 					<li class="active"><a class="head"
-						href="index.htm"
+						href="index"
 						class="head"><img class="head" alt="home"
 							src="https://image.flaticon.com/icons/png/512/25/25694.png"></a></li>
 				</ul>
@@ -52,7 +40,7 @@ a.head:hover {
 			
 
 			<div class="col-sm-3">
-				<form class="navbar-form " action="#">
+				<form class="navbar-form " action="Search">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search"
 							name="searchC">
@@ -68,7 +56,7 @@ a.head:hover {
 			<div class="col-sm-3">
 				<ul class="nav navbar-nav">
 					<li class="active"><a class="head"
-						href="AjouterAnnonce.htm"
+						href="AjouterAnnonce"
 						id="SIcon"> <img
 							src="https://image.flaticon.com/icons/svg/3/3911.svg"
 							class="head"> Ajouter une annonce
@@ -79,7 +67,7 @@ a.head:hover {
 			<div class="col-sm-3">
 				<ul class="nav navbar-nav">
 					<li class="active"><a class="head"
-						href='Connection.htm'>
+						href='Connection'>
 							<img class="head" alt="compte"
 							src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-circle-512.png"
 							id="Icompte"> Mon compte
@@ -91,7 +79,7 @@ a.head:hover {
 
 				<ul class="nav navbar-nav">
 					<li class="active"><a class="head"
-						href="Messagerie.htm">
+						href="Messagerie">
 							<img class="head" alt="compte"
 							src="https://image.flaticon.com/icons/svg/131/131155.svg"
 							id="Message"><span class="badge">5</span>
@@ -101,6 +89,3 @@ a.head:hover {
 
 		</div>
 	</nav>
-
-</body>
-</html>

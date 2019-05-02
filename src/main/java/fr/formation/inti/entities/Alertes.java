@@ -60,9 +60,9 @@ public class Alertes implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "mots-clefs_has_alerte", catalog = "projet", joinColumns = {
+	@JoinTable(name = "motsclefs_has_alerte", catalog = "projet", joinColumns = {
 			@JoinColumn(name = "Alerte_idAlerte", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "Mots-clefs_idMotClef", updatable = false) })
+					@JoinColumn(name = "motsclefs_idMotClef", updatable = false) })
 	public Set<MotsClefs> getMotsClefses() {
 		return this.motsClefses;
 	}

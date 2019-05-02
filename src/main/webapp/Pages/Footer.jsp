@@ -12,16 +12,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<style>
+body {
+  background-color: #18AA97;
+}
+</style>
 </head>
 <body>
 <html>
 
-
 <div class="row">
-  <div class="col-sm-4">A propos du bon coin</div>
-   <a href="Quisommesnous.jsp">Qui sommes-nous ?</a>
-  <div class="col-sm-4">Nous contacter</div>
-   <a href="NousContacter.jsp">Nous contacter </a>
+  <div class="col-sm-4">.col-sm-4</div>
+  <div class="col-sm-4">.col-sm-4</div>
   <div class="col-sm-4">.col-sm-4</div>
 </div>
 

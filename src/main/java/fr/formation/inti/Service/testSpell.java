@@ -1,23 +1,25 @@
 package fr.formation.inti.Service;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import fr.formation.inti.Dao.MotsClefsDao;
+import fr.formation.inti.entities.MotsClefs;
 
 public class testSpell {
 	
+
 	public static String removeAccents(String text) {
 	    return text == null ? null :
 	        Normalizer.normalize(text, Form.NFD)
 	            .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 	}
 	public static void main(String[] args) throws IOException {
-		spellCheck sc = new spellCheck();
+		SpellCheck sc = new SpellCheck();
 //		sc.addMot("voiture");
 //		System.out.println(sc.search("voiturres"));
 //		for (Object s : sc.motsEntres.keySet()) {
@@ -25,13 +27,41 @@ public class testSpell {
 //		}
 //		System.out.println(sc.motsEntres);
 
-		
+
 		// TODO : transformer le retour en Set
 		// TODO : gerer l'unicité des mots dans les seaux
+//		String inputPath = "\\Users\\IN-ST-002\\Liste_mots_fr.txt";
+//		BufferedReader reader = new BufferedReader(new FileReader(inputPath));		
+//
+//		String mot = "";
+//		
+//		MotsClefsDao mcd = new MotsClefsDao();
+//
+//
+//		System.out.println("ouais");
+//		try {
+//			while(reader.ready()) {
+//				MotsClefs mc = new MotsClefs();
+//				mot = reader.readLine();
+//				System.out.println(mot);
+//				mc.setMotClef(mot);
+//				mcd.create(mc);
+//				
+//			}
+//		}
+//		catch (NullPointerException e) {
+//			System.out.println("null !");
+//		}
+//
+//		finally {reader.close();}
+
 		String inputPath = "\\Users\\IN-ST-002\\Liste_mots_fr.txt";
 		BufferedReader reader = new BufferedReader(new FileReader(inputPath));		
 
 		String mot = "";
+		
+		
+		
 		long time = System.currentTimeMillis();
 		int i = 0;
 		long i2 = 0;

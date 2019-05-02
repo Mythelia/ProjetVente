@@ -4,22 +4,23 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
-import fr.formation.inti.Dao.AlertesDao;
 import fr.formation.inti.entities.Alertes;
 import fr.formation.inti.interfaces.dao.IAlertesDao;
 import fr.formation.inti.interfaces.services.IAlertesService;
 
-//@Service("service")
-
+@Service
+@Transactional
 public class AlertesService implements IAlertesService {
 
 	private static final Log log = LogFactory.getLog(AlertesService.class);
 
 	public AlertesService() {
 	}
-
+	@Autowired
 	private IAlertesDao dao;
 
 	public void setDao(IAlertesDao dao) {

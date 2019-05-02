@@ -1,4 +1,4 @@
-package fr.formation.inti.interfaces.dao;
+package fr.formation.inti.Dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import fr.formation.inti.entities.Utilisateurs;
 
 public interface IUtilisateursDao {
 	
-	Utilisateurs findById(int Id);
+	Utilisateurs findById(Integer Id);
 	
 	void create(Utilisateurs utilisateurs);
 	

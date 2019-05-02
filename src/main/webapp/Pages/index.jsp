@@ -53,13 +53,15 @@
 	z-index: 3;
 }
 
+
+
 /* #SButton { */
 /* margin-left: 0px; */
 /* } */
 </style>
 </head>
 <body>
-	<jsp:include page="/Pages/HeaderB.html"></jsp:include>
+	<jsp:include page="/Pages/HeaderB.jsp" ></jsp:include>
 	<div class="container">
 		<h2>Bienvenu sur notre projet</h2>
 		<br>

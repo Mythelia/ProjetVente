@@ -24,10 +24,18 @@
 <!--       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
 <!--     </div> -->
   </div>
+  <div class="container">
+  <div class="row">
+  <h2>Circle</h2>
+  <p>The .img-circle class shapes the image to a circle (not available in IE8):</p>
+    <img src="webapp/Pages/resources/image/Joel.jpg">             
+<!--   <img src="Joel.jpg" class="img-circle" alt="Joel" width="304" height="236">  -->
+</div>
   <hr>
   <div class="media">
+        <img src="webapp/Pages/resources/image/Joel.jpg">
     <div class="media-left media-middle">
-      <img src="/image/joel.png" class="img-circle" alt="photo" style="width:80px">
+
     </div>
     <div class="media-body">
       <h4 class="media-heading">Joel Tourscher</h4>
@@ -39,7 +47,7 @@
   <hr>
   <div class="media">
     <div class="media-left media-bottom">
-      <img src="img_avatar1.png" class="media-object" style="width:80px">
+      <img src="webapp/Pages/resources/image/img_avatar1.png" class="media-object" style="width:80px">
     </div>
     <div class="media-body">
       <h4 class="media-heading">Nicolas Dach</h4>
@@ -51,7 +59,7 @@
   <div class="container">
   <h2>Thumbnail</h2>
   <p>The .img-thumbnail class creates a thumbnail of the image:</p>            
-  <img src="jerem.png" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"> 
+  <img src="webaap/Pages/resources/image/jerem.png" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"> 
 </div>
 
 <div class="container">
@@ -62,12 +70,12 @@
   <div class="row">
     <div class="col-md-4">
       <div class="thumbnail">
-        <a href="jerem.png" target="_blank">
-          <img src="jerem.png" alt="Lights" style="width:100%">
+          <img class="img-thumbnail" src="jerem.jpg" alt="Jeremy" style="width:100%">
+          
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
-        </a>
+        
       </div>
     </div>
     

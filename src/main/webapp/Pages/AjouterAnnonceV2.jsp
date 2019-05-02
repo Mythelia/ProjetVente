@@ -12,34 +12,27 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<title>Ajouter une Annonce</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<style type="text/css">
+		<style type="text/css">
 #date {
 	line-height: 19px !important;
 }
 </style>
 </head>
+
+
+
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
+	
+	
 
 	<div class="container">
 
 		<h2>Ajouter une Annonce</h2>
-		<div class="container">
+		
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary dropdown-toggle"
-					data-toggle="dropdown">
-					Catégories <span class="caret"></span>
-				</button>
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			Catégories<span class="caret"></span></button>
 
 				<ul class="dropdown-menu" role="menu">
 					<li class="dropdown-header">Emploi</li>
@@ -118,7 +111,8 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+
+	
 	<div class="col-sm-5" id="AAnnonce">
 		<form action="formannonce" method="post">
 			<div class="form-group ">
@@ -164,11 +158,11 @@
 			<button type="submit" class="btn btn-primary">Soumettre</button>
 		</form>
 	</div>
-	</div>
+
 	
-<footer class="container-fluid">
+<!-- <footer class="container-fluid">
   <p>Footer Text</p>
-</footer>
+</footer> -->
 
 </body>
 </html>

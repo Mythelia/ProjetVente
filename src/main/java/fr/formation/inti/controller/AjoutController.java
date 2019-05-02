@@ -66,7 +66,7 @@ public class AjoutController {
 			return new ModelAndView("Inscription", "utilisateur", utilisateur);
 		}
 
-		Utilisateurs user = serviUtili.createUtilisateurs(utilisateur);
+		serviUtili.createUtilisateurs(utilisateur);
 		List<Messages> list = serviMess.getMessagesByUtilisateur(utilisateur);
 
 		Login login = new Login(utilisateur.getIdUtilisateurs(), utilisateur.getLogin(), list.size());

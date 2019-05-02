@@ -35,7 +35,6 @@
 					<label for="titre">Titre:</label>
 					<form:input class="form-control" path="titre"
 						placeholder="Entrer le titre de votre annonce"></form:input>
-
 					<form:errors path="titre" cssClass="error" />
 
 				</div>
@@ -46,20 +45,14 @@
 
 				</div>
 				<div class="form-group ">
-					<label for="adresse">Adresse:</label>
+					<label for="adresse">Adresse :</label>
 					<form:input class="form-control" path="adresse"
 						placeholder="Entrer votre Adresse"></form:input>
 					<form:errors path="adresse" cssClass="error" />
 				</div>
 
-<!-- 				<div class="form-group " id="date"> -->
-<!-- 					<label for="date">Date:</label> -->
-<%-- 					<form:input type="date" class="form-control" path="date"></form:input> --%>
-<%-- 					<form:errors path="date" cssClass="error" /> --%>
-<!-- 				</div> -->
-
 				<div class="form-group ">
-					<label for="prix">Prix de votre article</label>
+					<label for="prix">Prix de votre article :</label>
 					<form:input class="form-control" path="prix"
 						placeholder="Entrer votre prix"></form:input>
 					<form:errors path="prix" cssClass="error" />
@@ -72,16 +65,10 @@
 					<form:errors path="description" cssClass="error" />
 				</div>
 
-
-				<!-- 				<div class="form-group "> -->
-				<!-- 					<label for="mots-clefs">Mots clefs:</label> -->
-				<%-- 					<form:textarea class="form-control" path="motsClefses" --%>
-				<%-- 						placeholder="Entrer vos mots-clefs" rows="5"></form:textarea> --%>
-				<!-- 				</div> -->
-
 				<div class="form-group">
-					<label for="photo">Ajouter une photo</label>
-					<form:input type="text" class="form-control-file" path="photo"></form:input>
+					<label for="photo">Ajouter une photo :</label>
+					<form:input class="form-control" path="photo"
+						placeholder="Rentrer l'url de l'image"></form:input>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Soumettre</button>

@@ -26,10 +26,10 @@
 
 	<div class="container" id="container">
 		<div class="container">
-			<h2>${message.titre}</h2>
-			<br>
+			<h3>${message.titre}</h3>
+
 			<hr>
-			<br>
+
 
 			<div class="col-sm-6">
 				<div class="col-sm-2">

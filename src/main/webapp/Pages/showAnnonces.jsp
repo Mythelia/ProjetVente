@@ -77,11 +77,11 @@ img {
 							<div class="panel panel-primary">
 								<div class="panel-heading">
 									<button name="show" type="submit" class="btn btn-primary"
-										value=${u.idAnnonces}>${u.titre}</button>
+										value=${u.idAnnonces }>${u.titre}</button>
 								</div>
 								<div class="panel-body">
 									<img src=${u.photo } class="img-responsive" style="width: 100%"
-										alt="Image">
+										alt=" ">
 								</div>
 								<div class="panel-footer">${u.prix} euros</div>
 							</div>

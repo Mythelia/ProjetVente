@@ -13,7 +13,7 @@ import fr.formation.inti.interfaces.services.IUtilisateursService;
 
 @Component("MessageValidator")
 public class MessageValidator implements Validator {
-	
+
 	@Autowired
 	IUtilisateursService serviUtili;
 
@@ -24,13 +24,9 @@ public class MessageValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		
-		Utilisateurs utilisateur = (Utilisateurs) target;
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titre", "titre.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "texte", "texte.required");
-		
-		
 
 	}
 

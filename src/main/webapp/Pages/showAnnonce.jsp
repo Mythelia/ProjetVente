@@ -53,7 +53,7 @@ img {
 			<hr>
 
 			<h2 class="Bi">
-				<b>Description</b>
+				<b>Description :</b>
 			</h2>
 			<h3>${annonce.description }</h3>
 			<hr>
@@ -64,8 +64,9 @@ img {
 
 
 
-			<img src=${annonce.photo } class="img-responsive" alt="Image">
+			<img src=${annonce.photo } class="img-responsive" alt=" ">
 			<br>
+			<hr>
 
 			<form action="contactAnn">
 				<input type="hidden" name="idAnnonceur"

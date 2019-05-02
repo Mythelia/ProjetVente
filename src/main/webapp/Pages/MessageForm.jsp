@@ -29,7 +29,7 @@
 		<div class="col-sm-8" id="inscription">
 			<form:form commandName="message" method="POST" action="formMessage">
 				<div class="form-group">
-					<label for="nom">Destinataires (Pseudo)</label> <input
+					<label for="nom">Destinataire (Pseudo)</label> <input
 						name="utilisateurName" class="form-control"></input> <span
 						class="erreur">${msgpass}</span>
 				</div>

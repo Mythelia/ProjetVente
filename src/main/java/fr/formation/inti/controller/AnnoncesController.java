@@ -108,6 +108,7 @@ public class AnnoncesController {
 			@RequestParam("searchC") String mDemande) throws Exception {
 
 		String otherWord;
+		mDemande = SpellCheck.removeAccents(mDemande);
 		String message = "Voici les résultats pour " + mDemande + " :";
 		TreeMap<Integer, String> results = spellCheck.search(mDemande);
 		Set<Annonces> annonces;

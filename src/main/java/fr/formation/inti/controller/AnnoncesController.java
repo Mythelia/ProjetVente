@@ -113,7 +113,7 @@ public class AnnoncesController {
 		TreeMap<Integer, String> results = spellCheck.search(mDemande);
 		Set<Annonces> annonces;
 		if (results.isEmpty()) {
-			message = "Aucun résultat pour " + mDemande + " =( !";
+			message = "Aucun résultat pour <b id='coulour'>" + mDemande + "</b> =( !";
 			ModelAndView modelAndView = new ModelAndView("showAnnonces", "annonces", null);
 			modelAndView.addObject("message", message);
 			return modelAndView;

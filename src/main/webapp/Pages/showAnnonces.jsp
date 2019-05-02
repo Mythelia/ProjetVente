@@ -56,6 +56,10 @@
 img {
 	max-height: 300px;
 }
+
+#coulour {
+	color: resd;
+}
 </style>
 </head>
 <body>
@@ -83,7 +87,7 @@ img {
 									<img src=${u.photo } class="img-responsive" style="width: 100%"
 										alt=" ">
 								</div>
-								<div class="panel-footer">${u.prix} euros</div>
+								<div class="panel-footer">${u.prix}euros</div>
 							</div>
 						</form>
 					</div>

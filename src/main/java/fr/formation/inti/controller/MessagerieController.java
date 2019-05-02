@@ -3,6 +3,7 @@ package fr.formation.inti.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,10 +59,17 @@ public class MessagerieController {
 	}
 
 	@RequestMapping(value = "DeleteMess", method = RequestMethod.POST)
-	public ModelAndView DeleteMessPost(@RequestParam("id") int id, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView DeleteMessPost(@RequestParam("id") int id, HttpSession session) throws Exception {
 		Messages mess = serviMess.findByIdMessages(id);
 		serviMess.deleteMessages(mess);
+
+//		Login login = (Login) session.getAttribute("login");
+//
+//		Utilisateurs utilisateur = serviUtili.findByIdUtilisateurs(login.getIdUtilisateurs());
+//
+//		List<Messages> list = serviMess.getMessagesByUtilisateur(utilisateur);
+//		login.setNbrMessage(list.size());
+//		session.setAttribute("login", login);
 
 		return new ModelAndView("Messagerie");
 	}
@@ -96,7 +104,7 @@ public class MessagerieController {
 			ModelAndView mav = new ModelAndView("MessageForm", "message", message);
 			String msg = "Le Pseudo n'existe pas !";
 			mav.addObject("msgpass", msg);
-			return new ModelAndView("MessageForm", "message", message);
+			return mav;
 
 		}
 		message.setUtilisateursByIdUtilisateurReceveur(utilisateurR);

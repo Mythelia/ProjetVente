@@ -224,7 +224,7 @@ public class SpellCheck {
 
 		while (true) {
 			if (indiceAC == lenAC) { // if we're reaching the other word's end
-				System.out.println(nombreErreurs);
+			
 				if (lenRef - indiceRef >= 1) { // if the other word is not yet finished
 					nombreErreurs++;
 					if (nombreErreurs < MAX_ERRORS) { // if there's not too much mismatchs between letter sequences

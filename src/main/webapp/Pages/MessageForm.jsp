@@ -31,7 +31,7 @@
 				<div class="form-group">
 					<label for="nom">Destinataires (Pseudo)</label> <input
 						name="utilisateurName" class="form-control"></input> <span
-						id="erreur">${msgpass}</span>
+						class="erreur">${msgpass}</span>
 				</div>
 				<div class="form-group ">
 					<label for="titre">Objet</label>

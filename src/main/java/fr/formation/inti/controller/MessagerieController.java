@@ -89,21 +89,17 @@ public class MessagerieController {
 		Utilisateurs utilisateurR;
 
 		// Vérifie si le Pseudo existe
-		try {
-			// récupération de l'utilisateur receveur
-			utilisateurR = serviUtili.findByLoginUtilisateurs(Pseudo);
-			if (utilisateurR == null) {
-				ModelAndView mav = new ModelAndView("MessageForm", "message", message);
-				String msg = "Le Pseudo n'existe pas !";
-				mav.addObject("msgpass", msg);
-				return new ModelAndView("MessageForm", "message", message);
 
-			}
-			message.setUtilisateursByIdUtilisateurReceveur(utilisateurR);
-
-		} catch (Exception e) {
+		// récupération de l'utilisateur receveur
+		utilisateurR = serviUtili.findByLoginUtilisateurs(Pseudo);
+		if (utilisateurR == null) {
+			ModelAndView mav = new ModelAndView("MessageForm", "message", message);
+			String msg = "Le Pseudo n'existe pas !";
+			mav.addObject("msgpass", msg);
+			return new ModelAndView("MessageForm", "message", message);
 
 		}
+		message.setUtilisateursByIdUtilisateurReceveur(utilisateurR);
 
 		validator.validate(message, bindingResult);
 		if (bindingResult.hasErrors()) {

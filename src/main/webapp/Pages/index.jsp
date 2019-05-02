@@ -72,7 +72,8 @@
 					<div id="custom-search-input">
 						<div class="input-group col-sm-12">
 							<input type="text" class="  search-query form-control"
-								placeholder="Search" name="searchC" /> <span class="input-group-btn">
+								placeholder="Search" name="searchC" /> <span
+								class="input-group-btn">
 								<button class="btn btn-danger" type="button">
 									<span class=" glyphicon glyphicon-search"></span>
 								</button>
@@ -100,7 +101,7 @@
 									<img src=${u.photo } class="img-responsive" style="width: 100%"
 										alt=" ">
 								</div>
-								<div class="panel-footer">${ u.prix } euros</div>
+								<div class="panel-footer">${ u.prix} euros</div>
 							</div>
 						</form>
 					</div>

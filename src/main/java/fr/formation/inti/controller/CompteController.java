@@ -52,8 +52,7 @@ public class CompteController {
 	@Autowired
 	IAlertesService alertServi;
 
-	
-	//initialisation du validateur
+	// initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);

@@ -45,7 +45,7 @@ img {
 			</h2>
 
 			<div id="annprix">
-				<h3>${annonce.prix}euros</h3>
+				<h3>${annonce.prix} euros</h3>
 
 			</div>
 

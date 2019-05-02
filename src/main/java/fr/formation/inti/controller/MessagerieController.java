@@ -36,8 +36,8 @@ public class MessagerieController {
 	@Autowired
 	@Qualifier("MessageValidator")
 	private Validator validator;
-	
-	//initialisation du validateur
+
+	// initialisation du validateur
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
@@ -93,12 +93,14 @@ public class MessagerieController {
 			// récupération de l'utilisateur receveur
 			utilisateurR = serviUtili.findByLoginUtilisateurs(Pseudo);
 			if (utilisateurR == null) {
+				ModelAndView mav = new ModelAndView("MessageForm", "message", message);
+				String msg = "Le Pseudo n'existe pas !";
+				mav.addObject("msgpass", msg);
 				return new ModelAndView("MessageForm", "message", message);
 
 			}
 			message.setUtilisateursByIdUtilisateurReceveur(utilisateurR);
 
-			
 		} catch (Exception e) {
 
 		}

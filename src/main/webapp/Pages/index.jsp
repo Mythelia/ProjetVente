@@ -98,9 +98,9 @@
 								</div>
 								<div class="panel-body">
 									<img src=${u.photo } class="img-responsive" style="width: 100%"
-										alt="Image">
+										alt=" ">
 								</div>
-								<div class="panel-footer">${ u.prix }</div>
+								<div class="panel-footer">${ u.prix } euros</div>
 							</div>
 						</form>
 					</div>

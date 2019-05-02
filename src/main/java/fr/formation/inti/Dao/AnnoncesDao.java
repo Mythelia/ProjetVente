@@ -55,7 +55,7 @@ public class AnnoncesDao implements IAnnoncesDao {
 	public void create(Annonces annonces) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.saveOrUpdate(annonces);
+			session.persist(annonces);
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
 
@@ -65,7 +65,7 @@ public class AnnoncesDao implements IAnnoncesDao {
 	public void update(Annonces annonces) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.update(annonces);
+			session.saveOrUpdate(annonces);
 		} catch (HibernateException e) {
 			log.error(e.getLocalizedMessage());
 

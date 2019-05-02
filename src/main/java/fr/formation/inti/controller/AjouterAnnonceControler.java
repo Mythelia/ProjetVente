@@ -166,7 +166,8 @@ public class AjouterAnnonceControler {
 		// Ici on sor la liste des mots clefs des alertes
 		for (Alerte alerte : list) {
 			Set<MotsClefs> set = alerte.getMotsclefses();
-			List<MotsClefs> listMc = new ArrayList(set);
+
+			List<MotsClefs> listMc = new ArrayList<MotsClefs>(set);
 
 			// pour chaque mot clef de la liste des alertes
 			for (MotsClefs motClefs : listMc) {

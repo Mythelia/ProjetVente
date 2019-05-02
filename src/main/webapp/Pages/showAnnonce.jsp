@@ -43,11 +43,13 @@ img {
 			<h2 class="Bi">
 				<b>${annonce.titre } </b>
 			</h2>
+			<hr>
 
-			<div id="annprix">
-				<h3>${annonce.prix} euros</h3>
-
+			<div >
+				<h2>Prix :</h2>
+				<h3 id="annprix">${annonce.prix} euros</h3>
 			</div>
+			<hr>
 
 			<h3>Publie le : ${annonce.date }</h3>
 			<hr>
@@ -64,8 +66,7 @@ img {
 
 
 
-			<img src=${annonce.photo } class="img-responsive" alt=" ">
-			<br>
+			<img src=${annonce.photo } class="img-responsive" alt=" "> <br>
 			<hr>
 
 			<form action="contactAnn">

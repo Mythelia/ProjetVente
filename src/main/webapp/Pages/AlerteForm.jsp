@@ -31,7 +31,7 @@
 
 				<div class="form-group ">
 					<label for="titre">Mot clef</label>
-					<form:input path="motClefs" class="form-control"></form:input>
+					<form:input path="motClefs" class="form-control" placeholder="Entrez un seul mot clef s'il vous plait"></form:input>
 					<form:errors path="motClefs" cssClass="error" />
 				</div>
 				<button type="submit" class="btn btn-primary">Créer</button>

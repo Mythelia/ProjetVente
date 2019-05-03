@@ -62,7 +62,8 @@
 <body>
 	<jsp:include page="/Pages/HeaderB.jsp"></jsp:include>
 	<div class="container">
-		<h2>Bienvenu sur notre projet</h2>
+		<h2>Bienvenue
+		 sur notre projet</h2>
 		<br>
 
 
@@ -98,10 +99,27 @@
 										value=${u.idAnnonces }>${u.titre}</button>
 								</div>
 								<div class="panel-body">
-									<img src=${u.photo } class="img-responsive" style="width: 100%"
-										alt=" ">
+									<c:if test="${not empty u.photo}">
+										<img src=${u.photo } class="img-responsive"
+											style="width: 100%" alt=" ">
+									</c:if>
+									<c:if test="${ empty u.photo}">
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+									</c:if>
+
 								</div>
-								<div class="panel-footer">${ u.prix} euros</div>
+								<div class="panel-footer">${ u.prix}euros</div>
 							</div>
 						</form>
 					</div>

@@ -1,6 +1,5 @@
 package fr.formation.inti.controller;
 
-import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -13,9 +12,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.formation.inti.Service.SpellCheck;
 import fr.formation.inti.entities.Annonces;
 import fr.formation.inti.entities.Login;
-import fr.formation.inti.entities.Messages;
 import fr.formation.inti.entities.MotsClefs;
 import fr.formation.inti.entities.Utilisateurs;
 import fr.formation.inti.interfaces.services.IAnnoncesService;
@@ -127,7 +122,10 @@ public class AnnoncesController {
 			otherWord = null;
 		} else {
 			annonces = spellCheck.getAnnonces(motClefPlusAbondant);
-			annonces.addAll(spellCheck.getAnnonces(mDemande));
+			try {
+				annonces.addAll(spellCheck.getAnnonces(mDemande));
+			} catch (NullPointerException e) {
+			}
 			otherWord = motClefPlusAbondant;
 		}
 		if (mDemande.equals(otherWord)) {
@@ -150,8 +148,12 @@ public class AnnoncesController {
 	public ModelAndView showAnnonce(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("show") int idAnnonce) {
 		Annonces annonce = annonceService.findByIdAnnonces(idAnnonce);
-		System.out.println(annonce.getDescription());
-		return new ModelAndView("showAnnonce", "annonce", annonce);
+		if (annonce == null) {
+			return new ModelAndView("Pasdannonce");
+		} else {
+			System.out.println(annonce.getDescription());
+			return new ModelAndView("showAnnonce", "annonce", annonce);
+		}
 	}
 
 	@RequestMapping(value = "searchAgain")

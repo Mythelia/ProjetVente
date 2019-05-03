@@ -179,7 +179,8 @@ public class AjouterAnnonceControler {
 					if (motClef.equals(motClefs.getMotClef())) {
 						Messages message = new Messages(utilisateurs, utilisateur, "noreply: Alerte : " + motClef,
 								date1,
-								"Une nouvelle annonce correspondant à votre alerte est vient d'être mise en ligne !");
+								"Une nouvelle annonce correspondant à votre alerte est vient d'être mise en ligne ! <form method=\"POST\" action=\"Annonce\"> <button name=\"show\" type=\"submit\" class=\"btn btn-link\"\r\n"
+										+ "	value=" + annonce.getIdAnnonces() + ">cliquer ici pour voir l'annonce </button> </form> ");
 						serviMess.createMessages(message);
 					}
 				}

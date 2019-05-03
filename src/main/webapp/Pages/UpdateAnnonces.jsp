@@ -64,7 +64,8 @@
 
 				<div class="form-group">
 					<label for="photo">Ajouter une photo</label>
-					<form:input type="text" class="form-control-file" path="photo" value="${annonce.photo}"></form:input>
+					<form:input class="form-control" path="photo"
+						value="${annonce.photo}"></form:input>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Modifier

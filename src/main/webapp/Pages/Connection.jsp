@@ -19,22 +19,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script>
-	function onSignIn(googleUser) {
-		// Useful data for your client-side scripts:
-		var profile = googleUser.getBasicProfile();
-		console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-		console.log('Full Name: ' + profile.getName());
-		console.log('Given Name: ' + profile.getGivenName());
-		console.log('Family Name: ' + profile.getFamilyName());
-		console.log("Image URL: " + profile.getImageUrl());
-		console.log("Email: " + profile.getEmail());
 
-		// The ID token you need to pass to your backend:
-		var id_token = googleUser.getAuthResponse().id_token;
-		console.log("ID Token: " + id_token);
-	}
-</script>
+
 <style type="text/css">
 #plus {
 	padding-top: 70px;
@@ -92,13 +78,13 @@
 			<br>
 			<div>
 				<button class="btn btn-primary" type="submit">Login</button>
-				<img alt="facebook"
-					src="https://cdn.icon-icons.com/icons2/1099/PNG/512/1485482214-facebook_78681.png"
-					id="img-compte" class="pull-right"> <br>
-				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 			</div>
 			<br>
 			<hr>
+			<div>
+				<h5>Vous n'avez pas de compte ?</h5>
+			</div>
 			<br>
 
 

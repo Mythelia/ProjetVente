@@ -176,11 +176,12 @@ public class AjouterAnnonceControler {
 				for (String motClef : motsClefs) {
 
 					// et si il a des mots clefs en communs, envoie un message
-					if (motClef.equals(motClefs.getMotClef())) {
-						Messages message = new Messages(utilisateurs, utilisateur, "noreply: Alerte : " + motClef,
-								date1,
+					if (motClef.equals(motClefs.getMotClef()) && utilisateurs != alerte.getUtilisateurs()) {
+						Messages message = new Messages(alerte.getUtilisateurs(), utilisateur,
+								"noreply: Alerte : " + motClef, date1,
 								"Une nouvelle annonce correspondant à votre alerte est vient d'être mise en ligne ! <form method=\"POST\" action=\"Annonce\"> <button name=\"show\" type=\"submit\" class=\"btn btn-link\"\r\n"
-										+ "	value=" + annonce.getIdAnnonces() + ">cliquer ici pour voir l'annonce </button> </form> ");
+										+ "	value=" + annonce.getIdAnnonces()
+										+ ">cliquer ici pour voir l'annonce </button> </form> ");
 						serviMess.createMessages(message);
 					}
 				}

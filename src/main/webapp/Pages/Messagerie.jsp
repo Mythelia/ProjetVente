@@ -16,27 +16,38 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 	<div class="container">
 		<h2>Messagerie</h2>
+		<a href="NouveauMessage" role="button" class="btn btn-primary">Nouveau
+			message</a> <br> <br>
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Expéditeur</th>
 					<th>Titre</th>
+					<th>Expéditeur</th>
 					<th>Date</th>
+					<th>Lire le mail</th>
 					<th>Supprimer mail</th>
+
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${mails}" var="u">
+				<c:forEach items="${list}" var="u">
 					<tr>
-						<td>${u.expediteur}</td>
+
 						<td>${u.titre}</td>
+						<td>${u.utilisateursByIdUtilisateurExpediteur.nom}</td>
 						<td>${u.date}</td>
+
+
+						<td><form action="LectureMessage">
+								<input type='hidden' name="idMessage" value="${u.idMessages}">
+								<input type="submit" value="Lire"></input>
+							</form></td>
 						<td><form action="DeleteMess" method="post">
-								<input type='hidden' name="id" value="${u.id}"> <input
-									type="submit" value="Supprimer"></input>
+								<input type='hidden' name="id" value="${u.idMessages}">
+								<input type="submit" value="Supprimer"></input>
 							</form></td>
 					</tr>
 				</c:forEach>

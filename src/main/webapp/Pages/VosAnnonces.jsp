@@ -15,7 +15,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 
 	<div class="container">
 		<h2>Vos annonces</h2>
@@ -36,13 +36,13 @@
 						<td>${a.date}</td>
 						<td>${a.prix}</td>
 						<td>
-							<form action="Jue.jsp" method="post">
-								<input type='hidden' name="id" value="${a.anId}"> <input
+							<form action="UpdateAnn" method="post">
+								<input type='hidden' name="idAnn" value="${a.idAnnonces}"> <input
 									type="submit" value="Update"></input>
 							</form>
 						</td>
 						<td><form action="DeleteAn" method="post">
-								<input type='hidden' name="id" value="${a.anId}"> <input
+								<input type='hidden' name="id" value="${a.idAnnonces}"> <input
 									type="submit" value="Supprimer"></input>
 							</form></td>
 					</tr>

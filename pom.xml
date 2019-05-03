@@ -26,13 +26,19 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.3.5.Final </version>
+			<version>5.1.0.Final </version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.1.0.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
-			<version>4.3.5.Final </version>
+			<version>5.1.0.Final </version>
 		</dependency>
 
 		<dependency>
@@ -48,6 +54,16 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- SQLServer JDBC driver (JTDS) -->
+		<!-- http://mvnrepository.com/artifact/net.sourceforge.jtds/jtds -->
+
+
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -60,7 +76,7 @@
 			<version>3.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
@@ -82,11 +98,18 @@
 			<version>4.3.4.RELEASE</version>
 		</dependency>
 
+		<!-- http://mvnrepository.com/artifact/org.springframework/spring-orm -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.2.GA</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.3.4.RELEASE</version>
 		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.hibernate</groupId> -->
+		<!-- <artifactId>hibernate-validator</artifactId> -->
+		<!-- <version>4.0.2.GA</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -99,13 +122,16 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-		
-		
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.1</version>
 		</dependency>
 	</dependencies>
 	<build>

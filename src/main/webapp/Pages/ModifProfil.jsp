@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,58 +15,70 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style type="text/css">
-#date {
+#dateNaissance {
 	line-height: 19px !important;
 }
+
 </style>
 </head>
 
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 
 	<div class="container">
 		<h2>Inscription</h2>
 		<div class="col-sm-5" id="inscription">
-			<form action="#" method="post">
+			<form:form commandName="utilisateur" action="formmodifprofil"
+				method="POST">
 				<div class="form-group ">
-					<label for="nom">Nom:</label> <input type="text"
-						class="form-control" id="nom" placeholder="${Nom}">
+					<label for="nom">Nom:</label>
+					<form:input type="text" class="form-control" path="nom"
+						value="${utilisateur.nom}"></form:input>
+					<form:errors path="nom" cssClass="error" />
 				</div>
 				<div class="form-group ">
-					<label for="prenom">Prénom:</label> <input type="text"
-						class="form-control" id="prenom" placeholder="${Prenom}">
+					<label for="prenom">Prénom:</label>
+					<form:input type="text" class="form-control" path="prenom"
+						value="${utilisateur.prenom}"></form:input>
+					<form:errors path="prenom" cssClass="error" />
 				</div>
 				<div class="form-group ">
-					<label for="mail">Adresse mail:</label> <input type="${Mail}"
-						class="form-control" id="mail" placeholder="${DateNaissance}">
+					<label for="mail">Adresse mail:</label>
+					<form:input type="text" class="form-control" path="mail"
+						value="${utilisateur.mail}"></form:input>
+					<form:errors path="mail" cssClass="error" />
 				</div>
 				<div class="form-group " id="dateNaissance">
-					<label for="date">Date de naissance:</label> <input type="date"
-						class="form-control" id="date" value="19/08/2011">
+					<label for="date">Date de naissance:</label>
+					<form:input type="date" class="form-control" path="dateNaissance"
+						value="${utilisateur.dateNaissance}"></form:input>
+					<form:errors path="dateNaissance" cssClass="error" />
 				</div>
 
 				<div class="form-group ">
-					<label for="postal">Code postal de votre ville :</label> <input
-						type="text" class="form-control" id="postal"
-						placeholder="${CodePostal}">
+					<label for="postal">Code postal de votre ville :</label>
+					<form:input type="text" class="form-control" path="codePostal"
+						value="${utilisateur.codePostal}"></form:input>
+					<form:errors path="codePostal" cssClass="error" />
 				</div>
 
 				<div class="form-group ">
-					<label for="pseudo">Pseudo:</label> <input type="text"
-						class="form-control" id="pseudo" placeholder="${Pseudo}">
+					<label for="pseudo">Pseudo:</label>
+					<form:input type="text" class="form-control" path="login"
+						value="${utilisateur.login}"></form:input>
+					<form:errors path="login" cssClass="error" />
 				</div>
 
 				<div class="form-group ">
-					<label for="password">Mot de passe:</label> <input type="password"
-						class="form-control" id="password" placeholder="${Password}">
+					<label for="password">Mot de passe:</label>
+					<form:input type="password" class="form-control" path="password"
+						placeholder="Modifier votre mot de passe" value=""></form:input>
+					<form:errors path="passwordString" cssClass="error" />
 				</div>
-				<div class="form-group">
-					<label for="password">Confirmer le mot de passe</label> <input
-						type="password" class="form-control" id="password"
-						placeholder="${Password}">
-				</div>
-				<button type="submit" class="btn btn-primary">S'inscrire</button>
-			</form>
+
+				<button type="submit" class="btn btn-primary">Modifier le
+					profil</button>
+			</form:form>
 		</div>
 	</div>
 

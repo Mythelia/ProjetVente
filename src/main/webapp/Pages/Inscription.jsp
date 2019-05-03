@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
 <title>Inscription</title>
@@ -14,56 +16,76 @@
 #date {
 	line-height: 19px !important;
 }
+
+.error {
+	color: #ff0000;
+	font-style: italic;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
-	<jsp:include page="HeaderB.html" />
+	<jsp:include page="HeaderB.jsp" />
 
 	<div class="container">
 		<h2>Inscription</h2>
 		<div class="col-sm-5" id="inscription">
-			<form action="#" method="post">
-				<div class="form-group ">
-					<label for="nom">Nom:</label> <input type="text"
-						class="form-control" id="nom" placeholder="Entrer votre nom">
+			<form:form commandName="utilisateur" method="POST"
+				action="forminscrip">
+				<div class="form-group">
+					<label for="nom">Nom:</label>
+					<form:input path="nom" placeholder="Entrer votre nom"
+						class="form-control"></form:input>
+					<form:errors path="nom" cssClass="error" />
 				</div>
 				<div class="form-group ">
-					<label for="prenom">Prénom:</label> <input type="text"
-						class="form-control" id="prenom" placeholder="Entrer votre prénom">
+					<label for="prenom">Prénom:</label>
+					<form:input path="prenom" placeholder="Entrer votre prénom"
+						class="form-control"></form:input>
+					<form:errors path="prenom" cssClass="error" />
 				</div>
 				<div class="form-group ">
-					<label for="mail">Adresse mail:</label> <input type="email"
-						class="form-control" id="mail"
-						placeholder="Entrer votre adresse mail">
+					<label for="mail">Adresse mail:</label>
+					<form:input path="mail" placeholder="Entrer votre adresse mail"
+						class="form-control"></form:input>
+					<form:errors path="mail" cssClass="error" />
 				</div>
 				<div class="form-group " id="dateNaissance">
-					<label for="date">Date de naissance:</label> <input type="date"
-						class="form-control" id="date" value="19/08/2011">
+					<label for="date">Date de naissance:</label>
+					<form:input type="date" path="dateNaissance" value="19/08/2011"
+						class="form-control" id="date"></form:input>
+					<form:errors path="dateNaissance" cssClass="error" />
 				</div>
 
 				<div class="form-group ">
-					<label for="postal">Code postal de votre ville :</label> <input
-						type="text" class="form-control" id="postal"
-						placeholder="Entrer votre code postal">
+					<label for="postal">Code postal de votre ville :</label>
+					<form:input path="codePostal"
+						placeholder="Entrer votre code postal" class="form-control"
+						value=""></form:input>
+					<form:errors path="codePostal" cssClass="error" />
 				</div>
 
 				<div class="form-group ">
-					<label for="pseudo">Pseudo:</label> <input type="text"
-						class="form-control" id="pseudo" placeholder="Entrer votre pseudo">
+					<label for="pseudo">Pseudo:</label>
+					<form:input path="login" placeholder="Entrer votre pseudo"
+						class="form-control"></form:input>
+					<form:errors path="login" cssClass="error" />
 				</div>
 
-				<div class="form-group ">
-					<label for="password">Mot de passe:</label> <input type="password"
-						class="form-control" id="password"
-						placeholder="Entrez votre mot de passe">
-				</div>
 				<div class="form-group">
-					<label for="password">Confirmer le mot de passe</label> <input
-						type="password" class="form-control" id="password"
-						placeholder="Confirmer le mot de passe">
+					<label for="password">Mot de passe:</label>
+					<form:input type="password" path="passwordString"
+						placeholder="Entrez votre mot de passe" class="form-control"></form:input>
+					<form:errors path="passwordString" cssClass="error" />
 				</div>
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<label for="password">Confirmer le mot de passe</label> -->
+				<%-- 					<form:input type="password" path="password" --%>
+				<%-- 						placeholder="Confirmer le mot de passe" class="form-control"></form:input> --%>
+				<%-- 					<form:errors path="password" cssClass="error" /> --%>
+				<!-- 				</div> -->
 				<button type="submit" class="btn btn-primary">S'inscrire</button>
-			</form>
+			</form:form>
 		</div>
 	</div>
 
